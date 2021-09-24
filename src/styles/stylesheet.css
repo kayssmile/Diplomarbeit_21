@@ -1,0 +1,48 @@
+@charset "UTF-8";
+/*  Die Body Masse für eine klare Richtlinie innerhalb aller Browser Versionen */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+html, body {
+  font-size: 18px;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+body {
+  background-color: white;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  padding: 0px;
+  margin: 0px;
+}
+
+/*  Partials Import  */
+/*  Header - Navigation */
+.header__ {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100vw;
+  height: 132px;
+  background-color: #92b9af;
+}
+
+/*  App Container  */
+/*  Application  */
+/*  Footer */
+/*  Viewport Mobile Version */
+/*# sourceMappingURL=stylesheet.css.map */

@@ -1,0 +1,104 @@
+
+/*  Die Body Masse für eine klare Richtlinie innerhalb aller Browser Versionen */
+
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+*, *:before, *:after{
+  
+  box-sizing: inherit;
+  
+}
+  
+html, body{
+ 
+  font-size: 18px;
+  font-family: 'Josefin Sans', sans-serif;
+  
+}
+  
+body{
+      
+  background-color: rgb(255, 255, 255);
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  padding: 0px;
+  margin: 0px;
+    
+}
+
+
+/*  Partials Import  */
+
+
+
+/*  Header - Navigation */
+
+.header{
+
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100vw;
+  height: 132px;
+  background-color: rgb(146, 185, 175);
+  
+ 
+  &__logo{
+
+
+
+
+  }
+
+  &__nav{
+
+    position: relative;
+    display: inline-flex;
+    justify-content: space-between;
+    width: 20%;
+
+
+    
+  }
+
+
+
+}
+
+
+
+
+  
+/*  App Container  */
+
+
+
+
+/*  Application  */
+
+
+
+/*  Footer */
+
+
+/*  Viewport Mobile Version */
+
+@media (max-width: 675px){
+
+ 
+}
+
+@media (max-width: 440px){
+
+  
+}
+
+@media (max-width: 375px){
+
+
+}
