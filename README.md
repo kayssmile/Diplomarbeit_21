@@ -3,11 +3,35 @@ Diplomarbeit Immobilien Applikation
 
 Diplomarbeit Frontend Developer 2021
 
-# Abstract/Management Summary
+# Inhaltsverzeichnis 
+
+- [Abstract/Managment Summary](#abstract)
+    1. [Persönliches](#persönliches)
+- [Setup Guide](#setup)
+    1. [Git](#git)
+    2. [Webpack](#webpack)
+    3. [Git](#sql)
+- [URL der lauffähigen Version](#url)
+- [Zeitplan](#zeitplan)
+    1. [Projektevaluation](#evaluation)
+    2. [Frontend Grundstruktur](#frontend)
+    3. [Frontend Interaktiv](#frontendJS)
+    4. [Reserve](#reserve)
+    5. [Fazit](#fazit)
+- [Technologiekonzepte](#Technologiekonzepte)
+- [Technische Dokumentation](#tech_dokumentation)
+- [Zusammenfassung / Fazit](#Zusammenfassung)
+- [Quellenangabe / Rechtliches](#Verweise)
+
+
+
+
+
+# Abstract/Management Summary <a id="abstract"></a>
 
 Diplomarbeit nach Vorgabe 
 
-## Persönliches/Managment Summary 
+## Persönliches/Managment Summary <a id="persönliches"></a>
 
 Verschiedene Eigenheiten des Codes : 
 
@@ -18,9 +42,9 @@ Versch. Style Guides
 
 
 
-# Setup Guide
+# Setup Guide <a id="setup"></a>
 
-## Git
+## Git <a id="git"></a>
 
 Um die Anwendung zu installieren, einfach das Repository mit Git klonen:
 
@@ -33,7 +57,7 @@ Ordner ablegen und benötigten Abhängigkeiten installieren:
 ```bash
 npm install
 ```
-## Webpack 
+## Webpack <a id="webpack"></a>
 
 Um an der Anwendung zu arbeiten : 
 
@@ -57,12 +81,12 @@ Anwendung fertigstellen Production mode :
 npm run build
 
 ```
-## SQL Datenbank
+## SQL Datenbank <a id="sql"></a>
 
-# URL der lauffähigen Version 
+# URL der lauffähigen Version <a id="url"></a>
 
 
-# Zeitplan 
+# Zeitplan <a id="zeitplan"></a>
 
 Zeitmanagment : 
 
@@ -71,7 +95,7 @@ Projektabgabe : 27.11.2021 / KW47
 
 
 
-### KW37 Briefing Diplomarbeit 
+### KW37 Briefing Diplomarbeit <a id="evaluation"></a>
 
 
 - Einrichten Arbeitsumgebung : Git Repository, Webpack, Ordnerstruktur
@@ -92,6 +116,7 @@ Projektabgabe : 27.11.2021 / KW47
 
     Schwierigkeiten : 
 
+     * Foto Slider
      * Flex oder Grid
      * Geolocation API 
      * Styling der API
@@ -105,20 +130,20 @@ Projektabgabe : 27.11.2021 / KW47
      * Raster oder Listenansicht 
 
 
-### KW38 - KW40 Frontend 
+### KW38 - KW40 Frontend <a id="frontend"></a>
 
 HTML5 / CSS3
 
 20.09 - 10.10
 
-### KW41 - KW43 Frontend Interaktion
+### KW41 - KW43 Frontend Interaktion <a id="frontendJS"></a>
 
 VanillaJS
 GraphQL - API 
 
 11.10 - 31.10
 
-### KW44 - KW47 Reserve / Extras
+### KW44 - KW47 Reserve / Extras <a id="reserve"></a>
 
 Backend / Mixins
 
@@ -131,9 +156,9 @@ Backend / Mixins
 * Animation der Objekt Auflistung
 
 
-### Fazit zum Zeitpunkt der Abgabe 
+### Fazit zum Zeitpunkt der Abgabe <a id="fazit"></a>
 
-# Technologiekonzept inkl. Evaluation der eingesetzten Technologien mit Begründung
+# Technologiekonzept inkl. Evaluation der eingesetzten Technologien mit Begründung <a id="Technologiekonzepte"></a>
 
 ## HTML5/CSS3
 HTML5/CSS3 als Grundgeruest. CSS mithilfe des Preprozessors SASS , umsetzung mit Namenskonvention gemaess BEM. 
@@ -155,7 +180,7 @@ Pure Vanilla JS ohne Fremdcode
 
 
 
-# Technische Dokumentation 
+# Technische Dokumentation <a id="tech_dokumentation"></a>
 
 Bedienung, Interaktion mit der Website. 
 Handhabung der Filter 
@@ -163,9 +188,9 @@ Einstellungsmoeglichkeiten
 WEB-API 
 
 
-# Zusammenfassung / Fazit 
+# Zusammenfassung / Fazit <a id="Zusammenfassung"></a>
 
-# Author
+# Author <a id="Verweise"></a>
 <strong>Kay Hertenstein</strong><br>
 Teilnehmer Web Frontend Developer Lehrgang 2021 – <a target="_blank" href="http://www.web-professionals.ch">Web Professionals</a><br>
 <br>

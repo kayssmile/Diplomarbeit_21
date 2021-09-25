@@ -4,6 +4,9 @@ const common = require("./webpack.common");
 
 module.exports = merge(common, {
   mode: "development",
+  devServer: {
+    watchFiles: ['src/**/*.html'],
+  },
   output: {
       filename: "main.js",
       path: path.resolve(__dirname, "dist"),
