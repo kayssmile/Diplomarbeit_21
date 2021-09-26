@@ -2,13 +2,14 @@
 -------------------------------------------------------------- */
 
 $background-general : rgb(255, 255, 255);
-$header-general : rgba(146, 185, 175);
+$header-general : rgb(146, 185, 175);
+$main-general : rgb(229, 238, 236);
 
 
 /*  Colors: Elements interaction  
 -------------------------------------------------------------- */
 
-$btn-general : rgb(146, 185, 175);
+$elem-general : rgb(146, 185, 175);
 
 
 
@@ -16,3 +17,4 @@ $btn-general : rgb(146, 185, 175);
 -------------------------------------------------------------- */
 
 $letting-general : rgb(0, 0, 0);
+$letting-selected: #92B9AF;

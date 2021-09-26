@@ -11,10 +11,10 @@
                  
         <!--     <link rel="stylesheet" type="text/css" href="./styles/stylesheet.css"> -->
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
+        
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     
     </head>
     
@@ -68,28 +68,103 @@
 
             </nav>
 
+            <section class="heading">
+
+                <img class="heading__picture" src="./images/JPG/photo-heading-front.jpg" alt="picture_heading_front">
+                <div class="heading__section">
+
+                    <h1 class="heading__section--title regular">Die optimale Balance zwischen<br>Ästhetik und Funktionalität</h1>
+
+                </div>
+
+            </section>
+
             <main>
+ 
+                <section class="main_estates">
 
-                <section class="heading">
+                    <div class="main_estates__heading">
 
-                    <img class="heading__picture" src="./images/JPG/photo-heading-front.jpg" alt="picture_heading_front">
-                    <div class="heading__section">
-
-                        <h1 class="heading__section--title regular">Die optimale Balance zwischen<br>Ästhetik und Funktionalität</h1>
+                        <h2 class="main_estates__heading--title light">Immobilien</h2>
 
                     </div>
 
+                    <div class="main_estates__filter">
+
+                        <div class="main_estates__label">
+
+                            <p class="main_estates__label--text">Was</p>
+                            <p class="main_estates__label--text">Wo</p>
+                            <p class="main_estates__label--text"></p>
+
+                        </div>
+
+                        <div class="main_estates__selects">
+
+                            <select name="select-what" placeholder="Alle Objekte" class="main_estates__selects--select">
+                                <option>Neueste Objekte</option>
+                                <option>Wohnung</option>
+                                <option>Haus/Villa</option>         
+                            </select>
+    
+                            <select name="select-where" placeholder="Alle Orte" class="main_estates__selects--select">
+                                <option>Schweiz</option>
+                                <option>Finnland</option>
+                                <option>Denmark</option>         
+                            </select>
+    
+                            <div class="main_estates__selects--ruler">
+    
+                                <p class="main_estates__selects--text">Mieten</p>
+                                <div class="main_estates__selects--backslider">
+    
+                                    <input type="range" min="1" max="2" step="1.0" value="1" class="main_estates__selects--slider">
+                                
+                                </div>
+                                <p class="main_estates__selects--text">Kaufen</p>
+    
+                            </div>
+
+                        </div>
+
+                        <div class="main_estates__label">
+
+                            <p class="main_estates__label--text">Sortierung</p>
+                            <p class="main_estates__label--text"></p>
+                            <p class="main_estates__label--text"></p>
+
+                        </div>
+
+                        <div class="main_estates__selects">
+
+                            <select name="select-sort" placeholder="Auswählen" class="main_estates__selects--select">
+                                <option>Preis absteigend</option>
+                                <option>Datum aufsteigend</option>
+                                <option>Datum absteigend</option>         
+                            </select>
+    
+                            <div class="main_estates__selects--btn">
+                                <p class="main_estates__selects--btntext">Suchen</p>
+                            </div>
+
+                        </div>
+                    
+                      
+
+                    </div>
+
+
                 </section>
+
+            </main>
+
+            <footer>
                 
 
 
 
 
-
-            </main>
-
-
-            <footer></footer>
+            </footer>
             
             
 

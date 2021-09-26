@@ -1,12 +1,13 @@
-
-/*  Partials Import  */
+/*  Partials Import  
+-------------------------------------------------------------- */
 
 @import "./Partials/Colors";
 @import "./Partials/font_familiy_styles";
 
 
+/*  Die Body Masse für eine klare Richtlinie innerhalb aller Browser Versionen
+-------------------------------------------------------------- */
 
-/*  Die Body Masse für eine klare Richtlinie innerhalb aller Browser Versionen */
 
 * {
     margin: 0;
@@ -22,12 +23,15 @@
 html, body{
  
   font-family: 'Montserrat', Arial, sans-serif;
+  line-height: 80px;
+  font-size: 16px;
+  letter-spacing: -1.5%;
   
 }
   
 body{
       
-  background-color: $background-general;
+  background-color: yellow;
   background-repeat: no-repeat;
   min-height: 100vh;
   padding: 0px;
@@ -36,10 +40,9 @@ body{
 }
 
 
+/*  Header - Navigation  
+-------------------------------------------------------------- */
 
-
-
-/*  Header - Navigation */
 
 .nav{
 
@@ -52,12 +55,12 @@ body{
   height: 132px;
   background-color: $header-general;
   opacity: 0.85;
-  z-index: 1;
+  z-index: 11;
   
  
   &__logo{
 
-    margin-left: 2.5vw;
+    margin-left: 2.5%;
 
   }
 
@@ -66,7 +69,8 @@ body{
     position: relative;
     display: inline-flex;
     justify-content: space-between;
-    margin-right: 2.261vw;
+    margin-right: 2.5%;
+    width: 24.5%;
 
     a{
 
@@ -77,7 +81,7 @@ body{
     &--text{
 
       font-style: normal;
-      font-size: 22px;
+      font-size: 20px;
       color: $letting-general;
       line-height: 26.82px;
       letter-spacing: -1.5%;
@@ -88,8 +92,8 @@ body{
 
 }
 
-
-/*  Main  */
+/*  Header - Main 
+-------------------------------------------------------------- */
 
 .heading{
 
@@ -98,9 +102,9 @@ body{
     position: relative;
     display: inline-block;
     width: 100%;
+    z-index: 1;
     
   }
-
 
   &__section{
 
@@ -108,32 +112,262 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     background-color: $background-general;
 
     width: 100%;
-    height: 329.71px;
-    text-align: center;
-    z-index: 1;
-    top: -270.29px;
-
+    height: 300px;
+    top: -30px;
+    
     &--title{
 
       font-style: normal;
       font-size: 56px;
-      line-height: 80px;
+      
 
     }
 
   }
 
+}
 
+/*  Main 
+-------------------------------------------------------------- */
+
+.main_estates{
+
+  position: relative;
+  display: block;
+  background-color: $main-general;
+
+    &__heading{
+
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 136px;
+      top: 40px;
+      
+      background-color: greenyellow;
+
+      &--title{
+
+        font-size: 40px;
+        font-style: normal;
+
+      }
+
+    }
+
+    &__filter{
+
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      margin: 0% 7.73%;
+      top: 40px;
+      border: 1px black solid;
+
+    }
+
+    &__label{
+
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 40px;
+      
+      &--text{
+
+        position: relative;
+        display: inline-block;
+        width: 30%;
+        text-align: start;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 22px;
+
+      }
+
+    }
+
+    &__label:nth-child(3){
+
+      margin-top: 50px;
+    
+    }
+    
+    &__selects{
+
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      
+
+      &--select{
+
+        position: relative;
+        display: inline-block;
+        width: 30%;
+        height: 50px;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: normal;
+        border-radius: 0px;
+        border: 0px;
+        cursor: pointer;
+
+      }
+
+      &--btn{
+
+        position: relative;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        width: 30%;
+        height: 45px;
+        
+        background-color: $elem-general;
+        
+        
+        
+      }
+
+      &--btntext{
+
+        position: relative;
+        display: inline;
+        font-size: 22px;
+        font-weight: bold;
+        color: $background-general;
+        
+        
+      }
+
+      &--ruler{
+
+        position: relative;
+        display: inline-flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 30%;
+        height: 50px;
+  
+  
+      }
+
+      &--text{
+
+        position: relative;
+        display: inline;
+        font-size: 22px;
+        font-weight: bold;
+        color: $letting-selected;
+
+      }
+
+      &--backslider{
+
+        position: relative;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $elem-general;
+        width: 30%;
+        height: 31px;
+        border-radius: 50px;
+
+      }
+
+      &--slider{
+
+        height: 16px;
+        width: 90%;
+        background: $elem-general;
+            
+        cursor: pointer;
+        -webkit-appearance: none;
+
+      }
+
+    }
+}
+
+
+input[type=range]::-moz-range-thumb{
+
+  background: $background-general;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 0px;
+  
+}
+
+/*  Main : Style SELECT Elements
+-------------------------------------------------------------- */
+
+
+.main_estates__selects{
+
+  select {
+
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+
+    background-image: url(../images/SVG/Vector\ 2.svg);
+    background-repeat: no-repeat;
+    background-position: calc(100% - 20px) center;
+    background-size: 20px;
+  
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    option{
+
+      background-color: $background-general;
+      border-radius: 0px;
+      border: 0px;
+  
+    }
+
+  }
+
+  select:focus{
+
+    background-color: $background-general;
+    
+    border-radius: 0px;
+    border: 0px;
+
+  }
+
+}
+
+.main_estates__selects--select select::after{
+
+  content: "";
+  position: absolute;
+  
+  z-index: 1;
+  transform: rotate(30deg);
 
 }
 
 
 
 
-/*  Application  */
+
+
 
 
 
