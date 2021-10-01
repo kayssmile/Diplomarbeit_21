@@ -3,13 +3,14 @@
 
 $background-general : rgb(255, 255, 255);
 $header-general : rgb(146, 185, 175);
-$main-general : rgb(229, 238, 236);
-
+$main-general :  rgba(229, 238, 236, 1);
+$black : rgb(0, 0, 0);
 
 /*  Colors: Elements interaction  
 -------------------------------------------------------------- */
 
-$elem-general : rgb(146, 185, 175);
+$elem-general : rgba(146, 185, 175, 1);
+$elem-hover : rgba(135, 135, 135, 1);
 
 
 

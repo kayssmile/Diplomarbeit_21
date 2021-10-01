@@ -40,6 +40,9 @@ GraphQL API
 Breakpoints
 Versch. Style Guides
 
+Waehrend der Projektumsetzung : 
+Gute Repetition des Lehrganges z.B Grid, BEM.
+
 
 
 # Setup Guide <a id="setup"></a>

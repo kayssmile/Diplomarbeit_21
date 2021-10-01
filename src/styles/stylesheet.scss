@@ -2,7 +2,8 @@
 -------------------------------------------------------------- */
 
 @import "./Partials/Colors";
-@import "./Partials/font_familiy_styles";
+@import "./Partials/fonts_typography";
+@import "./Partials/navigation";
 
 
 /*  Die Body Masse für eine klare Richtlinie innerhalb aller Browser Versionen
@@ -31,7 +32,7 @@ html, body{
   
 body{
       
-  background-color: yellow;
+  background-color: white;
   background-repeat: no-repeat;
   min-height: 100vh;
   padding: 0px;
@@ -39,68 +40,19 @@ body{
     
 }
 
-
-/*  Header - Navigation  
--------------------------------------------------------------- */
-
-
-.nav{
-
-  position: absolute;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  width: 100%;
-  height: 132px;
-  background-color: $header-general;
-  opacity: 0.85;
-  z-index: 11;
-  
- 
-  &__logo{
-
-    margin-left: 2.5%;
-
-  }
-
-  &__selection{
-
-    position: relative;
-    display: inline-flex;
-    justify-content: space-between;
-    margin-right: 2.5%;
-    width: 24.5%;
-
-    a{
-
-      text-decoration: none;
-
-    }
-
-    &--text{
-
-      font-style: normal;
-      font-size: 20px;
-      color: $letting-general;
-      line-height: 26.82px;
-      letter-spacing: -1.5%;
-      
-    }
-
-  }
-
-}
-
 /*  Header - Main 
 -------------------------------------------------------------- */
 
 .heading{
 
+  position: relative;
+  display: inline-block;
+  width: 100%;
+
   &__picture{
 
     position: relative;
-    display: inline-block;
+    display: block;
     width: 100%;
     z-index: 1;
     
@@ -117,13 +69,9 @@ body{
 
     width: 100%;
     height: 300px;
-    top: -30px;
+    margin-bottom: 30px;
     
     &--title{
-
-      font-style: normal;
-      font-size: 56px;
-      
 
     }
 
@@ -131,14 +79,18 @@ body{
 
 }
 
-/*  Main 
+/*  Main : Heading, Searchmodulation (Selects,Filter)
 -------------------------------------------------------------- */
 
-.main_estates{
+#main_estates{
 
   position: relative;
   display: block;
   background-color: $main-general;
+
+}
+
+.main_estates{
 
     &__heading{
 
@@ -148,13 +100,12 @@ body{
       align-items: center;
       height: 136px;
       top: 40px;
+      margin-bottom: 65px;
       
-      background-color: greenyellow;
+      background-color: $main-general;
 
+      
       &--title{
-
-        font-size: 40px;
-        font-style: normal;
 
       }
 
@@ -166,8 +117,7 @@ body{
       display: flex;
       flex-direction: column;
       margin: 0% 7.73%;
-      top: 40px;
-      border: 1px black solid;
+      // border: 1px black solid;
 
     }
 
@@ -185,10 +135,7 @@ body{
         display: inline-block;
         width: 30%;
         text-align: start;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 22px;
-
+        
       }
 
     }
@@ -205,16 +152,12 @@ body{
       display: flex;
       justify-content: space-between;
       
-
       &--select{
 
         position: relative;
         display: inline-block;
         width: 30%;
         height: 50px;
-        font-size: 1rem;
-        font-style: normal;
-        font-weight: normal;
         border-radius: 0px;
         border: 0px;
         cursor: pointer;
@@ -233,20 +176,20 @@ body{
         height: 45px;
         
         background-color: $elem-general;
+        cursor: pointer;
         
-        
-        
+      }
+
+      &--btn:hover{
+
+        background-color: $elem-hover;
+
       }
 
       &--btntext{
 
-        position: relative;
-        display: inline;
-        font-size: 22px;
-        font-weight: bold;
         color: $background-general;
-        
-        
+
       }
 
       &--ruler{
@@ -259,15 +202,10 @@ body{
         width: 30%;
         height: 50px;
   
-  
       }
 
       &--text{
 
-        position: relative;
-        display: inline;
-        font-size: 22px;
-        font-weight: bold;
         color: $letting-selected;
 
       }
@@ -297,7 +235,45 @@ body{
       }
 
     }
+
+  &__options{
+
+    position: relative;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-top: 150px;
+    border-bottom: 2px $elem-general solid;
+
+    &--text{
+
+      color: $letting-selected;
+
+    }
+
+    &--img{
+
+      fill: $elem-general;
+      cursor: pointer;
+
+    }
+
+    &--img:hover{
+
+      fill: $elem-hover;
+
+    }
+
+    &--img:nth-child(2){
+
+      margin: 0px 20px;
+
+    }
+
+  }
+
 }
+
 
 
 input[type=range]::-moz-range-thumb{
@@ -363,6 +339,155 @@ input[type=range]::-moz-range-thumb{
 
 }
 
+/*  Main : Results (list or section)
+-------------------------------------------------------------- */
+
+
+#result_estates{
+
+  background-color: $main-general;
+
+}
+
+.result_estates{
+
+  position: relative;
+  display: grid;
+  width: 100%;
+  
+  padding: 34px 7.73%;
+
+ 
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+
+  column-gap: 90px;
+  row-gap: 60px;
+
+  &__item{
+
+    position: relative;
+    display: inline-block;
+
+    &--picture{
+
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 230px;
+      cursor: pointer;
+  
+    }
+
+  }
+
+  &__description{
+
+    padding-top: 17px;
+    padding-bottom: 34px;
+
+    &--text{
+
+      @extend .font18;
+      @extend .regular;
+      line-height: 30px;
+      letter-spacing: -1.5%;
+  
+    }
+
+    &--title{
+
+      @extend .font28;
+      @extend .bold;
+      line-height: 40px;
+      cursor: pointer;
+  
+    }
+
+  }
+
+  &__item:nth-child(1){
+
+    grid-column: 1/2;
+    grid-row: 1/2;
+
+  }
+
+  &--item:nth-child(2){
+
+    grid-column: 2/3;
+    grid-row: 1/2;
+
+  }
+
+  &--item:nth-child(3){
+
+    grid-column: 3/4;
+    grid-row: 1/2;
+
+  }
+
+  &--item:nth-child(1){
+
+    grid-column: 1/2;
+    grid-row: 2/3;
+
+  }
+
+  &--item:nth-child(1){
+
+    grid-column: 2/3;
+    grid-row: 2/3;
+
+  }
+
+  &--item:nth-child(1){
+
+    grid-column: 3/4;
+    grid-row: 2/3;
+
+  }
+
+  &__next{
+
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0px 7.73%;
+    margin-top: 28.7px;
+    padding-bottom: 95px;
+    line-height: 30px;
+    cursor: pointer;
+
+    &--text{
+
+      color: $elem-general;
+    
+    }
+
+    &--svg{
+
+      margin-left: 18px;
+      stroke: $elem-general;
+
+    }
+
+  }
+
+ /*  &__next--text:hover {
+
+    color: $elem-hover;
+  
+  } */
+
+  &__next--svg:hover {
+
+    stroke:  $elem-hover;
+  
+  }
+
+}
 
 
 
@@ -371,8 +496,35 @@ input[type=range]::-moz-range-thumb{
 
 
 
-/*  Footer */
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  Footer
+-------------------------------------------------------------- */
+
+
+
+
+
+
+/*  Responsive Design : Breakpoints
+-------------------------------------------------------------- */
 
 /*  Viewport Mobile Version */
 

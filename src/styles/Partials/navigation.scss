@@ -1,0 +1,49 @@
+
+/*  Header - Navigation  
+-------------------------------------------------------------- */
+
+
+.nav{
+
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  height: 132px;
+  background-color: $header-general;
+  opacity: 0.85;
+  z-index: 11;
+  
+ 
+  &__logo{
+
+    margin-left: 2.5%;
+
+  }
+
+  &__selection{
+
+    position: relative;
+    display: inline-flex;
+    justify-content: space-between;
+    margin-right: 2.5%;
+    width: 24.5%;
+
+    a{
+
+      text-decoration: none;
+
+    }
+
+    &--text{
+
+      font-style: normal;
+      
+      
+    }
+
+  }
+
+}

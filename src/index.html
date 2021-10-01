@@ -11,10 +11,10 @@
                  
         <!--     <link rel="stylesheet" type="text/css" href="./styles/stylesheet.css"> -->
 
-        
+        <link rel="icon" type="image/png" href="./images/Logo.png">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
     
     </head>
     
@@ -58,9 +58,9 @@
 
                     <div class="nav__selection">
 
-                        <a href="#"><p class="nav__selection--text medium">Immobilien</p></a>
-                        <a href="#"><p class="nav__selection--text medium">Aktuelles</p></a>
-                        <a href="#"><p class="nav__selection--text medium">Kontakt</p></a>
+                        <a href="#"><p class="nav__selection--text nav_text medium">Immobilien</p></a>
+                        <a href="#"><p class="nav__selection--text nav_text medium">Aktuelles</p></a>
+                        <a href="#"><p class="nav__selection--text nav_text medium">Kontakt</p></a>
                         
                     </div>
 
@@ -73,41 +73,41 @@
                 <img class="heading__picture" src="./images/JPG/photo-heading-front.jpg" alt="picture_heading_front">
                 <div class="heading__section">
 
-                    <h1 class="heading__section--title regular">Die optimale Balance zwischen<br>Ästhetik und Funktionalität</h1>
+                    <h1 class="heading__section--title font56 regular">Die optimale Balance zwischen<br>Ästhetik und Funktionalität</h1>
 
                 </div>
 
             </section>
 
-            <main>
+            <main id="main">
  
-                <section class="main_estates">
+                <section id="main_estates">
 
                     <div class="main_estates__heading">
 
-                        <h2 class="main_estates__heading--title light">Immobilien</h2>
+                        <h2 class="main_estates__heading--title font40 regular">Immobilien</h2>
 
                     </div>
-
+                   
                     <div class="main_estates__filter">
 
                         <div class="main_estates__label">
 
-                            <p class="main_estates__label--text">Was</p>
-                            <p class="main_estates__label--text">Wo</p>
-                            <p class="main_estates__label--text"></p>
+                            <p class="main_estates__label--text font22 bold">Was</p>
+                            <p class="main_estates__label--text font22 bold">Wo</p>
+                            <p class="main_estates__label--text font22 bold"></p>
 
                         </div>
 
                         <div class="main_estates__selects">
 
-                            <select name="select-what" placeholder="Alle Objekte" class="main_estates__selects--select">
+                            <select name="select-what" placeholder="Alle Objekte" class="main_estates__selects--select font18">
                                 <option>Neueste Objekte</option>
                                 <option>Wohnung</option>
                                 <option>Haus/Villa</option>         
                             </select>
     
-                            <select name="select-where" placeholder="Alle Orte" class="main_estates__selects--select">
+                            <select name="select-where" placeholder="Alle Orte" class="main_estates__selects--select font18">
                                 <option>Schweiz</option>
                                 <option>Finnland</option>
                                 <option>Denmark</option>         
@@ -115,13 +115,13 @@
     
                             <div class="main_estates__selects--ruler">
     
-                                <p class="main_estates__selects--text">Mieten</p>
+                                <p class="main_estates__selects--text font22 bold">Mieten</p>
                                 <div class="main_estates__selects--backslider">
     
                                     <input type="range" min="1" max="2" step="1.0" value="1" class="main_estates__selects--slider">
                                 
                                 </div>
-                                <p class="main_estates__selects--text">Kaufen</p>
+                                <p class="main_estates__selects--text font22 bold">Kaufen</p>
     
                             </div>
 
@@ -129,7 +129,7 @@
 
                         <div class="main_estates__label">
 
-                            <p class="main_estates__label--text">Sortierung</p>
+                            <p class="main_estates__label--text font22 bold">Sortierung</p>
                             <p class="main_estates__label--text"></p>
                             <p class="main_estates__label--text"></p>
 
@@ -137,30 +137,160 @@
 
                         <div class="main_estates__selects">
 
-                            <select name="select-sort" placeholder="Auswählen" class="main_estates__selects--select">
+                            <select name="select-sort" placeholder="Auswählen" class="main_estates__selects--select font18">
                                 <option>Preis absteigend</option>
                                 <option>Datum aufsteigend</option>
                                 <option>Datum absteigend</option>         
                             </select>
     
                             <div class="main_estates__selects--btn">
-                                <p class="main_estates__selects--btntext">Suchen</p>
+                                <p class="main_estates__selects--btntext font22 bold">Suchen</p>
                             </div>
 
                         </div>
                     
-                      
+                        <div class="main_estates__options">
+
+                            <p class="main_estates__options--text font22">Ansicht:</p>
+
+                            <svg class="main_estates__options--img" width="34" height="30" viewBox="0 0 34 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="9" y="7" width="25" height="2" />
+                                <rect x="9" y="14" width="25" height="2" />
+                                <rect x="9" y="21" width="25" height="2" />
+                                <rect x="9" y="28" width="25" height="2" />
+                                <rect x="9" width="25" height="2" />
+                                <rect y="7" width="7" height="2" />
+                                <rect y="14" width="7" height="2" />
+                                <rect y="21" width="7" height="2" />
+                                <rect y="28" width="7" height="2" />
+                                <rect width="7" height="2"/>
+                            </svg>
+
+                            <svg class="main_estates__options--img" width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="7.5" height="7.5" />
+                                <rect y="11.5" width="7.5" height="7.5" />
+                                <rect y="23" width="7.5" height="7.5" />
+                                <rect x="11.5" width="7.5" height="7.5" />
+                                <rect x="11.5" y="11.5" width="7.5" height="7.5" />
+                                <rect x="11.5" y="23" width="7.5" height="7.5" />
+                                <rect x="23" width="7.5" height="7.5" />
+                                <rect x="23" y="11.5" width="7.5" height="7.5" />
+                                <rect x="23" y="23" width="7.5" height="7.5" />
+                            </svg>
+
+                        </div>
 
                     </div>
 
-
                 </section>
+                
+                <section id="result_estates">
+
+                    <div class="result_estates">
+
+                        <div class="result_estates__item">
+
+                            <img class="result_estates__item--picture" src="./images/JPG/photo-1464146072230-91cabc968266.jpg">
+                            <div class="result_estates__description">
+
+                                <p class="result_estates__description--text">Zu verkaufen ab 01.01.2022</p>
+                                <p class="result_estates__description--text">6210 Sursee, Luzern</p>
+                                <h3 class="result_estates__description--title">Bijou am See</h3>
+                                <p class="result_estates__description--text">Fläche 300m, Preis: CHF 2'800'000</p>
+                            
+                            </div>
+
+                        </div>
+
+                        <div class="result_estates__item">
+
+                            <img class="result_estates__item--picture" src="./images/JPG/photo-1448630360428-65456885c650.jpg">
+                            <div class="result_estates__description">
+
+                                <p class="result_estates__description--text">Zu verkaufen ab 01.01.2022</p>
+                                <p class="result_estates__description--text">6210 Sursee, Luzern</p>
+                                <h3 class="result_estates__description--title">Bijou am See</h3>
+                                <p class="result_estates__description--text">Fläche 300m, Preis: CHF 2'800'000</p>
+                            
+                            </div>
+
+                        </div>
+
+                        <div class="result_estates__item">
+
+                            <img class="result_estates__item--picture" src="./images/JPG/photo-1512917774080-9991f1c4c750.jpg">
+                            <div class="result_estates__description">
+
+                                <p class="result_estates__description--text">Zu verkaufen ab 01.01.2022</p>
+                                <p class="result_estates__description--text">6210 Sursee, Luzern</p>
+                                <h3 class="result_estates__description--title">Bijou am See</h3>
+                                <p class="result_estates__description--text">Fläche 300m, Preis: CHF 2'800'000</p>
+                            
+                            </div>
+
+                        </div>
+
+                        <div class="result_estates__item">
+
+                            <img class="result_estates__item--picture" src="./images/JPG/photo-1495433324511-bf8e92934d90.jpg">
+                            <div class="result_estates__description">
+
+                                <p class="result_estates__description--text">Zu verkaufen ab 01.01.2022</p>
+                                <p class="result_estates__description--text">6210 Sursee, Luzern</p>
+                                <h3 class="result_estates__description--title">Bijou am See</h3>
+                                <p class="result_estates__description--text">Fläche 300m, Preis: CHF 2'800'000</p>
+                            
+                            </div>
+
+                        </div>
+
+                        <div class="result_estates__item">
+
+                            <img class="result_estates__item--picture" src="./images/JPG/photo-1494884113216-952a0c2c1a30.jpg">
+                            <div class="result_estates__description">
+
+                                <p class="result_estates__description--text">Zu verkaufen ab 01.01.2022</p>
+                                <p class="result_estates__description--text">6210 Sursee, Luzern</p>
+                                <h3 class="result_estates__description--title">Bijou am See</h3>
+                                <p class="result_estates__description--text">Fläche 300m, Preis: CHF 2'800'000</p>
+                            
+                            </div>
+
+                        </div>
+
+                        <div class="result_estates__item">
+
+                            <img class="result_estates__item--picture" src="./images/JPG/photo-1507089947368-19c1da9775ae.jpg">
+                            <div class="result_estates__description">
+
+                                <p class="result_estates__description--text">Zu verkaufen ab 01.01.2022</p>
+                                <p class="result_estates__description--text">6210 Sursee, Luzern</p>
+                                <h3 class="result_estates__description--title">Bijou am See</h3>
+                                <p class="result_estates__description--text">Fläche 300m, Preis: CHF 2'800'000</p>
+                            
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="result_estates__next">
+
+                        <p class="result_estates__next--text font18 bold">Seite 1 von 8</p>
+                        <svg class="result_estates__next--svg" width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 15L8 8L0.999999 1" stroke-width="2"/>
+                        </svg>
+
+                    </div>
+                    
+
+                </section> 
 
             </main>
 
-            <footer>
-                
+            <footer class="footer">
 
+                
 
 
 
