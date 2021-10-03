@@ -41,11 +41,41 @@
 
 }
 
+.font16{
+
+	font-size: 16px;
+    font-style: normal;
+    font-weight: normal;
+
+}
+
+
 .font18{
 
 	font-size: 18px;
     font-style: normal;
     font-weight: normal;
+
+}
+
+@mixin font18(){
+
+	font-style: normal;
+    font-size: 18px;
+
+}
+
+.font21{
+	
+	font-style: normal;
+    font-size: 21px;
+
+}
+
+@mixin font21(){
+
+	font-style: normal;
+    font-size: 21px;
 
 }
 
@@ -56,9 +86,44 @@
 
 }
 
+@mixin font22(){
+
+	font-style: normal;
+    font-size: 22px;
+
+}
+
+.font25{
+	
+	font-style: normal;
+    font-size: 25px;
+
+}
+
 .font28{
 
 	font-size: 28px;
+    font-style: normal;
+
+}
+
+@mixin font28(){
+
+	font-size: 28px;
+    font-style: normal;
+
+}
+
+.font35{
+
+	font-size: 35px;
+    font-style: normal;
+
+}
+
+@mixin font35(){
+
+	font-size: 35px;
     font-style: normal;
 
 }
@@ -70,7 +135,21 @@
 
 }
 
+@mixin font40(){
+
+	font-size: 40px;
+    font-style: normal;
+
+}
+
 .font56{
+
+	font-size: 56px;
+	font-style: normal;
+
+}
+
+@mixin font56(){
 
 	font-size: 56px;
 	font-style: normal;

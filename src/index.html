@@ -22,7 +22,7 @@
   
         <div id="app_wrapper">
 
-            <nav>
+            <nav id="nav">
 
                 <div class="nav">
 
@@ -56,28 +56,67 @@
                         </defs>
                     </svg>
 
-                    <div class="nav__selection">
+                    <svg class="nav__ham" width="37" height="26" viewBox="0 0 37 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="37" height="2" fill="black"/>
+                        <rect y="12" width="37" height="2" fill="black"/>
+                        <rect y="24" width="37" height="2" fill="black"/>
+                    </svg>
 
-                        <a href="#"><p class="nav__selection--text nav_text medium">Immobilien</p></a>
-                        <a href="#"><p class="nav__selection--text nav_text medium">Aktuelles</p></a>
-                        <a href="#"><p class="nav__selection--text nav_text medium">Kontakt</p></a>
-                        
-                    </div>
+                    <svg class="nav__close" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M30.9999 31L15.9999 16L0.999957 31" stroke="black" stroke-width="2"/>
+                        <path d="M1 1L16 16L31 1" stroke="black" stroke-width="2"/>
+                    </svg>
+
+                    <ul class="nav__select">
+                        <li class="nav__item"><a href="#"><p class="nav__select--text nav_text medium">Immobilien</p></a></li>
+                        <li class="nav__item"><a href="#"><p class="nav__select--text nav_text medium">Aktuelles</p></a></li>
+                        <li class="nav__item"><a href="#"><p class="nav__select--text nav_text medium">Kontakt</p></a></li>   
+                    </ul>
+
+                </div>
+
+                <div class="nav_menu">
+
+                    <ul class="nav_menu__select-a">
+                        <li class="nav_menu__item"><a href="#"><p class="nav_menu__item--text">Immobilien</p></a></li>
+                        <li class="nav_menu__item"><a href="#"><p class="nav_menu__item--text">Aktuelles</p></a></li>
+                        <li class="nav_menu__item"><a href="#"><p class="nav_menu__item--text">Kontakt</p></a></li>
+                    </ul>
+
+                    <ul class="nav_menu__select-b">
+                        <li class="nav_menu__item"><a href="#"><p class="nav_menu__item--text-small">Impressum</p></a></li>
+                        <li class="nav_menu__item"><a href="#"><p class="nav_menu__item--text-small">Datenschutz</p></a></li>
+                    </ul>
 
                 </div>
 
             </nav>
 
-            <section class="heading">
+     <!--    
+            <section id="heading"> 
 
-                <img class="heading__picture" src="./images/JPG/photo-heading-front.jpg" alt="picture_heading_front">
-                <div class="heading__section">
+                <div class="hero-image">
 
-                    <h1 class="heading__section--title font56 regular">Die optimale Balance zwischen<br>Ästhetik und Funktionalität</h1>
+                    <div class="hero-text">
+
+                        <h3 class="heading__section--title">Die optimale Balance zwischen<br>Ästhetik und Funktionalität</h3>
+
+                    </div>
 
                 </div>
 
             </section>
+    --> 
+    
+            <section id="heading">
+                <div class="heading">
+                    <img class="heading__picture" src="./images/JPG/photo-1523217582562-09d0def993a6.jpg" alt="picture_heading_front">
+                    <div class="heading__section">
+                        <h1 class="heading__section--title">Die optimale Balance zwischen<br>Ästhetik und Funktionalität</h1>
+                    </div>
+                </div>
+            </section>
+
 
             <main id="main">
  
@@ -85,10 +124,110 @@
 
                     <div class="main_estates__heading">
 
-                        <h2 class="main_estates__heading--title font40 regular">Immobilien</h2>
+                        <h2 class="main_estates__heading--title regular">Immobilien</h2>
 
                     </div>
-                   
+
+                    <div class="main_estates__filter">
+
+                        <form class="main_estates__selects">
+                            <div class="main_estates__selects--desktop">
+                                <label for="select-what" class="main_estates__selects--text bold">Was</label>
+                                <select id="select-what" placeholder="Alle Objekte" class="main_estates__selects--select font18">
+                                    <option>Neueste Objekte</option>
+                                    <option>Wohnung</option>
+                                    <option>Haus/Villa</option>         
+                                </select>
+                            </div>
+                            <div class="main_estates__selects--desktop">
+                                <label for="select-where" class="main_estates__selects--text bold">Wo</label>
+                                <select id="select-where" placeholder="Alle Orte" class="main_estates__selects--select font18">
+                                    <option>Schweiz</option>
+                                    <option>Finnland</option>
+                                    <option>Denmark</option>         
+                                </select>
+                            </div>
+
+                            <div class="main_estates__setting visibility_desktop">
+    
+                                <p class="main_estates__setting--text bold">Mieten</p>
+                                <div class="main_estates__ruler">
+    
+                                    <input type="range" min="1" max="2" step="1.0" value="1" class="main_estates__ruler--slider">
+                                
+                                </div>
+                                <p class="main_estates__setting--text bold">Kaufen</p>
+    
+                            </div>
+
+                            <div class="main_estates__selects--desktop">
+                                <label for="select-sort" class="main_estates__selects--text bold">Sortierung</label>
+                                <select name="select-sort" placeholder="Auswählen" class="main_estates__selects--select font18">
+                                    <option>Preis absteigend</option>
+                                    <option>Datum aufsteigend</option>
+                                    <option>Datum absteigend</option>         
+                                </select>
+                            </div>
+
+                            <button class="main_estates__btn visibility_desktop">
+                                <p class="main_estates__btn--text bold">Suchen</p>
+                            </button>
+
+                        </form>
+
+                        <div class="main_estates__setting visibility-mobile">
+    
+                            <p class="main_estates__setting--text bold">Mieten</p>
+                            <div class="main_estates__ruler">
+
+                                <input type="range" min="1" max="2" step="1.0" value="1" class="main_estates__ruler--slider">
+                            
+                            </div>
+                            <p class="main_estates__setting--text bold">Kaufen</p>
+
+                        </div>
+                        
+                        <button class="main_estates__btn visibility-mobile">
+                            <p class="main_estates__btn--text bold">Suchen</p>
+                        </button>
+                            
+                        <div class="main_estates__options">
+
+                            <p class="main_estates__options--text bold">Ansicht:</p>
+
+                            <svg class="main_estates__options--img" width="34" height="30" viewBox="0 0 34 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="9" y="7" width="25" height="2" />
+                                <rect x="9" y="14" width="25" height="2" />
+                                <rect x="9" y="21" width="25" height="2" />
+                                <rect x="9" y="28" width="25" height="2" />
+                                <rect x="9" width="25" height="2" />
+                                <rect y="7" width="7" height="2" />
+                                <rect y="14" width="7" height="2" />
+                                <rect y="21" width="7" height="2" />
+                                <rect y="28" width="7" height="2" />
+                                <rect width="7" height="2"/>
+                            </svg>
+
+                            <svg class="main_estates__options--img" width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="7.5" height="7.5" />
+                                <rect y="11.5" width="7.5" height="7.5" />
+                                <rect y="23" width="7.5" height="7.5" />
+                                <rect x="11.5" width="7.5" height="7.5" />
+                                <rect x="11.5" y="11.5" width="7.5" height="7.5" />
+                                <rect x="11.5" y="23" width="7.5" height="7.5" />
+                                <rect x="23" width="7.5" height="7.5" />
+                                <rect x="23" y="11.5" width="7.5" height="7.5" />
+                                <rect x="23" y="23" width="7.5" height="7.5" />
+                            </svg>
+
+                        </div>   
+
+                    </div>
+
+                </section>
+
+
+                   <!--  
                     <div class="main_estates__filter">
 
                         <div class="main_estates__label">
@@ -183,7 +322,7 @@
                     </div>
 
                 </section>
-                
+            
                 <section id="result_estates">
 
                     <div class="result_estates">
@@ -295,7 +434,7 @@
 
 
             </footer>
-            
+            -->  
             
 
         </div>    

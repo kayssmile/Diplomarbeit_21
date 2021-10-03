@@ -1,0 +1,32 @@
+/*  Die Body Masse für eine klare Richtlinie innerhalb aller Browser Versionen CSS RESEET!
+-------------------------------------------------------------- */
+
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+*, *:before, *:after{
+  
+  box-sizing: border-box;
+  
+}
+  
+html, body{
+ 
+  font-family: 'Montserrat', Arial, sans-serif;
+  line-height: 80px;
+  font-size: 16px;
+  letter-spacing: -1.5%;
+  
+}
+  
+body{
+      
+  background-color: white;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  padding: 0px;
+  margin: 0px;
+    
+}
