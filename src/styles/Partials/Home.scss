@@ -238,7 +238,7 @@ input[type=range]::-moz-range-thumb{
   position: relative;
   display: block;
   width: 100%;
-  padding: 0px 7.73%;
+  padding: 34px 7.73%;
   padding-bottom: 46px;
   &__table{ 
     position: relative;
@@ -248,7 +248,7 @@ input[type=range]::-moz-range-thumb{
   &__item{
     display: flex;
     flex-direction: column;
-    margin-top: 45px;
+    margin-bottom: 45px;
     width: 100%;
     &--picture{
       position: relative;
@@ -257,10 +257,7 @@ input[type=range]::-moz-range-thumb{
       height: 165px;
       cursor: pointer; 
     }
-  }
-  &__item:nth-child(1){
-    margin-top: 35px;
-  }    
+  }   
   &__description{
     padding-top: 22px;
     &--text{
@@ -277,7 +274,7 @@ input[type=range]::-moz-range-thumb{
   } 
   &__btn{
     @extend .main_estates__btn;
-    margin-top: 45px;
+    margin-top: 5px;
     &--text{
       @extend .font16;
       color: $background-general;
@@ -294,9 +291,7 @@ input[type=range]::-moz-range-thumb{
   
   
   
-  
-  
-  
+
   
 /*  Responisve Design 
 -------------------------------------------------------------- */
@@ -539,14 +534,45 @@ input[type=range]::-moz-range-thumb{
     }
   } 
 } 
+
+@media (min-width: 1450px){
+
+  .result_estates{
+    &__item{
+      width: 380px;
+      &--picture{
+        height: 210px;
+      }
+    }
+  } 
+}
   
-   
+@media (min-width: 1550px){
+
+  .result_estates{
+    &__item{
+      width: 414px;
+      &--picture{
+        height: 230px;
+      }
+    }
+    &__description{
+      height: 177.5px;
+      padding-top: 18px;
+      margin-bottom: 40px;
+      &--title{
+        @include font28();
+        line-height: 40px; 
+      }
+    }
+  } 
+}    
   
   
  
   /*  Main : Heading, Searchmodulation (Selects,Filter)
   -------------------------------------------------------------- */
-  @media (min-width: 1800px){
+  @media (min-width: 2800px){
   #main_estates{
   
     position: relative;
