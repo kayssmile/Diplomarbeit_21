@@ -41,7 +41,8 @@ Breakpoints
 Versch. Style Guides
 
 Waehrend der Projektumsetzung : 
-Gute Repetition des Lehrganges z.B Grid, BEM.
+Gute Repetition des Lehrganges z.B Grid oder Flex BEM.
+CSS : Repetition Pseudoelemente, Kindselektoren, Hover 
 
 
 

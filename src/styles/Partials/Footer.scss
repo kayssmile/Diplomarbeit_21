@@ -1,5 +1,45 @@
 /*  Mobile First 
 -------------------------------------------------------------- */
-/*  Header - Navigation  
+/*  Footer 
 -------------------------------------------------------------- */
 
+.footer{
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 60px 7.73%;
+    background-color: $background-general;
+
+    &__item{
+
+        &--text{
+
+            @extend .font18;
+            color: $black;
+            line-height: 30px;
+
+        }
+
+    }
+
+    &__item li, a{
+
+        list-style-type: none;
+        text-decoration: none;
+
+    }
+
+    &__item:nth-child(2){
+
+        margin: 30px 0px;
+
+    }
+
+    &__item:nth-child(3){
+
+        margin-bottom: 30px;
+
+    }
+
+}

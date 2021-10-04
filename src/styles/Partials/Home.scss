@@ -56,9 +56,9 @@
       
       &--title{
   
-        line-height: 33px;
         @extend .font21;
         @extend .regular;
+        line-height: 33px;
   
       }
   
@@ -81,43 +81,30 @@
 .main_estates{
 
     &__heading{
-
       position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 113px;
       padding-top: 40px;
-      margin-bottom: 0px;
-      
+      margin-bottom: 0px;    
       background-color: $main-general;
-
       &--title{
-
         @extend .font25;
-
       }
-
     }
-
     &__filter{
-
       position: relative;
       display: flex;
       flex-direction: column;
       margin: 0% 7.73%;
-
     }
-
     &__selects{
-
       position: relative;
       display: flex;
       flex-direction: column;
-      margin-top: -15px;
-      
+      margin-top: -15px;  
       &--select{
-
         position: relative;
         display: inline-block;
         width: 100%;
@@ -125,23 +112,16 @@
         border-radius: 0px;
         border: 0px;
         cursor: pointer;
-
       }
-
       &--text{
-
+        @extend .font16;
         position: relative;
         display: block;
         line-height: 80px;
         margin-bottom: -30px;
-        @extend .font16;
-
       }
-
     }
-
     &__setting{
-
       position: relative;
       display: inline-flex;
       flex-direction: row;
@@ -150,33 +130,21 @@
       width: 100%;
       height: 50px;
       margin-top: 31px;
-
       &--text{
-
+        @extend .font16;
         position: relative;
         display: inline-block;
         width: 30%;
-        text-align: start;
-        @extend .font16;
-        
+        text-align: start;  
       }
-
       &--desktop{
-
         display: none;
-
       }
-
       &--text:nth-child(3){
-
         text-align: right;
-
       }
-
     }
-
     &__ruler{
-
       position: relative;
       display: inline-flex;
       justify-content: center;
@@ -185,52 +153,35 @@
       width: 30%;
       height: 31px;
       border-radius: 50px;
-
       &--slider{
-
         height: 16px;
         width: 90%;
         background: $elem-general;       
         cursor: pointer;
         -webkit-appearance: none;
-  
       }
-
-    }
-  
+    } 
     &__btn{
-
       position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
       text-align: center;
-
       width: 100%;
       height: 50px;
-      margin-top: 34px;
-      
+      margin-top: 34px;  
       background-color: $elem-general;
       border: none;
       cursor: pointer;
-
       &--text{
-
         @extend .font16;
         color: $background-general;
-  
-      }
-      
+      }    
     }
-
     &__btn:hover{
-
       background-color: $elem-hover;
-
     }
-
   &__options{
-
     position: relative;
     display: flex;
     justify-content: end;
@@ -238,55 +189,106 @@
     margin-top: 35px;
     padding-bottom: 22px;
     border-bottom: 2px $elem-general solid;
-
     &--text{
-
       @extend .font22;
       color: $letting-selected;
       line-height: 80px;
-
     }
-
     &--img{
-
       fill: $elem-general;
       cursor: pointer;
-
     }
-
     &--img:hover{
-
       fill: $elem-hover;
-
     }
-
     &--img:nth-child(2){
-
       margin: 0px 20px;
-
     }
-
   }
-
 }
 
 input[type=range]::-moz-range-thumb{
-
   background: $background-general;
   width: 22px;
   height: 22px;
   border-radius: 50%;
   border: 0px;
-  
 }
 
-.visibility_desktop{
-
+.visibility-tablet{
   display: none !important;
+}
 
+.visibility-desktop{
+  display: none !important;
 }
   
+ /*  Main : Results (list or section)
+  -------------------------------------------------------------- */
   
+  
+#result_estates{
+  
+  background-color: $main-general;
+  
+}
+  
+.result_estates{
+
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0px 7.73%;
+  padding-bottom: 46px;
+  &__table{ 
+    position: relative;
+    display: flex;
+    flex-direction: column; 
+  }
+  &__item{
+    display: flex;
+    flex-direction: column;
+    margin-top: 45px;
+    width: 100%;
+    &--picture{
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 165px;
+      cursor: pointer; 
+    }
+  }
+  &__item:nth-child(1){
+    margin-top: 35px;
+  }    
+  &__description{
+    padding-top: 22px;
+    &--text{
+      @extend .font16;
+      line-height: 30px;
+      letter-spacing: -1.5%;
+    }
+  
+    &--title{
+      @extend .font20;
+      line-height: 30px;
+      cursor: pointer; 
+    }
+  } 
+  &__btn{
+    @extend .main_estates__btn;
+    margin-top: 45px;
+    &--text{
+      @extend .font16;
+      color: $background-general;
+    }
+  }
+    
+  &__btn:hover{
+    background-color: $elem-hover;
+  }
+  
+}   
   
   
   
@@ -300,48 +302,55 @@ input[type=range]::-moz-range-thumb{
 -------------------------------------------------------------- */
 @media (min-width: 500px){
 
-    .heading{
-        
-      &__section{
-        
-        height: 200px;
-            
+  .heading{   
+  &__section{      
+      height: 200px;
       &--title{
-        
-        line-height: 55px;
         @include font28();
-  
-      }
-        
+        line-height: 55px;      
+      } 
     }
-        
   }
-     
-} 
+
+  .main_estates__heading--title{
+    @include font30();
+  }
+        
+  .result_estates{
+    &__item{
+      &--picture{
+        height: 230px;      
+      } 
+    }       
+    &__description{   
+      &--text{
+        @include font18();    
+      }  
+      &--title{   
+        @include font22();     
+      }   
+    }
+  }
+}
 
 @media (min-width: 650px){
 
   .heading{
-
-    &__section{
-        
-      height: 200px;
-                   
-      &--title{
-        
-        line-height: 55px;
+    &__section{   
+      height: 200px;              
+      &--title{    
         @include font40();
-
+        line-height: 55px;    
       }
-
     } 
-
   }
 
   .main_estates__heading--title{
-
     @include font35();
+  }
 
+  .result_estates__item--picture{
+    height: 300px;
   }
       
 }
@@ -349,147 +358,187 @@ input[type=range]::-moz-range-thumb{
 @media (min-width: 800px){
 
   .main_estates{
-
     &__heading{
-
       height: 176px;
       padding-top: 40px;
-      margin-bottom: 26px;
-      
+      margin-bottom: 26px;   
       &--title{
-
         @include font40();
-
       }
-
     }
-
     &__selects{
-
       flex-direction: row;
       justify-content: space-between;
       flex-wrap: wrap;
-
       &--desktop{
-
         position: relative;
         display: flex;
         flex-direction: column;
         width: 30%;
-
       }
-
       &--desktop:nth-child(4) label{
-
         margin-top: 21px;
-
-      }
-        
+      }       
       &--text{
-
+        @include font18();
         margin-bottom: -15px;
-        @include font22();
-
       }
-
     }
-
     &__setting{
-
       width: 30%;
       margin-top: 65px;
-
       &--text{
-
-        @include font22();
-        
+        @include font18();       
       }
-
     }
-
     &__btn{
-
-      width: 30%;
-      
-      margin-top: 86px;
-      
+      width: 30%;    
+      margin-top: 86px;    
       &--text{
-
-        @include font22();
+        @include font18();
         color: $background-general;
-  
-      }
-      
+      }    
     }
-
     &__options{
-
       margin-top: 136px;
       padding-bottom: 8px;
       height: 75px;
-  
       &--text{
-  
-        @extend .font22;
-        
-        
-  
+        @extend .font22;      
       }
-
     }
-
   } 
 
+  .result_estates{
+    padding-top: 34px;
+    padding-bottom: 46px;
+    &__table{ 
+      flex-direction: row;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    &__item{
+      margin-top: 0px;
+      width: 45%;
+      &--picture{
+        height: 165px;
+      }
+    }
+    &__item:nth-child(1){
+      margin-top: 0px;
+    }    
+    &__description{
+      height: 190px;
+      padding-top: 18px;
+      margin-bottom: 40px;
+      &--title{
+        @include font28();
+        line-height: 40px; 
+      }
+    }
+    &__next{
+      position: relative;
+      justify-content: flex-end;
+      align-items: center;
+      margin-top: 35.2px;
+      margin-bottom: 49px;
+      line-height: 30px;
+      cursor: pointer;
+      &--text{
+        color: $elem-general; 
+      }
+      &--svg{
+        margin-left: 18px;
+        stroke: $elem-general;
+      }
+    }
+    &__next--text:hover  {
+      color: $elem-hover;
+    }
+    &__next--svg:hover {
+      stroke:  $elem-hover;
+    }
+  } 
+  
+  .visibility-tablet{
+    display: flex !important;
+  }
+
   .visibility-mobile{
-
     display: none !important;
-
   }
 
-  .visibility_desktop{
-
-    display: inline-flex !important;
-
-  }
 
 }
 
-
-
-
-    
 @media (min-width: 950px){
 
-  .heading{
-       
-    &__section{
-      
-      height: 300px;
-          
-      &--title{
-      
-        line-height: 80px;
+  .heading{      
+    &__section{    
+      height: 300px;      
+      &--title{   
         @include font56();
+        line-height: 80px;
+      }    
+    }      
+  } 
 
+  .main_estates{
+    &__selects{        
+      &--text{
+        @include font22();
       }
-      
     }
-      
+    &__setting{
+      &--text{
+        @include font22();       
+      }
+    }
+    &__btn{   
+      &--text{
+        @include font22();
+      }    
+    }
   }
-    
+
+  .result_estates{
+    &__item{
+      &--picture{
+        height: 220px;
+      }
+    }
+  }
+
 } 
-    
 
+@media (min-width: 1150px){
 
+  .result_estates{
+    &__item{
+      width: 300px;
+      &--picture{
+        height: 180px;
+      }
+    }
+  } 
 
-
-
+  .visibility-desktop{
+    display: flex !important;
+  }
+}
 
   
-  /*  Header - Main 
-  -------------------------------------------------------------- */
-  
-  
+@media (min-width: 1300px){
+
+  .result_estates{
+    &__item{
+      width: 350px;
+      &--picture{
+        height: 200px;
+      }
+    }
+  } 
+} 
   
    
   
@@ -705,7 +754,7 @@ input[type=range]::-moz-range-thumb{
   /*  Main : Style SELECT Elements
   -------------------------------------------------------------- */
   
-  
+  @media (min-width: 1800px){ 
   .main_estates__selects{
   
     select {
@@ -804,8 +853,8 @@ input[type=range]::-moz-range-thumb{
   
       &--text{
   
-        @extend .font18;
-        @extend .regular;
+        
+        
         line-height: 30px;
         letter-spacing: -1.5%;
     
@@ -813,8 +862,7 @@ input[type=range]::-moz-range-thumb{
   
       &--title{
   
-        @extend .font28;
-        @extend .bold;
+        
         line-height: 40px;
         cursor: pointer;
     
@@ -906,7 +954,7 @@ input[type=range]::-moz-range-thumb{
   }
   
   
-  
+} 
 
   
   
