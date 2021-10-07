@@ -49,6 +49,13 @@
 
 }
 
+@mixin font16(){
+
+	font-style: normal;
+    font-size: 16px;
+
+}
+
 
 .font18{
 
@@ -67,6 +74,13 @@
 
 .font20{
 	
+	font-style: normal;
+    font-size: 20px;
+
+}
+
+@mixin font20(){
+
 	font-style: normal;
     font-size: 20px;
 

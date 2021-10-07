@@ -40,9 +40,18 @@ GraphQL API
 Breakpoints
 Versch. Style Guides
 
+Code Eigenheiten : 
+Font Spezifikationen wurden mit mixins umgesetzt - einfachste Moeglichkeit um Code zu sparen.
+Teilweise wurde deas BEM Prinzip ein bisschen umgangen z.B verwende ich teilweise ein "-", dies
+um die übersichtlichkeit und einfachheit beizubehalten. 
+
 Waehrend der Projektumsetzung : 
 Gute Repetition des Lehrganges z.B Grid oder Flex BEM.
 CSS : Repetition Pseudoelemente, Kindselektoren, Hover 
+LayoutFrontend : Teilweise Unsicherheit weil Layout verwirend eigene Umsetzung ware einheitlicher 
+entscheid war dann so dass Diplomarbeit Vorgabe Prioritet hat.
+Umsetzung Frontend aehnlich dem MobileFirst Ansatz zuerst die einfachen Elemente umsetzen
+um ein Gefuehl zu bekommen fuer das Projekt. (nicht von beginn an komplexe Elemente).
 
 
 

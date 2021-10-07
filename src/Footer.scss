@@ -12,6 +12,10 @@
     padding-top: 60px;
     padding-bottom: 50px;
     background-color: $background-general;
+    &__logo{
+        transform: scale(1.76);
+        transform-origin: 0px 0px;
+    }
     &__item{
         &--text{
             @extend .font18;
@@ -52,7 +56,9 @@
         &__item{
             position: relative;
             display: inline-block;
-            width: 33.33%;
+            width: 414px;
+            height: 261px;
+            border: 1px black solid;
             &--text{
                 @extend .font18;
                 color: $black;
@@ -71,10 +77,14 @@
         &__item:nth-child(4){
             margin-bottom: 0px;
         }
+        &__logo{
+            position: relative;
+            margin-right: 276.72px;    
+        }
         &__totop{
             position: relative;
             display: block;
-            left: calc(80% + 50px);
+            left: calc(100% - 104px);
             margin-bottom: 51px;
         }
     } 
