@@ -27,6 +27,13 @@
   
   */
 
+
+
+
+  
+
+
+
   .heading{
   
     position: relative;
@@ -66,6 +73,8 @@
   
   }
   
+
+
   
 /*  Main : Heading, Searchmodulation (Selects,Filter)
 -------------------------------------------------------------- */
@@ -78,109 +87,150 @@
 
 }
 
+#main{
+  display: block;
+}
+
 .main_estates{
 
-    &__heading{
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 113px;
-      padding-top: 40px;
-      margin-bottom: 0px;    
-      background-color: $main-general;
-      &--title{
-        @extend .font25;
-      }
+  &__heading{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 113px;
+    padding-top: 40px;
+    margin-bottom: 0px;    
+    background-color: $main-general;
+    &--title{
+      @extend .font25;
     }
-    &__filter{
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      margin: 0% 7.73%;
+  }
+  &__filter{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 0% 7.73%;
+  }
+  &__selects{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-top: -15px;
+    &--label{
+      @extend .font16;
+      display: block;
+      margin-bottom: -30px;
     }
-    &__selects{
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      margin-top: -15px;  
-      &--select{
-        position: relative;
-        display: inline-block;
-        width: 100%;
-        height: 50px;
-        border-radius: 0px;
-        border: 0px;
-        cursor: pointer;
-      }
-      &--text{
-        @extend .font16;
-        position: relative;
-        display: block;
-        line-height: 80px;
-        margin-bottom: -30px;
-      }
+  }
+}
+
+.select{
+  display: inline-flex;
+  flex-direction: column;
+  width: 100%;
+  &__main{
+    position: relative;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    width: 100%;
+    height: 50px;
+    cursor: pointer;
+    &--text{
+      display: inline-block;
+      @extend .font18;
+      margin-left: 16px;
+      margin-top: 5px;
+      margin-bottom: 4px;
     }
-    &__setting{
-      position: relative;
-      display: inline-flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      height: 50px;
-      margin-top: 31px;
-      &--text{
-        @extend .font16;
-        position: relative;
-        display: inline-block;
-        width: 30%;
-        text-align: start;  
-      }
-      &--desktop{
-        display: none;
-      }
-      &--text:nth-child(3){
-        text-align: right;
-      }
+    &--svg{
+      stroke: $svg-general;
+      margin: 5px 20px;
     }
-    &__ruler{
-      position: relative;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      background-color: $elem-general;
-      width: 30%;
-      height: 31px;
-      border-radius: 50px;
-      &--slider{
-        height: 16px;
-        width: 90%;
-        background: $elem-general;       
-        cursor: pointer;
-        -webkit-appearance: none;
-      }
-    } 
-    &__btn{
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      width: 100%;
-      height: 50px;
-      margin-top: 34px;  
-      background-color: $elem-general;
-      border: none;
-      cursor: pointer;
-      &--text{
-        @extend .font16;
-        color: $background-general;
-      }    
+    &--svg:hover{
+      stroke: $elem-hover;
     }
-    &__btn:hover{
+  }
+  &__dropdown{
+    position: absolute;
+    display: none;//inline-flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 50px;
+    z-index: 1;
+    cursor: pointer;
+    &--item{
+      @extend .select__main;
+    }
+    &--item:hover{
       background-color: $elem-hover;
     }
+  }
+}    
+
+.main_estates{
+  &__setting{
+    position: relative;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    margin-top: 31px;
+    &--text{
+      @extend .font16;
+      position: relative;
+      display: inline-block;
+      width: 30%;
+      text-align: start;  
+    }
+    &--desktop{
+      display: none;
+    }
+    &--text:nth-child(3){
+      text-align: right;
+    }
+  }
+  &__ruler{
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $elem-general;
+    width: 30%;
+    height: 31px;
+    border-radius: 50px;
+    &--slider{
+      height: 16px;
+      width: 90%;
+      background: $elem-general;       
+      cursor: pointer;
+      -webkit-appearance: none;
+    }
+  } 
+  &__btn{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 50px;
+    margin-top: 34px;  
+    background-color: $elem-general;
+    border: none;
+    cursor: pointer;
+    &--text{
+      @extend .font16;
+      color: $background-general;
+    }    
+  }
+  &__btn:hover{
+    background-color: $elem-hover;
+  }
   &__options{
     position: relative;
     display: flex;
@@ -207,9 +257,11 @@
     }
     &--iconlist{
       margin: 0px 20px;
-    }
+    }  
   }
 }
+
+
 
 input[type=range]::-moz-range-thumb{
   background: $background-general;
@@ -219,6 +271,8 @@ input[type=range]::-moz-range-thumb{
   border: 0px;
 }
 
+
+
 .visibility-tablet{
   display: none !important;
 }
@@ -227,65 +281,11 @@ input[type=range]::-moz-range-thumb{
   display: none !important;
 }
 
-  /*  Main : Style SELECT Elements
-  -------------------------------------------------------------- */
-.main_estates__selects{
-  select{
-  
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    appearance: none;
-    border: none;
-  
-    background-image: url(../images/SVG/Vector\ 2.svg);
-    background-repeat: no-repeat;
-    background-position: calc(100% - 20px) center;
-    background-size: 20px;
-    
-    padding-left: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-  
-    option{
-  
-      background-color: $background-general;
-      border-radius: 0px;
-      border: 0px;
-    
-    }
-  
-  }
-  
-  select:focus{
-  
-    background-color: $background-general;
-      
-    border-radius: 0px;
-    border: 0px;
-  
-  }
-  
-}
-  
-.main_estates__selects--select select::after{
-  
-  content: "";
-  position: absolute;
-    
-  z-index: 1;
-  transform: rotate(30deg);
-  
-}  
-   
-  
  /*  Main : Results (list or section)
   -------------------------------------------------------------- */
   
-  
 #result_estates{
-  
   background-color: $main-general;
-  
 }
   
 .result_estates{
@@ -317,10 +317,13 @@ input[type=range]::-moz-range-thumb{
     &--entry a{
       text-decoration: none;
     }
-    &--title, .result_estates__list--price{
+    &--title{
       @extend .font16;
       line-height: 55px;
       color: $black;
+    }
+    &--text{
+      @extend .result_estates__list--title;
     }
     &--svg{
       margin-left: 15px;
@@ -380,6 +383,211 @@ input[type=range]::-moz-range-thumb{
   } 
 }   
   
+
+/*  Main : Estate DetailsView
+-------------------------------------------------------------- */
+
+#main-details{
+  display: none;
+}
+
+.estate-details{
+  position: relative;
+  display: block;
+  padding: 0px 6.2%;
+  padding-top: 76px;
+  padding-bottom: 48px;
+  background-color: $main-general;
+  &__nav{
+    display: flex;
+    flex-direction: row;
+    &--svg{
+      display: block;
+      margin-top: 27px;
+      line-height: 0px;
+      stroke: $black;
+    }
+    &--svg:hover{
+      stroke: $elem-hover;
+    }
+    &--text{
+      display: none;
+    }
+  }
+  &__goback:hover{
+    stroke: $elem-hover;
+  }
+  &__heading{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 117.9px;
+    margin-bottom: -37.86px;
+    margin-top: 8.45px;
+
+    &--text{
+      @extend .font22;
+    }
+    &--text:nth-child(2){
+      margin-left: 8px;
+    }
+  }
+  &__slider{
+    position: relative;
+    &--left{
+      position: absolute;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $background-general;
+      opacity: 0.4;
+      height: 100%;
+      width: 28px;
+    }
+    &--right{
+      @extend .estate-details__slider--left;
+      right: 0px;
+    }
+    &--svg{
+      position: absolute;
+      stroke: $background-general;
+      top: calc(50% - 11px);  
+    }
+    &--svg:hover{
+      stroke: $black;
+    }
+    &--svg:nth-child(2){
+      left: 8.5px;
+    }
+    &--svg:nth-child(4){
+      right: 8.5px;
+    }
+    &--picture{   
+      display: block;
+      width: 100%;
+      height: 226px;
+    }
+  }
+  &__images{
+    display: none;
+  }
+  &__description{
+    margin-top: 40px;
+    &--title{
+      @extend .font16;
+      line-height: 28px;
+    }
+    &--text{
+      @extend .estate-details__description--title;
+    }
+  }
+  &__description li{
+    margin-bottom: 40px;
+  }
+  &__description li:nth-child(5){
+    margin-top: 5px;
+    margin-bottom: 25px;
+    p{
+      width: 318px;
+    }
+  }
+  &__description-tablet{
+    display: none;
+  }
+  &__map{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 215px;
+  }
+  &__title{
+    @extend .font16;
+    height: 70px;
+    margin-top: 16px;
+    margin-bottom: 13px;
+    line-height: 26px;
+  }
+  &__btn{
+    display: block;
+    @extend .font16;
+    width: 317px;
+    height: 45px;
+    line-height: 30px;
+    background-color: $elem-general;
+    color: $background-general;
+    border: none;
+  }
+  &__btn:hover{
+    background-color: $elem-hover;
+  }
+}
+
+.actuals{
+  background-color: $heading-general;
+  &__heading{
+    position: relative;
+    display: block;
+    @extend .font25;
+    text-align: center;
+    padding-top: 31px;
+    padding-bottom: 24.9px;
+  }
+  &__list{
+    position: relative;
+    display: block;
+    padding: 0px 6.2%;
+    &--picture{
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 200px;
+    }
+    &--item:nth-child(2) .actuals__description:nth-child(2){
+      margin-bottom: 0px;
+    }
+    &--item:nth-child(3){
+      display: none;
+    }
+  }
+  &__description{
+    height: 172px;
+    margin-top: 15px;
+    margin-bottom: 19px;
+    &--text{
+      @extend .font16;
+      line-height: 30px;
+    }
+    &--title{
+      line-height: 30px;
+    }
+  }
+  &__all{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    padding: 0px 6.2%;
+    margin-top: -15px;
+    padding-bottom: 50px;
+    &--text{
+      @extend .font18;
+      line-height: 30px;
+    }
+    &--svg{
+      stroke: $black;
+      margin-left: 15px;
+    }
+    &--svg:hover{
+      stroke: $elem-hover;
+    }
+  }
+}
+
+.visibility-tablet-small{
+  display: none !important;
+}
+
   
 
   
@@ -396,6 +604,8 @@ input[type=range]::-moz-range-thumb{
       } 
     }
   }
+
+/* Estates Main */
 
   .main_estates__heading--title{
     @include font30();
@@ -420,6 +630,8 @@ input[type=range]::-moz-range-thumb{
 
 @media (min-width: 650px){
 
+/* Estates Main */
+
   .heading{
     &__section{   
       height: 200px;              
@@ -437,10 +649,165 @@ input[type=range]::-moz-range-thumb{
   .result_estates__item--picture{
     height: 300px;
   }
+
+/* Estates Details */
+
+  .estate-details{
+    padding-top: 132px;
+    padding-bottom: 62px;
+    &__nav{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-top: 40px;
+      &--svg{
+        margin-top: 0px;
+      }
+      &--text{
+        display: inline-block;
+        line-height: 30px;
+        @include font18();
+        margin-left: 23px;
+      }
+    }
+    &__heading{
+      height: 136px;
+      margin-bottom: 6px;
+      margin-top: 0px;
+      &--text{
+        @include font28();
+      }
+    }
+    &__slider{
+      position: relative;
+      &--left{
+        display: none;
+      }
+      &--right{
+        display: none;
+      }
+      &--svg{
+        display: none;  
+      }
+      &--picture{
+        display: block;
+        width: 100%;
+        height: 304px;
+      }
+    }
+    &__images{
+      display: flex;
+      flex-direction: row;
+      margin-top: 12px;
+      &--image{
+        display: inline-block;
+        width: 115px;
+        height: 70px;
+      }
+      &--image:nth-child(2){
+        margin: 0px 13px;
+      }
+    }
+    &__list{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    &__description{
+      display: inline-block;
+      margin-top: 50px;
+      &--title{
+        @include font18();
+        line-height: 30px;
+      }
+      &--text{
+        @include font18();
+        line-height: 30px;
+      }
+      &--btn{
+        display: block;
+        @include font18();
+        width: 317px;
+        height: 45px;
+        margin-top: 12px;
+        line-height: 30px;
+        background-color: $elem-general;
+        color: $background-general;
+        border: none;
+      }
+      &--btn:hover{
+        background-color: $elem-hover;
+      }
+    }
+    &__description-tablet{
+      position: relative;
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 350px;
+      margin-top: 50px;
+      li{
+        margin-bottom: 29px;
+      }
+    }
+    &__description li:nth-child(4){
+      margin-bottom: 29px;
+    }
+    &__description li:nth-child(5){
+      display: none;
+    }
+    &__map{
+      height: 300px;
+    }
+    &__title{
+      display: none;
+    }
+    &__btn{
+      display: none;
+    }
+  }
+
+  .actuals{
+    background-color: $heading-general;
+    &__heading{
+     @include font30();
+      padding-top: 40px;
+      padding-bottom: 50px;
+    }
+    &__list{
+      position: relative;
+      display: block;
+      padding: 0px 6.2%;
+      &--picture{  
+        width: 100%;
+        height: 302px;
+      }
+      &--item:nth-child(2) .actuals__description:nth-child(2){
+        margin-bottom: 0px;
+      }
+    }
+    &__description{
+      &--text{
+        @include font18();
+        line-height: 32px;
+      }
+      &--title{
+        @include font18();
+        line-height: 32px;
+      }
+    }
+  }
+
+  .visibility-tablet-small{
+    display: block !important;
+  }
+
       
 }
 
 @media (min-width: 800px){
+
+/* Estates Main */ 
 
   .main_estates{
     &__heading{
@@ -464,7 +831,7 @@ input[type=range]::-moz-range-thumb{
       &--desktop:nth-child(4) label{
         margin-top: 21px;
       }       
-      &--text{
+      &--label{
         @include font18();
         margin-bottom: -15px;
       }
@@ -495,6 +862,31 @@ input[type=range]::-moz-range-thumb{
   } 
 
   .result_estates{
+    &__list{
+      &--entrytop:nth-child(1){
+        width: 40%;
+      }
+      &--entrytop:nth-child(2){
+        width: 40%;
+      }
+      &--entrytop:nth-child(4){
+        width: 25%;
+        justify-content: flex-end;
+      }
+      &--entry a{
+        width: 40%;
+      }
+      &--title{
+        @include font18();
+      }
+      &--text:nth-child(2){
+        width: 40%;
+      }
+      &--text:nth-child(4){
+        width: 25%;
+        text-align: right;
+      }
+    }  
     &__item-b{
       padding-top: 34px;
       padding-bottom: 46px;
@@ -557,6 +949,25 @@ input[type=range]::-moz-range-thumb{
     display: none !important;
   }
 
+/* Estates Details */
+
+  .actuals{
+    background-color: $heading-general;
+    &__heading{
+     @include font30();
+      padding-top: 40px;
+      padding-bottom: 50px;
+    }
+    &__list{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      &--picture{ 
+        width: 320px;
+        height: 180px;
+      }
+    }
+  }
 
 }
 
@@ -572,9 +983,11 @@ input[type=range]::-moz-range-thumb{
     }      
   } 
 
+/* Estates Main */ 
+
   .main_estates{
     &__selects{        
-      &--text{
+      &--label{
         @include font22();
       }
     }
@@ -598,11 +1011,89 @@ input[type=range]::-moz-range-thumb{
     }
   }
 
+/* Estates Details */
+
+  .estate-details{
+    padding: 0px 23.06%;
+    padding-top: 132px;
+    padding-bottom: 62px;
+    &__nav{
+      position: absolute;
+      left: 44px;
+    }
+    &__heading{
+      height: 136px;
+      margin-top: 79px;
+      &--text{
+        @include font28();
+      }
+    }
+  }
+
+  .actuals{
+    background-color: $heading-general;
+    &__heading{
+     @include font30();
+      padding-top: 40px;
+      padding-bottom: 50px;
+    }
+    &__list{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      &--picture{ 
+        width: 380px;
+        height: 240px;
+      }
+    }
+    &__all{
+      padding-bottom: 97px;
+    } 
+  }
+
+
 } 
 
 @media (min-width: 1150px){
 
+/* Estates Main */ 
+
   .result_estates{
+    &__item-a{
+      padding-bottom: 138.62px;
+    }
+    &__list{
+      &--entrytop:nth-child(1){
+        width: 30%;
+      }
+      &--entrytop:nth-child(2){
+        width: 35%;
+      }
+      &--entrytop:nth-child(3){
+        width: 15%;
+        justify-content: flex-start;
+      }
+      &--entrytop:nth-child(4){
+        width: 20%;
+        justify-content: flex-end;
+      }
+      &--entry a{
+        width: 30%;
+      }
+      &--title{
+        @include font22();
+      }
+      &--text:nth-child(2){
+        width: 35%;
+      }
+      &--text:nth-child(3){
+        width: 15%;
+      }
+      &--text:nth-child(4){
+        width: 20%;
+        text-align: right;
+      }
+    }  
     &__item{
       width: 300px;
       &--picture{
@@ -614,10 +1105,44 @@ input[type=range]::-moz-range-thumb{
   .visibility-desktop{
     display: flex !important;
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Estates Details */
+
+  .actuals{
+    &__heading{
+     @include font35();
+      padding-top: 65px;
+      padding-bottom: 75px;
+    }
+    &__list{
+      &--picture{ 
+        width: 100%;
+        height: 200px;
+      }
+      &--item:nth-child(3){
+        display: inline-block;
+      }
+    }
+  }
+
 }
 
-  
+
 @media (min-width: 1300px){
+
+/* Estates Main */ 
 
   .result_estates{
     &__item{
@@ -631,6 +1156,8 @@ input[type=range]::-moz-range-thumb{
 
 @media (min-width: 1450px){
 
+/* Estates Main */ 
+
   .result_estates{
     &__item{
       width: 380px;
@@ -639,9 +1166,70 @@ input[type=range]::-moz-range-thumb{
       }
     }
   } 
+
+/* Estates Details */
+
+  .estate-details{
+    &__heading{
+      &--text{
+        @include font40();
+      }
+    }
+    &__slider{
+      &--picture{
+        height: 504px;
+      }
+    }
+    &__description{
+      &--btn{
+        @include font22();
+        width: 414px;
+      }
+      &--btn:hover{
+        background-color: $elem-hover;
+      }
+    }
+    &__description-tablet{
+      width: 524px;
+    }
+  }
+
+  .actuals{
+    &__heading{
+     @include font40();
+    }
+    &__list{
+      padding-left: 7.97%;
+      padding-right: 7.5%;
+      &--picture{ 
+        width: 380px;
+        height: 229px;
+      }
+    }
+    &__description{
+      height: 172px;
+      margin-bottom: 0px;
+      &--text{
+        @include font18();
+        line-height: 30px;
+      }
+      &--title{
+        @include font28();
+        line-height: 40px;
+      }
+    }
+    &__all{
+      padding-left: 7.97%;
+      padding-right: 7.5%;
+      padding-bottom: 106px;
+      margin-top: 29px;
+    }
+  }
 }
   
 @media (min-width: 1550px){
+
+/* Estates Main */ 
 
   .result_estates{
     &__item{

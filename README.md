@@ -44,6 +44,8 @@ Code Eigenheiten :
 Font Spezifikationen wurden mit mixins umgesetzt - einfachste Moeglichkeit um Code zu sparen.
 Teilweise wurde deas BEM Prinzip ein bisschen umgangen z.B verwende ich teilweise ein "-", dies
 um die übersichtlichkeit und einfachheit beizubehalten. 
+Vorgabe war 2 Layouts Desktop und Mobile, ich habe mich entschieden das Spektrum von Mobile bis Desktop
+umzusetzen.
 
 Waehrend der Projektumsetzung : 
 Gute Repetition des Lehrganges z.B Grid oder Flex BEM.
@@ -52,6 +54,8 @@ LayoutFrontend : Teilweise Unsicherheit weil Layout verwirend eigene Umsetzung w
 entscheid war dann so dass Diplomarbeit Vorgabe Prioritet hat.
 Umsetzung Frontend aehnlich dem MobileFirst Ansatz zuerst die einfachen Elemente umsetzen
 um ein Gefuehl zu bekommen fuer das Projekt. (nicht von beginn an komplexe Elemente).
+
+Unterricht alles i.O. ist Theorie, was mir fehlte war eine echtes Prakis Projekt nicht zur Umsetzung sondern zum Besprechen. Vorallem fehlen in der Therorie einige Praxis-Hacks. 
 
 
 

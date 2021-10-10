@@ -78,7 +78,7 @@
   &__article{
     position: relative;
     display: block;
-    padding: 0px 6.66%;
+    padding: 0px 6.2%;
     &--text{
       @extend .font16;
       line-height: 25px;
@@ -147,6 +147,34 @@
       height: 501.18px;
       padding-top: 0px;
     }
+    &__article{
+      &--text{
+        @include font20();
+        line-height: 32px;
+      }
+    }  
+    &__heading-1{
+      margin-top: 47px;
+      margin-bottom: 32px;
+      &--title{
+        @include font35();
+      }
+    }
+    &__heading-2 {
+      &--title{
+        @extend .font16;
+        line-height: 25px;
+      }
+      p{
+        @include font16();
+        line-height: 30px;
+      }
+    }
+    &__btn{
+      width: 145px;
+      margin-top: 50px;
+      margin-bottom: 133px;
+      }
   }
 } 
 
@@ -259,6 +287,22 @@
       }
     }
   }
+
+  .main-actual-details{
+    &__article{
+      padding: 0px 15%;
+    }
+    &__heading-1{
+      margin-top: 97px;
+      margin-bottom: 42px;
+      &--title{
+        @include font56();
+      }
+    }
+    &__btn{
+      @include font22();
+    }
+  }
 }
 
 @media (min-width: 1350px){
@@ -304,5 +348,11 @@
       }
     }
   }
+  .main-actual-details{
+    &__article{
+      padding: 0px 23.8%;
+    }
+  }
 }
+
  

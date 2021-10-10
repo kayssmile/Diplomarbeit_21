@@ -1,17 +1,19 @@
-/* Immo Application  */ 
+/*  Immo Application 
+-------------------------------------------------------------- */
 
 
 
-
-
-/* Imports  */
+/*  Imports
+-------------------------------------------------------------- */
 
 import * as Tools from "./Tools.js";
 import CSS from "../styles/stylesheet.scss";
 
 
 
-// Navigation : Mobile Version : Menu oeffnen
+
+/*  Navigation : Mobile Version : Menu oeffnen
+-------------------------------------------------------------- */
 
 var nav = document.querySelector(".nav");
 var ham_mobile = document.querySelector(".nav__ham");
@@ -42,7 +44,49 @@ function menu_nav_close(){
 }
 
 
-// Estates Main : Settings : List or Table
+/*  Estates Main : Select Open Dropdown Menu
+-------------------------------------------------------------- */
+
+const select = document.querySelector(".select__main");
+var icon_select = document.querySelector(".select__main--svg");
+var dropdown_select = document.querySelector(".select__dropdown");
+
+select.addEventListener("click", dropdown_open);
+icon_select.addEventListener("click", dropdown_close);
+
+
+function dropdown_open(){
+    icon_select.style.transform = "rotate(180deg)";
+    dropdown_select.style.display = "inline-flex";
+
+
+
+    
+
+
+
+}
+
+function dropdown_close(){
+
+    console.log(dropdown_select);
+
+    icon_select.style.transform = "rotate(180deg)";
+    dropdown_select.style.BackgroundColor = "none";
+    
+
+}
+
+
+
+
+
+
+
+
+/*  Estates Main : Settings : List or Table
+-------------------------------------------------------------- */
+
 
 const icon_table = document.querySelector(".main_estates__options--icontable");
 const icon_list = document.querySelector(".main_estates__options--iconlist");
@@ -69,45 +113,52 @@ function show_list(){
     icon_list.style.fill = "rgba(135, 135, 135, 1)";
 }
 
+/*  Estates Main : Estate Detail View
+-------------------------------------------------------------- */
+
+
+const wrapper_detailview = document.querySelector("#main-details");
+const wrapper_estatesmain = document.querySelector("#main");
+const heading_estatesmain = document.querySelector(".heading");
 
 
 
-// GRAPHQL Anbindung
+const details_goback = document.querySelector(".estate-details__nav--svg");
+
+
+details_goback.addEventListener("click", openmain);
+
+
+
+
+
+
+
+function openmain(){
+    wrapper_detailview.style.display = "none";
+    wrapper_estatesmain.style.display = "block";
+    heading_estatesmain.style.display = "flex";
+}
+
+
+
+
+
+
+
+
+
+
+/*  GRAPHQL Anbindung
+-------------------------------------------------------------- */
 
 // Libary Import
 
 import { GraphQLClient, gql } from 'graphql-request';
-const graphQLClient_weather = new GraphQLClient('https://graphql-weather-api.herokuapp.com/');
 const graphQLClient = new GraphQLClient('https://dev21-api.web-professionals.ch/graphql');
 
 
 var estates = [];
-
-
-// Query Weather API 
-
-var location = "Bern";
-
-const query = gql`
-
-    query {
-        getCityByName(name: "${location}", config: {units:metric}){   
-            weather{  
-              temperature{
-                actual
-              }
-            }
-        }
-    }
-`;
-
-// const response = await graphQLClient_weather.request(query);
-
-// console.log(response.getCityByName.weather.temperature.actual);
-
-
-var entry_test = "lachen";
-var entry_test2 = "Open";
 
 // Query Backend API 
 
@@ -115,7 +166,7 @@ const query_newtodo = gql`
 
     query{
 
-        newtodo(Entry: "${entry_test}", State: "${entry_test2}")
+        newtodo(Entry: "schlafen", State: "Open")
 
     }
 `
@@ -159,3 +210,35 @@ Object { id: "1", country: "Schweiz",
 
 */
         
+
+/*  GOOGLE MAPS API
+-------------------------------------------------------------- */
+
+
+
+
+var map_contact = document.querySelector(".contact-main__map");
+
+const office = { lat: 47.1787, Ing: 9.4513 };
+
+/* Get the map */
+
+// Initialize and add the map
+function initMap() {
+    // The location of Uluru
+    const uluru = { lat: 47.3682, lng: 8.5671 };
+    // The map, centered at Uluru
+    const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 16,
+      center: uluru,
+    });
+    // The marker, positioned at Uluru
+    const marker = new google.maps.Marker({
+      position: uluru,
+      map: map,
+    });
+  }
+
+
+initMap();
+
