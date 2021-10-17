@@ -9,6 +9,43 @@
 import * as Tools from "./Tools.js";
 import CSS from "../styles/stylesheet.scss";
 
+// import "../JS/home.js";
+// import "../JS/aktuelles";
+
+
+
+
+
+
+/*  To Top Button 
+-------------------------------------------------------------- */
+
+
+var totop_btn = document.querySelector(".footer__totop");
+
+
+totop_btn.addEventListener("click", totop);
+
+
+function totop (){
+  window.scrollTo({top: 0, behavior: 'smooth'});
+ // document.body.scrollTop = 0; // For Safari
+ // document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -44,172 +81,6 @@ function menu_nav_close(){
 }
 
 
-/*  Estates Main : Select Open Dropdown Menu
--------------------------------------------------------------- */
-
-const select = document.querySelector(".select__main");
-var icon_select = document.querySelector(".select__main--svg");
-var dropdown_select = document.querySelector(".select__dropdown");
-
-select.addEventListener("click", dropdown_open);
-icon_select.addEventListener("click", dropdown_close);
-
-
-function dropdown_open(){
-    icon_select.style.transform = "rotate(180deg)";
-    dropdown_select.style.display = "inline-flex";
-
-
-
-    
-
-
-
-}
-
-function dropdown_close(){
-
-    console.log(dropdown_select);
-
-    icon_select.style.transform = "rotate(180deg)";
-    dropdown_select.style.BackgroundColor = "none";
-    
-
-}
-
-
-
-
-
-
-
-
-/*  Estates Main : Settings : List or Table
--------------------------------------------------------------- */
-
-
-const icon_table = document.querySelector(".main_estates__options--icontable");
-const icon_list = document.querySelector(".main_estates__options--iconlist");
-const estates_list = document.querySelector(".result_estates__item-a");
-const estates_table = document.querySelector(".result_estates__item-b");
-
-icon_table.addEventListener("click", show_table);
-icon_list.addEventListener("click", show_list);
-
-
-
-function show_table(){
-    estates_list.style.display = "none";
-    estates_table.style.display = "block";
-    icon_table.style.fill = "rgba(135, 135, 135, 1)";
-    icon_list.style.fill = "rgba(146, 185, 175, 1)";
-
-}
-
-function show_list(){
-    estates_list.style.display = "block";
-    estates_table.style.display = "none";
-    icon_table.style.fill = "rgba(146, 185, 175, 1)";
-    icon_list.style.fill = "rgba(135, 135, 135, 1)";
-}
-
-/*  Estates Main : Estate Detail View
--------------------------------------------------------------- */
-
-
-const wrapper_detailview = document.querySelector("#main-details");
-const wrapper_estatesmain = document.querySelector("#main");
-const heading_estatesmain = document.querySelector(".heading");
-
-
-
-const details_goback = document.querySelector(".estate-details__nav--svg");
-
-
-details_goback.addEventListener("click", openmain);
-
-
-
-
-
-
-
-function openmain(){
-    wrapper_detailview.style.display = "none";
-    wrapper_estatesmain.style.display = "block";
-    heading_estatesmain.style.display = "flex";
-}
-
-
-
-
-
-
-
-
-
-
-/*  GRAPHQL Anbindung
--------------------------------------------------------------- */
-
-// Libary Import
-
-import { GraphQLClient, gql } from 'graphql-request';
-const graphQLClient = new GraphQLClient('https://dev21-api.web-professionals.ch/graphql');
-
-
-var estates = [];
-
-// Query Backend API 
-
-const query_newtodo = gql`
-
-    query{
-
-        newtodo(Entry: "schlafen", State: "Open")
-
-    }
-`
-
-const query_allentries = gql`
-
-    query{
-        estates{
-            id
-            country
-            canton
-            city
-            zip
-            title
-            description
-            availability
-            prize
-            estate_type
-            lat
-            long    
-        }
-    }
-`;
-
- // estates = await graphQLClient.request(query_allentries);
-
- // console.log(estates.estates[0]);
- // console.log(estates.estates[0].id);
-
-
-
-/*
-
-Object { id: "1", country: "Schweiz", 
-        canton: "Luzern", city: "Sursee", 
-        zip: 6214, title: "Bijou am See", 
-        description: "An mystischer Lage in der Nähe des berühmten Greenwhich Waldes verkaufen wir das vollständig renovierten Gebäude. Das Haus bietet mit den 13 attraktiven Räumen einem grosszügigen Umschwung am See eine nicht alltägliche und einzigartige Atmosphäre.",
-         availability: "ab sofort", prize: 900000, estate_type: "zu verkaufen",
-         lat: 47.1715422, long: 8.1262825
-        }
-
-*/
-        
 
 /*  GOOGLE MAPS API
 -------------------------------------------------------------- */
@@ -217,28 +88,76 @@ Object { id: "1", country: "Schweiz",
 
 
 
-var map_contact = document.querySelector(".contact-main__map");
+//var map_contact = document.querySelector(".contact-main__map");
 
-const office = { lat: 47.1787, Ing: 9.4513 };
+
 
 /* Get the map */
-
+let map;
 // Initialize and add the map
-function initMap() {
-    // The location of Uluru
-    const uluru = { lat: 47.3682, lng: 8.5671 };
-    // The map, centered at Uluru
-    const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 16,
-      center: uluru,
-    });
-    // The marker, positioned at Uluru
-    const marker = new google.maps.Marker({
-      position: uluru,
-      map: map,
-    });
-  }
 
+function initMap() {
+    // Create the map with no initial style specified.
+    // It therefore has default styling.
+  const HomeHouse = { lat:  47.1786, lng: 9.4513 };
+  
+  map = new google.maps.Map(document.querySelector(".contact-main__location--map"), {
+    center: HomeHouse,
+    zoom: 16,
+    disableDefaultUI: true,
+    mapTypeControl: false,
+  });
+
+  const svgMarker = {
+    path: "M18 0C8.325 0 0.5 7.825 0.5 17.5C0.5 30.625 18 50 18 50C18 50 35.5 30.625 35.5 17.5C35.5 7.825 27.675 0 18 0ZM18 23.75C14.55 23.75 11.75 20.95 11.75 17.5C11.75 14.05 14.55 11.25 18 11.25C21.45 11.25 24.25 14.05 24.25 17.5C24.25 20.95 21.45 23.75 18 23.75Z",
+    fillColor: "black",
+    fillOpacity: 1,
+    strokeWeight: 0,
+    rotation: 0,
+    scale: 0.8,
+    anchor: new google.maps.Point(15, 30),
+  };
+
+  
+  map.setOptions({ styles: styles['silver'] });
+  const marker = new google.maps.Marker({
+    'position': HomeHouse,
+    //'mapTypeId' : google.maps.MapTypeId.ROADMAP,
+    'map': map,
+    'icon': svgMarker,
+  });
+}
+  
+const styles = {
+  default: [],
+  silver: [
+    {
+      elementType: "geometry",
+      stylers: [{ color: "#e4e4e4" }],
+    },
+    {
+      elementType: "labels.icon",
+      stylers: [{ color: "#e4e4e4" }],
+    },
+    {
+      elementType: "labels.text.fill",
+      stylers: [{ color: "#585858" }],
+    },
+    {
+      elementType: "labels.text.stroke",
+      stylers: [{ color: "#f5f5f5" }],
+    },
+      
+    {
+      featureType: "road",
+      elementType: "geometry",
+      stylers: [{ color: "#ffffff" }],
+    },
+      
+      
+  ],
+   
+};
 
 initMap();
 

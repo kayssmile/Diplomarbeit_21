@@ -2,16 +2,7 @@
 
 <html lang="de-CH">
 
-    <head>
-
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <title>Home & House Immobilien</title>
-                 
-        <!--     <link rel="stylesheet" type="text/css" href="./styles/stylesheet.css"> -->
-        
-    </head>
+    <include src="./html/head.html"></include>
     
     <body>
   
@@ -19,35 +10,50 @@
            
             <include src="./html/navigation.html"></include>
 
-            <main>
-
-                <div class="contact-main">
-                    <p class="contact-main__heading">Kontakt</p>
-                    <div class="contact-main__map">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6088.076255126679!2d9.44806058772881!3d47.17881327485066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479b2fd30553f86d%3A0xfa31468be8b88816!2sFabrikstrasse%2024%2C%209472%20Grabs!5e0!3m2!1sde!2sch!4v1633619859738!5m2!1sde!2sch" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                    </div>
-                    <div id="map"></div>
-
+            <main class="contact-main">
+                <div class="contact-main__heading">
+                    <h1 class="contact-main__heading--title">Kontakt</h1>
                 </div>
-
-
-
-
+                <div class="contact-main__location">
+                    <div class="contact-main__location--map"></div>
+                </div>
             </main>
 
-
-            <include src="./html/footer.html"></include> 
+            <footer class="contact-footer">
+                <ul class="contact-footer__item">
+                    <li class="contact-footer__item--entry"><p class="footer__item--text bold">Home & House</p></li>
+                    <li class="contact-footer__item--entry"><p class="footer__item--text regular">Fabrikstrasse 24</p></li>
+                    <li class="contact-footer__item--entry"><p class="footer__item--text regular">9472 Grabs</p></li>
+                    <li class="contact-footer__item--entry"><p class="footer__item--text regular">Schweiz</p></li>  
+                </ul>
+        
+                <ul class="contact-footer__item">
+                    <li class="contact-footer__item--entry"><p class="footer__item--text regular">081 740 00 00</p></li>
+                    <li class="contact-footer__item--entry"><p class="footer__item--text regular">info@homehouse.ch</p></li>   
+                </ul>
             
-            
+                <ul class="contact-footer__item">
+                    <li class="contact-footer__item--entry"><a href="#"><p class="footer__item--text bold">Immobilien</p></a></li>
+                    <li class="contact-footer__item--entry"><a href="#"><p class="footer__item--text bold">Aktuelles</p></a></li>
+                    <li class="contact-footer__item--entry"><a href="#"><p class="footer__item--text bold">Kontakt</p></a></li>   
+                </ul>
+        
+                <ul class="contact-footer__item">
+                    <li class="contact-footer__item--entry"><a href="#"><p class="footer__item--text regular">Impressum</p></a></li>
+                    <li class="contact-footer__item--entry"><a href="#"><p class="footer__item--text regular">Datenschutz</p></a></li>
+                </ul>  
+            </footer>
 
         </div>    
 
 
     </body>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp1M-QmkFeBE_lDMouoX2gxuMi_kVP7BM&callback=initMap&libraries=&v=weekly"></script>
+   
 
-<!-- <script language="javascript" type="module" src="../js/JS_todo.js"></script>  -->
+  <!-- <script language="javascript" type="module" src=""></script>  -->  
+
+
 
 
 </html>

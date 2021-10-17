@@ -2,193 +2,157 @@
 -------------------------------------------------------------- */
 
 .light {
-
 	/* Montserrat Light = 300 */
 	font-weight: 300 !important;
 }
 
 .regular {
-
 	/* Montserrat Regular = 400 */
 	font-weight: 400 !important;
-
 }
 
 .medium {
-
 	/* Montserrat Medium = 500 */
 	font-weight: 500 !important;
-
 }
 
 .bold {
-
 	/* Montserrat Bold = 700 */
-	font-weight: 700 !important;
-	
+	font-weight: 700 !important;	
 }
 
 /*  Typography Fonts: Klassen 
 -------------------------------------------------------------- */
 
 .nav_text{
-
 	font-size: 22px;
 	font-style: normal;
 	color: $letting-general;
 	line-height: 27px;
 	letter-spacing: -1.5%;
-
 }
 
 .font16{
-
 	font-size: 16px;
     font-style: normal;
     font-weight: normal;
-
 }
 
 @mixin font16(){
-
 	font-style: normal;
     font-size: 16px;
-
 }
 
 
 .font18{
-
 	font-size: 18px;
     font-style: normal;
     font-weight: normal;
-
 }
 
 @mixin font18(){
-
 	font-style: normal;
     font-size: 18px;
-
 }
 
-.font20{
-	
+.font20{	
 	font-style: normal;
     font-size: 20px;
-
 }
 
 @mixin font20(){
-
 	font-style: normal;
     font-size: 20px;
-
 }
 
-.font21{
-	
+.font21{	
 	font-style: normal;
     font-size: 21px;
-
 }
 
 @mixin font21(){
-
 	font-style: normal;
     font-size: 21px;
-
 }
 
-.font22{
-	
+.font22{	
 	font-style: normal;
     font-size: 22px;
-
 }
 
 @mixin font22(){
-
 	font-style: normal;
     font-size: 22px;
-
 }
 
-.font25{
-	
+.font25{	
 	font-style: normal;
     font-size: 25px;
+}
 
+.font26{	
+	font-style: normal;
+    font-size: 26px;
 }
 
 .font28{
-
 	font-size: 28px;
     font-style: normal;
-
 }
 
 @mixin font28(){
-
 	font-size: 28px;
     font-style: normal;
-
 }
 
 .font30{
-
 	font-size: 30px;
     font-style: normal;
-
 }
 
 @mixin font30(){
-
 	font-size: 30px;
     font-style: normal;
+}
 
+.font33{
+	font-size: 33px;
+    font-style: normal;
+}
+
+@mixin font33(){
+	font-size: 33px;
+    font-style: normal;
 }
 
 .font35{
-
 	font-size: 35px;
     font-style: normal;
-
 }
 
 @mixin font35(){
-
 	font-size: 35px;
     font-style: normal;
-
 }
 
 .font40{
-
 	font-size: 40px;
 	font-style: normal;
-
 }
 
 @mixin font40(){
-
 	font-size: 40px;
     font-style: normal;
-
 }
 
 .font56{
-
 	font-size: 56px;
 	font-style: normal;
-
 }
 
 @mixin font56(){
-
 	font-size: 56px;
 	font-style: normal;
-
 }
 
 

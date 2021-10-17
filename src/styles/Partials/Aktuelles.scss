@@ -6,7 +6,7 @@
 
 .main-actual{
   position: relative;
-  display: none;//block;
+  display: block;
   padding: 0px 6.2%;
   padding-top: 76px;
   background-color: $main-general;
@@ -68,7 +68,7 @@
 
 .main-actual-details{
   background-color: $main-general;
-  display: block;
+  display: none;//block;
   &__picture{
     display: block;
     width: 100%;

@@ -46,6 +46,7 @@ Teilweise wurde deas BEM Prinzip ein bisschen umgangen z.B verwende ich teilweis
 um die übersichtlichkeit und einfachheit beizubehalten. 
 Vorgabe war 2 Layouts Desktop und Mobile, ich habe mich entschieden das Spektrum von Mobile bis Desktop
 umzusetzen.
+Für die Übersichtlichkeit wurden alle Schriftgroessen und Arten ausgelagert.
 
 Waehrend der Projektumsetzung : 
 Gute Repetition des Lehrganges z.B Grid oder Flex BEM.
