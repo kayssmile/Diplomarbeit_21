@@ -1,5 +1,21 @@
+/*  Home & House Immobillien : Aktuelles
+--------------------------------------------------------------*/
+/*  Imports
+--------------------------------------------------------------*/
+
+
+import CSS from "../Styles/Stylesheet.scss";
+import * as Tools from "./Tools.js";
+
+
+
+
 /*  Aktuelles
 -------------------------------------------------------------- */
+
+let nav_aktuelles = document.querySelector(".nav__select");
+nav_aktuelles.children[1].firstElementChild.firstElementChild.style.color = "white";
+
 
 const wrapper_news = document.querySelector(".main-actual");
 const wrapper_news_article = document.querySelector(".main-actual-details");
@@ -33,6 +49,7 @@ wrapper_news_article.addEventListener("click", delegation_news);
 
 
 function delegation_news(event){
+    
     console.log(event.target.dataset.id);
     if(event.target.matches(".main-actual__list--btn")){
         let img = event.target.parentNode.parentNode.firstElementChild.getAttribute("src");

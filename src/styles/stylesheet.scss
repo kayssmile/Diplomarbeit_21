@@ -1,17 +1,18 @@
-/*  Partials Import  
+/*  Stylesheet: Partials
 -------------------------------------------------------------- */
 
 @import "./Partials/CSS_Reset.scss";
 @import "./Partials/Colors";
 @import "./Partials/Fonts_typography";
 @import "./Partials/Navigation";
-@import "./Partials/Home";
-@import "./Partials/Aktuelles";
-@import "./Partials/Kontakt";
 @import "./Partials/Footer";
 
+/*  Stylesheet: Main
+-------------------------------------------------------------- */
 
-
+@import "./Home";
+@import "./News";
+@import "./Contact";
 
 
 

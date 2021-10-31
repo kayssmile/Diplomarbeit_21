@@ -48,6 +48,14 @@ Vorgabe war 2 Layouts Desktop und Mobile, ich habe mich entschieden das Spektrum
 umzusetzen.
 Für die Übersichtlichkeit wurden alle Schriftgroessen und Arten ausgelagert.
 
+JavaScript :
+Eigenheiten:  
+Code ist so geschrieben, dass das Backend beliebige Aenderungen gemacht werden koennen (Umsetzung nach Schluessel ID.)
+Einige Features: "Mehr laden" ist auch Rückwärtskompatibel"
+Herausforderungen: 
+Webpack5 Configuration (Assets-Module URL via Import, mehrere Pages, CSS-URLs)
+Google Maps API Styling (Habe den Style Editor übersehen).
+
 Waehrend der Projektumsetzung : 
 Gute Repetition des Lehrganges z.B Grid oder Flex BEM.
 CSS : Repetition Pseudoelemente, Kindselektoren, Hover 
@@ -56,7 +64,10 @@ entscheid war dann so dass Diplomarbeit Vorgabe Prioritet hat.
 Umsetzung Frontend aehnlich dem MobileFirst Ansatz zuerst die einfachen Elemente umsetzen
 um ein Gefuehl zu bekommen fuer das Projekt. (nicht von beginn an komplexe Elemente).
 
-Unterricht alles i.O. ist Theorie, was mir fehlte war eine echtes Prakis Projekt nicht zur Umsetzung sondern zum Besprechen. Vorallem fehlen in der Therorie einige Praxis-Hacks. 
+Unterricht alles i.O. ist Theorie, was mir fehlte war eine echtes Prakis Projekt nicht zur Umsetzung sondern zum Besprechen. Vorallem fehlen in der Therorie einige Praxis-Hacks. Zum abgucken Feld abdecken
+Unterricht Theorie Objekte.
+
+
 
 
 
@@ -137,7 +148,7 @@ Projektabgabe : 27.11.2021 / KW47
      * Foto Slider
      * Flex oder Grid
      * Geolocation API 
-     * Styling der API
+     * Styling der MAP
 
     
     Frontend Interaktion: 
@@ -148,13 +159,13 @@ Projektabgabe : 27.11.2021 / KW47
      * Raster oder Listenansicht 
 
 
-### KW38 - KW40 Frontend <a id="frontend"></a>
+### KW38 - KW40 Frontend <a id="frontend Statisch"></a>
+Planung:
+HTML5 / CSS3: 20.09 - 10.10
+Umsetzung: 
+HTML5 / CSS3: 20.09 - 17.10
 
-HTML5 / CSS3
-
-20.09 - 10.10
-
-### KW41 - KW43 Frontend Interaktion <a id="frontendJS"></a>
+### KW41 - KW43 Frontend Interaktion <a id="frontend Dynamisch"></a>
 
 VanillaJS
 GraphQL - API 
@@ -194,7 +205,7 @@ Pure Vanilla JS ohne Fremdcode
 
 ## Google - API
 
-## Figma
+## Figma / MB Ruler
 
 
 

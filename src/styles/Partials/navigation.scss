@@ -4,108 +4,81 @@
 -------------------------------------------------------------- */
 
 .nav{
-
   position: absolute;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   width: 100%;
   height: 76px;
   background-color: $heading-general;
   opacity: 1;
-  z-index: 1;
-  
+  z-index: 1;  
   &__logo{
-
     transform: scale(0.615);
-    margin-left: 20px;
-    
+    margin-left: 20px;    
   }
-
   &__ham{
-
     display: inline-block;
     margin-right: 25px;
+    fill: black;
     cursor: pointer;
-
   }
-
+  &__ham:hover{
+    fill: $elem-hover;
+  }
   &__close{
-
     display: none;
     margin-right: 25px;
+    stroke: black;
     cursor: pointer;
-
   }
-
+  &__close:hover{
+    stroke: $elem-hover;
+  }
   &__select{
-
     display: none;
-
   }
-
 }
 
 .nav_menu{
-
   position: absolute;
   display: none;
   background-color: $elem-general;
   z-index: 11;
   width: 100%;
   top: 76px;
-
   &__select-a{
-
     position: relative;
     list-style-type: none;
     padding-top: 80px;
     padding-bottom: 71px;
-
   }
-
   &__select-b{
-
     position: relative;
     list-style-type: none;
     padding-bottom: 284px;
-
   }
-
   &__item{
-
-    text-align: center;
-    
+    text-align: center;   
     &--text{
-
       @extend .font35;
       @extend .regular;
       line-height: 70px;
       color: $letting-general;
-
     }
-
     &--text-small{
-
       @extend .font16;
       @extend .regular;
       line-height: 36px;
       color: $letting-general;
-
     }
-
   }
-
   &__item a{
-
     text-decoration: none;
-
   }
-
 }
 
-/*  Responisve Design  
+/*  Responisve Layout 
 -------------------------------------------------------------- */
 /*  Header - Navigation  
 -------------------------------------------------------------- */
@@ -113,63 +86,39 @@
 @media (min-width: 650px){
 
   .nav{
-
-    height: 132px;
-      
+    height: 132px; 
+    opacity: 0.85;     
     &__logo{
-
       transform: scale(1);
-
+      opacity: 1; 
     }
-
     &__ham{
-
-      display: none !important;
-  
-    }
-    
+      display: none !important; 
+    }   
     &__close{
-
-      display: none !important;
-  
-    }
-  
+      display: none !important; 
+    } 
     &__select{
-
       position: relative;
       display: inline-flex;
       flex-direction: row;
       justify-content: space-between;
       list-style-type: none;
       margin-right: 2.5%;
-
       a{
-
         text-decoration: none;
-
       }
-
       &--text{
-
-        font-style: normal;
-               
+        font-style: normal;              
       }
-
     }
-
     &__item:nth-child(2){
-
       margin: 0% 13px;
-
     }
-
   }
 
   .nav_menu{
-
     display: none !important;
-
   }
-
 }
 

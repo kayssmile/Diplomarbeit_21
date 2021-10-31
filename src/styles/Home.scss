@@ -32,10 +32,15 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    padding-top: 76px;
     &__picture{
       position: relative;
+     // background-image: url("../photo-1523217582562-09d0def993a6.jpg");
       width: 100%;
       height: 100%;   
+    }
+    &__picture:nth-child(2){
+      display: none;
     }
     &__section{
       position: relative;
@@ -57,14 +62,14 @@
 /*  Main : Heading, Searchmodulation (Selects,Filter)
 -------------------------------------------------------------- */
   
-#main_estates{
-  position: relative;
-  display:  block;
-  background-color: $main-general;
-}
-
 #main{
   display: block;
+}
+
+#main_estates{
+  position: relative;
+  display: block;
+  background-color: $main-general;
 }
 
 .main_estates{
@@ -136,11 +141,15 @@
     margin-top: 50px;
     z-index: 1;
     cursor: pointer;
+    overflow: hidden;
     &--item{
       @extend .select__main;
     }
     &--item:hover{
       background-color: $elem-hover;
+    }
+    &--text{
+      @extend .select__main--text;
     }
   }
 }    
@@ -161,6 +170,9 @@
       display: inline-block;
       width: 30%;
       text-align: start;  
+    }
+    &--text:nth-child(3){
+      color: $letting-selected;
     }
     &--desktop{
       display: none;
@@ -338,10 +350,8 @@ input[type=range]::-moz-range-thumb{
   &__btn{
     @extend .main_estates__btn;
     margin-top: 5px;
-    &--text{
-      @extend .font16;
-      color: $background-general;
-    }
+    @extend .font16;
+    color: $background-general;
   }    
   &__btn:hover{
     background-color: $elem-hover;
@@ -351,34 +361,34 @@ input[type=range]::-moz-range-thumb{
 /*  Main : Estate Details View
 -------------------------------------------------------------- */
 
-#main-details{
-  display: none; //block;
+#main_details{
+  display: none;
 }
 
-.toright{
-  left: 0% !important;
-}
-
-.estate-details{
+#estate_details{
   position: relative;
   display: block;
-  padding: 0px 6.2%;
   padding-top: 76px;
   padding-bottom: 48px;
   background-color: $main-general;
   overflow: hidden;
+}
+.estate_details{
   &__contact{
     position: absolute;
     display: block;
     width: 100%;
-    left: 0%; // -100%;
+    left: -100%;
     top: 0%;
     padding: 0px 6.93%;
     padding-top: 27px;
     padding-bottom: 100px;
     background-color: $elem-general;
     z-index: 1;
-    transition: left 3s linear;
+    transition: left 2s linear;
+    &--toright{
+      left: 0% !important;
+    }
     &--close{
       display: block;
       position: relative;
@@ -420,22 +430,22 @@ input[type=range]::-moz-range-thumb{
       flex-direction: row;
       justify-content: space-between;
       flex-wrap: wrap;
-      .estate-details__contact--label:nth-child(1){
+      .estate_details__contact--label:nth-child(1){
         width: 40.25%;
       }
-      .estate-details__contact--label:nth-child(2){
+      .estate_details__contact--label:nth-child(2){
         width: 51.7%;
       }
-      .estate-details__contact--input:nth-child(3){
+      .estate_details__contact--input:nth-child(3){
         width: 40.25%;
         height: 50px;
       }
-      .estate-details__contact--input:nth-child(4){
+      .estate_details__contact--input:nth-child(4){
         width: 51.7%;
         height: 50px;
       }
     }
-    &--item:nth-child(4), .estate-details__contact--item:nth-child(6){
+    &--item:nth-child(4), .estate_details__contact--item:nth-child(6){
       input[type=number]{
         -moz-appearance: textfield;
       }
@@ -492,6 +502,10 @@ input[type=range]::-moz-range-thumb{
       width: 50px;
       height: 50px;
       background-color: $background-general;
+      cursor: pointer;
+    }
+    &--cross{
+      display: none;
     }
     &--btn{
       display: inline-flex;
@@ -512,6 +526,7 @@ input[type=range]::-moz-range-thumb{
   &__nav{
     display: flex;
     flex-direction: row;
+    padding-left: 5.867%;
     &--svg{
       display: block;
       margin-top: 27px;
@@ -534,7 +549,7 @@ input[type=range]::-moz-range-thumb{
     justify-content: center;
     align-items: center;
     height: 117.9px;
-    margin-bottom: -37.86px;
+    margin-bottom: -29.31px;
     margin-top: 8.45px;
     &--text{
       @extend .font22;
@@ -545,6 +560,7 @@ input[type=range]::-moz-range-thumb{
   }
   &__slider{
     position: relative;
+    margin: 0% 6.4%;
     &--left{
       position: absolute;
       display: inline-flex;
@@ -556,7 +572,7 @@ input[type=range]::-moz-range-thumb{
       width: 28px;
     }
     &--right{
-      @extend .estate-details__slider--left;
+      @extend .estate_details__slider--left;
       right: 0px;
     }
     &--svg{
@@ -583,21 +599,22 @@ input[type=range]::-moz-range-thumb{
     display: none;
   }
   &__description{
-    margin-top: 40px;
+    margin-left: 6.4%;
+    margin-top: 39.8px;
     &--title{
       @extend .font16;
       line-height: 28px;
     }
     &--text{
-      @extend .estate-details__description--title;
+      @extend .estate_details__description--title;
     }
   }
   &__description li{
-    margin-bottom: 40px;
+    margin-bottom: 26.45px;
   }
   &__description li:nth-child(5){
-    margin-top: 5px;
-    margin-bottom: 25px;
+    padding-top: 6.67px;
+    margin-bottom: 13.35px;
     p{
       width: 318px;
     }
@@ -608,21 +625,26 @@ input[type=range]::-moz-range-thumb{
   &__map{
     position: relative;
     display: block;
-    width: 100%;
     height: 215px;
+    background-color:black;
+    margin-left: 5.867%;
+    margin-right: 6.934%;
   }
   &__title{
     @extend .font16;
     height: 70px;
+    padding-left: 6.4%;
     margin-top: 16px;
     margin-bottom: 13px;
     line-height: 26px;
   }
   &__btn{
-    display: block;
     @extend .font16;
-    width: 317px;
+    display: block;
+    width: 84.266%;
     height: 45px;
+    margin-left: 6.4%;
+    margin-right: 9.33%;
     line-height: 30px;
     background-color: $elem-general;
     color: $background-general;
@@ -636,8 +658,10 @@ input[type=range]::-moz-range-thumb{
 /*  Main : Estate Details: Actual Estates
 -------------------------------------------------------------- */
 
-.actuals{
+#estates_actuals{
   background-color: $heading-general;
+}
+.estates_actuals{
   &__heading{
     position: relative;
     display: block;
@@ -649,14 +673,14 @@ input[type=range]::-moz-range-thumb{
   &__list{
     position: relative;
     display: block;
-    padding: 0px 6.2%;
+    margin: 0px 8.8%;
     &--picture{
       position: relative;
       display: block;
       width: 100%;
       height: 200px;
     }
-    &--item:nth-child(2) .actuals__description:nth-child(2){
+    &--item:nth-child(2) .estates_actuals__description:nth-child(2){
       margin-bottom: 0px;
     }
     &--item:nth-child(3){
@@ -680,8 +704,8 @@ input[type=range]::-moz-range-thumb{
     flex-direction: row;
     justify-content: end;
     align-items: center;
-    padding: 0px 6.2%;
-    margin-top: -15px;
+    margin: 0px 8%;
+    margin-top: -34px;
     padding-bottom: 50px;
     &--text{
       @extend .font18;
@@ -749,6 +773,13 @@ input[type=range]::-moz-range-thumb{
 @media (min-width: 650px){
 
   .heading{
+    padding-top: 0px;
+    &__picture:nth-child(1){
+      display: none;
+    }
+    &__picture:nth-child(2){
+      display: block;
+    }
     &__section{   
       height: 200px;              
       &--title{    
@@ -769,9 +800,11 @@ input[type=range]::-moz-range-thumb{
   /* Estate Details View  - Tabletsmall
 -------------------------------------------------------------- */
 
-  .estate-details{
+  #estate_details{
     padding-top: 132px;
     padding-bottom: 62px;
+  }
+  .estate_details{
     &__nav{
       display: flex;
       flex-direction: row;
@@ -790,7 +823,7 @@ input[type=range]::-moz-range-thumb{
     &__heading{
       height: 136px;
       margin-bottom: 6px;
-      margin-top: 0px;
+      margin-top: 9px;
       &--text{
         @include font28();
       }
@@ -815,6 +848,7 @@ input[type=range]::-moz-range-thumb{
     &__images{
       display: flex;
       flex-direction: row;
+      margin-left: 6.4%;
       margin-top: 12px;
       &--image{
         display: inline-block;
@@ -829,10 +863,13 @@ input[type=range]::-moz-range-thumb{
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      margin: 0% 6.4%;
     }
     &__description{
       display: inline-block;
       margin-top: 50px;
+      margin-left: 0%;
+      width: 276px;
       &--title{
         @include font18();
         line-height: 30px;
@@ -846,7 +883,7 @@ input[type=range]::-moz-range-thumb{
         @include font18();
         width: 317px;
         height: 45px;
-        margin-top: 12px;
+        margin-top: 14px;
         line-height: 30px;
         background-color: $elem-general;
         color: $background-general;
@@ -861,7 +898,7 @@ input[type=range]::-moz-range-thumb{
       display: inline-flex;
       flex-direction: column;
       justify-content: space-between;
-      width: 350px;
+      width: 100%;
       margin-top: 50px;
       li{
         margin-bottom: 29px;
@@ -884,8 +921,7 @@ input[type=range]::-moz-range-thumb{
     }
   }
 
-  .actuals{
-    background-color: $heading-general;
+  .estates_actuals{
     &__heading{
      @include font30();
       padding-top: 40px;
@@ -894,12 +930,12 @@ input[type=range]::-moz-range-thumb{
     &__list{
       position: relative;
       display: block;
-      padding: 0px 6.2%;
+      margin: 0px 6.2%;
       &--picture{  
         width: 100%;
         height: 302px;
       }
-      &--item:nth-child(2) .actuals__description:nth-child(2){
+      &--item:nth-child(2) .estates_actuals__description:nth-child(2){
         margin-bottom: 0px;
       }
     }
@@ -939,13 +975,13 @@ input[type=range]::-moz-range-thumb{
       flex-direction: row;
       justify-content: space-between;
       flex-wrap: wrap;
-      &--desktop{
+      &--input{
         position: relative;
         display: flex;
         flex-direction: column;
         width: 31%; 
       }
-      &--desktop:nth-child(4) label{
+      &--input:nth-child(4) label{
         margin-top: 21px;
       }       
       &--label{
@@ -1065,7 +1101,7 @@ input[type=range]::-moz-range-thumb{
 /* Estate Detail View - Tablet
 -------------------------------------------------------------- */
 
-  .estate-details{
+  .estate_details{
     &__contact{
       padding-top: 27px;
       padding-bottom: 100px;
@@ -1090,16 +1126,16 @@ input[type=range]::-moz-range-thumb{
         }
       }
       &--item:nth-child(4){
-        .estate-details__contact--label:nth-child(1){
+        .estate_details__contact--label:nth-child(1){
           width: 31.41%;
         }
-        .estate-details__contact--label:nth-child(2){
+        .estate_details__contact--label:nth-child(2){
           width: 62.82%;
         }
-        .estate-details__contact--input:nth-child(3){
+        .estate_details__contact--input:nth-child(3){
           width: 31.41%;
         }
-        .estate-details__contact--input:nth-child(4){
+        .estate_details__contact--input:nth-child(4){
           width: 62.82%;
         }
       }
@@ -1109,7 +1145,7 @@ input[type=range]::-moz-range-thumb{
       &--item:nth-child(6){
         right: 52.23%;
       }
-      &--item:nth-child(8), .estate-details__contact--item:nth-child(9){
+      &--item:nth-child(8), .estate_details__contact--item:nth-child(9){
         width: 29%;
         margin-top: 56px;
         p{
@@ -1132,8 +1168,7 @@ input[type=range]::-moz-range-thumb{
     }
   }
 
-  .actuals{
-    background-color: $heading-general;
+  .estates_actuals{
     &__heading{
      @include font30();
       padding-top: 40px;
@@ -1204,10 +1239,7 @@ input[type=range]::-moz-range-thumb{
  /* Estate Detail View - Tablet
 -------------------------------------------------------------- */
 
-  .estate-details{
-    padding: 0px 23.06%;
-    padding-top: 132px;
-    padding-bottom: 62px;
+  .estate_details{
     &__nav{
       position: absolute;
       left: 44px;
@@ -1219,10 +1251,27 @@ input[type=range]::-moz-range-thumb{
         @include font28();
       }
     }
-  }
+    &__slider{
+      margin-left: 15%;
+      margin-right: 14.5%;
+    }
+    &__images{
+      margin-left: 15%;
+    }
+    &__list{
+      margin-right: 14.5%;
+      margin-left: 15%;
+    }
+    &__description{
+      width: 276px;
+    }
+    &__map{
+      margin-left: 15%;
+      margin-right: 14.5%;
+    }
+  } 
 
-  .actuals{
-    background-color: $heading-general;
+  .estates_actuals{
     &__heading{
      @include font30();
       padding-top: 40px;
@@ -1251,7 +1300,7 @@ input[type=range]::-moz-range-thumb{
 
 
   .main_estates{
-    &__selects--desktop{
+    &__selects--input{
       width: 29.16%;  
     }
     &__setting{
@@ -1307,9 +1356,9 @@ input[type=range]::-moz-range-thumb{
 -------------------------------------------------------------- */ 
 
 
-  .estate-details{
+  .estate_details{
     &__contact{
-      left: 0%; // -100%;
+      left: -100%;
       padding: 0px 11.13%;
       padding-top: 47px;
       padding-bottom: 172px;
@@ -1323,7 +1372,7 @@ input[type=range]::-moz-range-thumb{
       &--heading{
         height: 126px;
         margin-top: 11px;
-        .estate-details__contact--text, .estate-details__contact--title{
+        .estate_details__contact--text, .estate_details__contact--title{
           @include font33();
           line-height: 42px;
         }
@@ -1336,14 +1385,14 @@ input[type=range]::-moz-range-thumb{
           @include font22();
         }
       }
-      &--item:nth-child(3), .estate-details__contact--item:nth-child(4),
-      .estate-details__contact--item:nth-child(5), .estate-details__contact--item:nth-child(6){
+      &--item:nth-child(3), .estate_details__contact--item:nth-child(4),
+      .estate_details__contact--item:nth-child(5), .estate_details__contact--item:nth-child(6){
         margin-top: 33px;
       }
       &--item:nth-child(7){
         margin-top: 25px;
       }
-      &--item:nth-child(8), .estate-details__contact--item:nth-child(9){
+      &--item:nth-child(8), .estate_details__contact--item:nth-child(9){
         width: 30%;
         margin-top: 56px;
         p{
@@ -1363,13 +1412,31 @@ input[type=range]::-moz-range-thumb{
         margin-top: 55px;
       }
     }
+    &__slider{
+      margin-left: 23.035%;
+      margin-right: 22.976%;
+    }
+    &__images{
+      margin-left: 23.035%;
+    }
+    &__list{
+      margin-left: 23.035%;
+      margin-right: 23.512%;
+    }
+    &__description-tablet{
+      width: 65%;
+    }
+    &__map{
+      margin-left: 23.035%;
+      margin-right: 22.976%;
+    }
   }
 
-  .actuals{
+  .estates_actuals{
     &__heading{
      @include font35();
       padding-top: 65px;
-      padding-bottom: 75px;
+      padding-bottom: 85px;
     }
     &__list{
       &--picture{ 
@@ -1379,6 +1446,11 @@ input[type=range]::-moz-range-thumb{
       &--item:nth-child(3){
         display: inline-block;
       }
+    }
+    &__all{
+      margin: 0% 7.381%;
+      padding-bottom: 106px;
+      margin-top: 29px;
     }
   }
 
@@ -1404,9 +1476,9 @@ input[type=range]::-moz-range-thumb{
  /* Estate Detail View - Desktop
 -------------------------------------------------------------- */ 
 
-  .estate-details{
+  .estate_details{
     &__contact{
-      &--item:nth-child(8), .estate-details__contact--item:nth-child(9){
+      &--item:nth-child(8), .estate_details__contact--item:nth-child(9){
         width: 23%;
       }
       &--item:nth-child(9){
@@ -1433,7 +1505,7 @@ input[type=range]::-moz-range-thumb{
  /* Estate Detail View - Desktop
 -------------------------------------------------------------- */ 
 
-  .estate-details{
+  .estate_details{
     &__heading{
       &--text{
         @include font40();
@@ -1458,13 +1530,13 @@ input[type=range]::-moz-range-thumb{
     }
   }
 
-  .actuals{
+  .estates_actuals{
     &__heading{
      @include font40();
     }
     &__list{
-      padding-left: 7.97%;
-      padding-right: 7.5%;
+      margin-left: 7.97%;
+      margin-right: 7.5%;
       &--picture{ 
         width: 380px;
         height: 229px;
@@ -1481,12 +1553,6 @@ input[type=range]::-moz-range-thumb{
         @include font28();
         line-height: 40px;
       }
-    }
-    &__all{
-      padding-left: 7.97%;
-      padding-right: 7.5%;
-      padding-bottom: 106px;
-      margin-top: 29px;
     }
   }
 
@@ -1511,5 +1577,12 @@ input[type=range]::-moz-range-thumb{
     }
   } 
 
+  .estates_actuals{
+    &__list{
+      &--picture{ 
+        width: 414px;
+      }
+    }
+  }
 }    
   

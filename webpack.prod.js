@@ -8,15 +8,18 @@ const HTMLWebpackPlugin = require("html-webpack-plugin");
 module.exports = merge(common, {
   mode: "production",
   output: {
-      filename: "main.[contenthash].js",
+      filename: "[name].[contenthash].js",
       path: path.resolve(__dirname, "dist"),
-      assetModuleFilename: 'assets/[name]-[hash][ext]'
+      assetModuleFilename: 'assets/[name]-[hash][ext]',
+      chunkFilename: '[id].[contenthash].js'
   },
+
   plugins: [
     new MiniCssExtractPlugin({
       filename: "[name].[contenthash].css"
     }),
   ],
+  
   module: {
     rules: [
       {

@@ -8,20 +8,24 @@ module.exports = merge(common, {
     watchFiles: ['src/**/*.html'],
   },
   output: {
-      filename: "main.js",
+      filename: '[name].[contenthash].js', //"main.js",
       path: path.resolve(__dirname, "dist"),
-      assetModuleFilename: 'assets/[name][ext]'
+      assetModuleFilename: 'assets/[name][ext]',
+    //  sourceMapFilename: '[name].[hash:8].map',
+      chunkFilename: '[id].[hash:8].js'
   },
   module: {
-
     rules: [
-  
       {
         test: /\.scss$/,
         use: [
-          'style-loader', 'css-loader', 'sass-loader',
-        ]
-      }
+         'style-loader', 'css-loader', 'sass-loader',
+        ],
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        type: 'asset/resource'
+      },       
     ]
   }
 });

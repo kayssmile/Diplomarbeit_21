@@ -2,15 +2,13 @@
 
 <html lang="de-CH">
 
-    <include src="./html/head.html"></include>
+    <include src="./Html/Head.html"></include>
     
     <body>
   
-        <div id="app_wrapper">
-   
-            <include src="./html/navigation.html"></include>
+        <include src="./Html/Navigation.html"></include>
 
-     <!--    
+       <!-- 
             <section id="heading"> 
 
                 <div class="hero-image">
@@ -22,506 +20,502 @@
                     </div>
 
                 </div>
-
+ 
+                
             </section>
-    --> 
+   -->
     
-            <section id="heading">
-                <div class="heading">
-                    <img class="heading__picture" src="./images/JPG/photo-1523217582562-09d0def993a6.jpg" alt="picture_heading_front">
-                    <div class="heading__section">
-                        <h1 class="heading__section--title">Die optimale Balance zwischen<br>Ästhetik und Funktionalität</h1>
-                    </div>
+        <section>
+            <div class="heading">
+                <img class="heading__picture" src="./Images/JPG/Hero.jpg" alt="picture_heading_front">
+                <img class="heading__picture" src="./Images/JPG/photo-heading-front.jpg" alt="picture_heading_front">
+                <div class="heading__section">
+                    <h1 class="heading__section--title">Die optimale Balance zwischen<br>Ästhetik und Funktionalität</h1>
                 </div>
-            </section>
-
-            <main>
-                <div id="main">
-                    <section id="main_estates">
-                        <div class="main_estates__heading">
-                            <h2 class="main_estates__heading--title regular">Immobilien</h2>
-                        </div>
-                        <div class="main_estates__filter">
-                            <div class="main_estates__selects">
-                                <div class="main_estates__selects--desktop">
-                                    <label for="select-what" class="main_estates__selects--label bold">Was</label>
-                                    <div id="select-what" class="select">
-                                        <div class="select__main">
-                                            <p class="select__main--text regular">Alle Objekte</p>      
-                                            <svg class="select__main--svg" width="21" height="13" viewBox="0 0 21 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M1 1L10.5 11L20 1" stroke-width="2"/>
-                                            </svg>
-                                        </div>
-                                        <ul class="select__dropdown">
-                                            <li class="select__dropdown--item"> <p class="select__main--text regular">Zu verschenken</p></li>
-                                            <li class="select__dropdown--item"> <p class="select__main--text regular">Zu Vermieten</p></li>
-                                            <li class="select__dropdown--item"> <p class="select__main--text regular">Zu verkaufen</p></li>
-                                            <li class="select__dropdown--item"> <p class="select__main--text regular">Alle Objekte</p></li>
-                                        </ul>
+            </div>
+        </section>           
+     
+        <main>
+            <div id="main">
+                <section id="main_estates">
+                    <div class="main_estates__heading">
+                        <h2 class="main_estates__heading--title regular">Immobilien</h2>
+                    </div>
+                    <div class="main_estates__filter">
+                        <div class="main_estates__selects">
+                            <div class="main_estates__selects--input">
+                                <label for="select-what" class="main_estates__selects--label bold">Was</label>
+                                <div id="select-what" class="select">
+                                    <div class="select__main">
+                                        <p class="select__main--text regular">Alle Objekte</p>      
+                                        <svg class="select__main--svg" width="21" height="13" viewBox="0 0 21 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M1 1L10.5 11L20 1" stroke-width="2"/>
+                                        </svg>
                                     </div>
+                                    <ul class="select__dropdown" data-set="0">
+                                        <li class="select__dropdown--item"> <p class="select__dropdown--text regular">Zu verschenken</p></li>
+                                        <li class="select__dropdown--item"> <p class="select__dropdown--text regular">Zu Vermieten</p></li>
+                                        <li class="select__dropdown--item"> <p class="select__dropdown--text regular">Zu verkaufen</p></li>
+                                        <li class="select__dropdown--item"> <p class="select__dropdown--text regular">Alle Objekte</p></li>
+                                    </ul>
                                 </div>
-                                <div class="main_estates__selects--desktop">
-                                    <label for="select-where" class="main_estates__selects--label bold">Wo</label>
-                                    <div id="select-where" class="select">
-                                        <div class="select__main">
-                                            <p class="select__main--text regular">Alle Orte</p>      
-                                            <svg class="select__main--svg" width="21" height="13" viewBox="0 0 21 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M1 1L10.5 11L20 1" stroke-width="2"/>
-                                            </svg>
-                                        </div>
-                                        <ul class="select__dropdown">
-                                            <li class="select__dropdown--item"> <p class="select__main--text regular">Schweiz</p></li>
-                                            <li class="select__dropdown--item"> <p class="select__main--text regular">Finnland</p></li>
-                                            <li class="select__dropdown--item"> <p class="select__main--text regular">Denmark</p></li>
-                                            <li class="select__dropdown--item"> <p class="select__main--text regular">Alle Objekte</p></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="main_estates__setting visibility-tablet">
-                                    <p class="main_estates__setting--text bold">Mieten</p>
-                                    <div class="main_estates__ruler">
-                                        <input type="range" min="1" max="2" step="1.0" value="1" class="main_estates__ruler--slider">
-                                    </div>
-                                    <p class="main_estates__setting--text bold">Kaufen</p>
-                                </div>
-                                <div class="main_estates__selects--desktop">
-                                    <label for="select-sort" class="main_estates__selects--label bold">Sortierung</label>
-                                    <div id="select-sort" class="select">
-                                        <div class="select__main">
-                                            <p class="select__main--text regular">Sortierung</p>      
-                                            <svg class="select__main--svg" width="21" height="13" viewBox="0 0 21 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M1 1L10.5 11L20 1" stroke-width="2"/>
-                                            </svg>
-                                        </div>
-                                        <ul class="select__dropdown">
-                                            <li class="select__dropdown--item"> <p class="select__main--text regular">Preis absteigend</p></li>
-                                            <li class="select__dropdown--item"> <p class="select__main--text regular">Datum aufsteigend</p></li>
-                                            <li class="select__dropdown--item"> <p class="select__main--text regular">Datum absteigend</p></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <button class="main_estates__btn visibility-tablet">
-                                    <p class="main_estates__btn--text bold">Suchen</p>
-                                </button>
                             </div>
-                            <div class="main_estates__setting visibility-mobile">
+                            <div class="main_estates__selects--input">
+                                <label for="select-where" class="main_estates__selects--label bold">Wo</label>
+                                <div id="select-where" class="select">
+                                    <div class="select__main">
+                                        <p class="select__main--text regular">Alle Orte</p>      
+                                        <svg class="select__main--svg" width="21" height="13" viewBox="0 0 21 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M1 1L10.5 11L20 1" stroke-width="2"/>
+                                        </svg>
+                                    </div>
+                                    <ul class="select__dropdown" data-set="0">
+                                        <li class="select__dropdown--item"> <p class="select__dropdown--text regular">Schweiz</p></li>
+                                        <li class="select__dropdown--item"> <p class="select__dropdown--text regular">Finnland</p></li>
+                                        <li class="select__dropdown--item"> <p class="select__dropdown--text regular">Denmark</p></li>
+                                        <li class="select__dropdown--item"> <p class="select__dropdown--text regular">Alle Objekte</p></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="main_estates__setting visibility-tablet">
                                 <p class="main_estates__setting--text bold">Mieten</p>
                                 <div class="main_estates__ruler">
-                                    <input type="range" min="1" max="2" step="1.0" value="1" class="main_estates__ruler--slider">
+                                    <input type="range" min="1" max="2" step="1.0" class="main_estates__ruler--slider">
                                 </div>
                                 <p class="main_estates__setting--text bold">Kaufen</p>
-                            </div>     
-                            <button class="main_estates__btn visibility-mobile">
+                            </div>
+                            <div class="main_estates__selects--input">
+                                <label for="select-sort" class="main_estates__selects--label bold">Sortierung</label>
+                                <div id="select-sort" class="select">
+                                    <div class="select__main">
+                                        <p class="select__main--text regular">Sortierung</p>      
+                                        <svg class="select__main--svg" width="21" height="13" viewBox="0 0 21 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M1 1L10.5 11L20 1" stroke-width="2"/>
+                                        </svg>
+                                    </div>
+                                    <ul class="select__dropdown" data-set="0">
+                                        <li class="select__dropdown--item"> <p class="select__dropdown--text regular">Preis absteigend</p></li>
+                                        <li class="select__dropdown--item"> <p class="select__dropdown--text regular">Datum aufsteigend</p></li>
+                                        <li class="select__dropdown--item"> <p class="select__dropdown--text regular">Datum absteigend</p></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <button class="main_estates__btn visibility-tablet">
                                 <p class="main_estates__btn--text bold">Suchen</p>
-                            </button>          
-                            <div class="main_estates__options">
-                                <p class="main_estates__options--text bold">Ansicht:</p>
-                                <svg class="main_estates__options--iconlist" width="34" height="30" viewBox="0 0 34 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="9" y="7" width="25" height="2" />
-                                    <rect x="9" y="14" width="25" height="2" />
-                                    <rect x="9" y="21" width="25" height="2" />
-                                    <rect x="9" y="28" width="25" height="2" />
-                                    <rect x="9" width="25" height="2" />
-                                    <rect y="7" width="7" height="2" />
-                                    <rect y="14" width="7" height="2" />
-                                    <rect y="21" width="7" height="2" />
-                                    <rect y="28" width="7" height="2" />
-                                    <rect width="7" height="2"/>
-                                </svg>
-                                <svg class="main_estates__options--icontable" width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="7.5" height="7.5" />
-                                    <rect y="11.5" width="7.5" height="7.5" />
-                                    <rect y="23" width="7.5" height="7.5" />
-                                    <rect x="11.5" width="7.5" height="7.5" />
-                                    <rect x="11.5" y="11.5" width="7.5" height="7.5" />
-                                    <rect x="11.5" y="23" width="7.5" height="7.5" />
-                                    <rect x="23" width="7.5" height="7.5" />
-                                    <rect x="23" y="11.5" width="7.5" height="7.5" />
-                                    <rect x="23" y="23" width="7.5" height="7.5" />
-                                </svg>
-                            </div>   
-                        </div>
-                    </section>
-
-                    <section id="result_estates">
-                        <div class="result_estates__item-a">
-                            <ul class="result_estates__list">
-                                <li class="result_estates__list--entry">
-                                    <div class="result_estates__list--entrytop">
-                                        <p class="result_estates__list--title bold">Objekt</p>   
-                                        <svg class="result_estates__list--svg" width="13" height="21" viewBox="0 0 13 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <g clip-path="url(#clip0)">
-                                                <path d="M5.82461e-07 14.3374L5.10254 19.5474L5.08014 19.5703L6.4748 21L6.4972 20.9771L6.5252 21L7.91986 19.5703L7.89746 19.5474L13 14.3374L11.5997 12.9134L7.48858 17.1111L7.48858 -4.81823e-07L5.51142 -6.54673e-07L5.51142 17.1111L1.40026 12.9134L5.82461e-07 14.3374Z"/>
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0">
-                                                    <rect width="13" height="21" fill="white" transform="translate(13 21) rotate(-180)"/>
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                    </div>
-                                    <div class="result_estates__list--entrytop visibility-tablet">
-                                        <p class="result_estates__list--title bold">Ort</p>
-                                        <svg class="result_estates__list--svg" width="13" height="21" viewBox="0 0 13 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <g clip-path="url(#clip0)">
-                                                <path d="M13 6.66258L7.89746 1.45261L7.91986 1.42974L6.5252 0L6.5028 0.0228758L6.4748 0L5.08014 1.42974L5.10254 1.45261L0 6.66258L1.40026 8.0866L5.51142 3.88889L5.51142 21H7.48858L7.48858 3.88889L11.5997 8.0866L13 6.66258Z"/>
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0">
-                                                    <rect width="13" height="21" fill="white"/>
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                    </div>
-                                    <div class="result_estates__list--entrytop visibility-desktop">
-                                        <p class="result_estates__list--title bold">Fläche</p>
-                                        <svg class="result_estates__list--svg" width="13" height="21" viewBox="0 0 13 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <g clip-path="url(#clip0)">
-                                                <path d="M13 6.66258L7.89746 1.45261L7.91986 1.42974L6.5252 0L6.5028 0.0228758L6.4748 0L5.08014 1.42974L5.10254 1.45261L0 6.66258L1.40026 8.0866L5.51142 3.88889L5.51142 21H7.48858L7.48858 3.88889L11.5997 8.0866L13 6.66258Z"/>
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0">
-                                                    <rect width="13" height="21" fill="white"/>
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                    </div>
-                                    <div class="result_estates__list--entrytop">
-                                        <p class="result_estates__list--title bold">Preis/Miete</p>
-                                        <svg class="result_estates__list--svg" width="13" height="21" viewBox="0 0 13 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <g clip-path="url(#clip0)">
-                                                <path d="M13 6.66258L7.89746 1.45261L7.91986 1.42974L6.5252 0L6.5028 0.0228758L6.4748 0L5.08014 1.42974L5.10254 1.45261L0 6.66258L1.40026 8.0866L5.51142 3.88889L5.51142 21H7.48858L7.48858 3.88889L11.5997 8.0866L13 6.66258Z"/>
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0">
-                                                    <rect width="13" height="21" fill="white"/>
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                    </div>
-                                </li>
-                                <li class="result_estates__list--entry">
-                                    <a href="#"><p class="result_estates__list--title bold">Bijou am See</p></a>
-                                    <p class="result_estates__list--text regular visibility-tablet">6210 Sursee, Schweiz</p>
-                                    <p class="result_estates__list--text regular visibility-desktop">300 m<sup>2</sup></p>
-                                    <p class="result_estates__list--text regular">CHF 2'800'000</p>
-                                </li>
-                                <li class="result_estates__list--entry">
-                                    <a href="#"><p class="result_estates__list--title bold">3.5-Zimmer Woh...</p></a>
-                                    <p class="result_estates__list--text regular visibility-tablet">9000 St.Gallen, Schweiz</p>
-                                    <p class="result_estates__list--text regular visibility-desktop">120 m<sup>2</sup></p>
-                                    <p class="result_estates__list--text regular">CHF 2'200</p>
-                                </li>
-                                <li class="result_estates__list--entry">
-                                    <a href="#"><p class="result_estates__list--title bold">6-Zimmer Villa</p></a>
-                                    <p class="result_estates__list--text regular visibility-tablet">6900 Lugano, Schweiz</p>
-                                    <p class="result_estates__list--text regular visibility-desktop">280 m<sup>2</sup></p>
-                                    <p class="result_estates__list--text regular">CHF 3'200</p>
-                                </li>
-                                <li class="result_estates__list--entry">
-                                    <a href="#"><p class="result_estates__list--title bold">4.5-Zimmer Woh...</p></a>
-                                    <p class="result_estates__list--text regular visibility-tablet">9000 St.Gallen, Schweiz</p>
-                                    <p class="result_estates__list--text regular visibility-desktop">150 m<sup>2</sup></p>
-                                    <p class="result_estates__list--text regular">CHF 2'800</p>
-                                </li>
-                                <li class="result_estates__list--entry">
-                                    <a href="#"><p class="result_estates__list--title bold">3-Zimmer Ferie...</p></a>
-                                    <p class="result_estates__list--text regular visibility-tablet">7077 Lenzerheide, Schweiz</p>
-                                    <p class="result_estates__list--text regular visibility-desktop">200 m<sup>2</sup></p>
-                                    <p class="result_estates__list--text regular">CHF 3'000</p>
-                                </li>
-                                <li class="result_estates__list--entry">
-                                    <a href="#"><p class="result_estates__list--title bold">5.5-Zimmer Woh...</p></a>
-                                    <p class="result_estates__list--text regular visibility-tablet">9000 St.Gallen, Schweiz</p>
-                                    <p class="result_estates__list--text regular visibility-desktop">200 m<sup>2</sup></p>
-                                    <p class="result_estates__list--text regular">CHF 3'150</p>
-                                </li>
-                                <li class="result_estates__list--entry">
-                                    <a href="#"><p class="result_estates__list--title bold">5.5-Zimmer Woh...</p></a>
-                                    <p class="result_estates__list--text regular visibility-tablet">9000 St.Gallen, Schweiz</p>
-                                    <p class="result_estates__list--text regular visibility-desktop">200 m<sup>2</sup></p>
-                                    <p class="result_estates__list--text regular">CHF 3'150</p>
-                                </li>
-                                <li class="result_estates__list--entry">
-                                    <a href="#"><p class="result_estates__list--title bold">2.5-Zimmer Wohnung</p></a>
-                                    <p class="result_estates__list--text regular visibility-tablet">9472 Grabs, Schweiz</p>
-                                    <p class="result_estates__list--text regular visibility-desktop">85 m<sup>2</sup></p>
-                                    <p class="result_estates__list--text regular">CHF 1'100</p>
-                                </li>
-                                <li class="result_estates__list--entry">
-                                    <a href="#"><p class="result_estates__list--title bold">6-Zimmer Haus</p></a>
-                                    <p class="result_estates__list--text regular visibility-tablet">7000 Chur, Schweiz</p>
-                                    <p class="result_estates__list--text regular visibility-desktop">100 m<sup>2</sup></p>
-                                    <p class="result_estates__list--text regular">CHF 3'000</p>
-                                </li>
-                                <li class="result_estates__list--entry">
-                                    <a href="#"><p class="result_estates__list--title bold">4.5-Zimmer Wohnung</p></a>
-                                    <p class="result_estates__list--text regular visibility-tablet">9000 St.Gallen, Schweiz</p>
-                                    <p class="result_estates__list--text regular visibility-desktop">300 m<sup>2</sup></p>
-                                    <p class="result_estates__list--text regular">CHF 4'180</p>
-                                </li>
-                                <li class="result_estates__list--entry">
-                                    <a href="#"><p class="result_estates__list--title bold">5.5-Zimmer Wo...</p></a>
-                                    <p class="result_estates__list--text regular visibility-tablet">6900 Lugano, Schweiz</p>
-                                    <p class="result_estates__list--text regular visibility-desktop">160 m<sup>2</sup></p>
-                                    <p class="result_estates__list--text regular">CHF 3'150</p>
-                                </li>
-                            </ul>   
-                        </div>    
-                        <div class="result_estates__item-b">
-                            <ul class="result_estates__table">
-                                <li class="result_estates__item">
-                                    <img class="result_estates__item--picture" src="./images/JPG/photo-1464146072230-91cabc968266.jpg">
-                                    <div class="result_estates__description">
-                                        <p class="result_estates__description--text regular">Zu verkaufen ab 01.01.2022</p>
-                                        <p class="result_estates__description--text regular">6210 Sursee, Luzern</p>
-                                        <h3 class="result_estates__description--title bold">Bijou am See</h3>
-                                        <p class="result_estates__description--text regular">Fläche 300m, Preis: CHF 2'800'000</p>   
-                                    </div>
-                                </li>
-                                <li class="result_estates__item">
-                                    <img class="result_estates__item--picture" src="./images/JPG/photo-1512917774080-9991f1c4c750.jpg">
-                                    <div class="result_estates__description">
-                                        <p class="result_estates__description--text regular">Zu verkaufen ab 01.01.2022</p>
-                                        <p class="result_estates__description--text regular">6210 Sursee, Luzern</p>
-                                        <h3 class="result_estates__description--title bold">Bijou am See</h3>
-                                        <p class="result_estates__description--text regular">Fläche 300m, Preis: CHF 2'800'000</p>     
-                                    </div>
-                                </li>
-                                <li class="result_estates__item">
-                                    <img class="result_estates__item--picture" src="./images/JPG/photo-1495433324511-bf8e92934d90.jpg">
-                                    <div class="result_estates__description">
-                                        <p class="result_estates__description--text regular">Zu verkaufen ab 01.01.2022</p>
-                                        <p class="result_estates__description--text regular">6210 Sursee, Luzern</p>
-                                        <h3 class="result_estates__description--title bold">Bijou am See</h3>
-                                        <p class="result_estates__description--text regular">Fläche 300m, Preis: CHF 2'800'000</p>
-                                    </div>
-                                </li>
-                                <li class="result_estates__item visibility-tablet">
-                                    <img class="result_estates__item--picture" src="./images/JPG/photo-1494884113216-952a0c2c1a30.jpg">
-                                    <div class="result_estates__description">
-                                        <p class="result_estates__description--text regular">Zu verkaufen ab 01.01.2022</p>
-                                        <p class="result_estates__description--text regular">6210 Sursee, Luzern</p>
-                                        <h3 class="result_estates__description--title bold">Bijou am See</h3>
-                                        <p class="result_estates__description--text regular">Fläche 300m, Preis: CHF 2'800'000</p>  
-                                    </div>
-                                </li>
-                                <li class="result_estates__item visibility-desktop">
-                                    <img class="result_estates__item--picture" src="./images/JPG/photo-1494884113216-952a0c2c1a30.jpg">
-                                    <div class="result_estates__description">
-                                        <p class="result_estates__description--text regular">Zu verkaufen ab 01.01.2022</p>
-                                        <p class="result_estates__description--text regular">6210 Sursee, Luzern</p>
-                                        <h3 class="result_estates__description--title bold">Bijou am See</h3>
-                                        <p class="result_estates__description--text regular">Fläche 300m, Preis: CHF 2'800'000</p>
-                                    </div>
-                                </li>
-                                <li class="result_estates__item visibility-desktop">
-                                    <img class="result_estates__item--picture" src="./images/JPG/photo-1507089947368-19c1da9775ae.jpg">
-                                    <div class="result_estates__description">
-                                        <p class="result_estates__description--text regular">Zu verkaufen ab 01.01.2022</p>
-                                        <p class="result_estates__description--text regular">6210 Sursee, Luzern</p>
-                                        <h3 class="result_estates__description--title bold">Bijou am See</h3>
-                                        <p class="result_estates__description--text regular">Fläche 300m, Preis: CHF 2'800'000</p>
-                                    </div>
-                                </li>
-                            </ul>
-                            <button class="result_estates__btn visibility-mobile">
-                                <p class="result_estates__btn--text bold">Mehr laden</p>
                             </button>
-                            <div class="result_estates__next visibility-tablet">
-                                <p class="result_estates__next--text bold">Seite 1 von 8</p>
-                                <svg class="result_estates__next--svg" width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M1 15L8 8L0.999999 1" stroke-width="2"/>
-                                </svg>
-                            </div>
                         </div>
-                    </section> 
-                </div>
+                        <div class="main_estates__setting visibility-mobile">
+                            <p class="main_estates__setting--text bold">Mieten</p>
+                            <div class="main_estates__ruler">
+                                <input type="range" min="1" max="2" step="1" class="main_estates__ruler--slider">
+                            </div>
+                            <p class="main_estates__setting--text bold">Kaufen</p>
+                        </div>     
+                        <button class="main_estates__btn visibility-mobile">
+                            <p class="main_estates__btn--text bold">Suchen</p>
+                        </button>          
+                        <div class="main_estates__options">
+                            <p class="main_estates__options--text bold">Ansicht:</p>
+                            <svg class="main_estates__options--iconlist" width="34" height="30" viewBox="0 0 34 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="9" y="7" width="25" height="2" />
+                                <rect x="9" y="14" width="25" height="2" />
+                                <rect x="9" y="21" width="25" height="2" />
+                                <rect x="9" y="28" width="25" height="2" />
+                                <rect x="9" width="25" height="2" />
+                                <rect y="7" width="7" height="2" />
+                                <rect y="14" width="7" height="2" />
+                                <rect y="21" width="7" height="2" />
+                                <rect y="28" width="7" height="2" />
+                                <rect width="7" height="2"/>
+                            </svg>
+                            <svg class="main_estates__options--icontable" width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="7.5" height="7.5" />
+                                <rect y="11.5" width="7.5" height="7.5" />
+                                <rect y="23" width="7.5" height="7.5" />
+                                <rect x="11.5" width="7.5" height="7.5" />
+                                <rect x="11.5" y="11.5" width="7.5" height="7.5" />
+                                <rect x="11.5" y="23" width="7.5" height="7.5" />
+                                <rect x="23" width="7.5" height="7.5" />
+                                <rect x="23" y="11.5" width="7.5" height="7.5" />
+                                <rect x="23" y="23" width="7.5" height="7.5" />
+                            </svg>
+                        </div>   
+                    </div>
+                </section>
 
-                <div id="main-details">
-                    <section class="estate-details">
-                        <div class="estate-details__contact">
-                            <svg class="estate-details__contact--close visibility-desktop" width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M50.9999 51L26 26L0.999974 51" stroke-width="2"/>
-                                <path d="M1.00002 1L26 26L51 1" stroke-width="2"/>
-                            </svg>
-                            <svg class="estate-details__contact--close" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M30.9999 31L15.9999 16L0.999957 31" stroke-width="2"/>
-                                <path d="M1 1L16 16L31 1" stroke-width="2"/>
-                            </svg>
-                            <div class="estate-details__contact--heading">
-                                <p class="estate-details__contact--text regular">Interesse am Objekt</p>
-                                <p class="estate-details__contact--title bold">Bijou am See</p>
-                            </div>
-                            <form class="estate-details__contact--inputs">
-                                <div class="estate-details__contact--item">
-                                    <label for="input-firstname" class="estate-details__contact--label">Vorname</label>
-                                    <input type="text" id="input-firstname" class="estate-details__contact--input" pattern="[A-z]">
+                <section id="result_estates">
+                    <div class="result_estates__item-a">
+                        <ul class="result_estates__list">
+                            <li class="result_estates__list--entry">
+                                <div class="result_estates__list--entrytop">
+                                    <p class="result_estates__list--title bold">Objekt</p>   
+                                    <svg class="result_estates__list--svg" width="13" height="21" viewBox="0 0 13 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0)">
+                                            <path d="M5.82461e-07 14.3374L5.10254 19.5474L5.08014 19.5703L6.4748 21L6.4972 20.9771L6.5252 21L7.91986 19.5703L7.89746 19.5474L13 14.3374L11.5997 12.9134L7.48858 17.1111L7.48858 -4.81823e-07L5.51142 -6.54673e-07L5.51142 17.1111L1.40026 12.9134L5.82461e-07 14.3374Z"/>
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0">
+                                                <rect width="13" height="21" fill="white" transform="translate(13 21) rotate(-180)"/>
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
                                 </div>
-                                <div class="estate-details__contact--item">
-                                    <label for="input-familyname" class="estate-details__contact--label">Nachname</label>
-                                    <input type="text" id="input-familyname" class="estate-details__contact--input" pattern="[A-z]">
+                                <div class="result_estates__list--entrytop visibility-tablet">
+                                    <p class="result_estates__list--title bold">Ort</p>
+                                    <svg class="result_estates__list--svg" width="13" height="21" viewBox="0 0 13 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0)">
+                                            <path d="M13 6.66258L7.89746 1.45261L7.91986 1.42974L6.5252 0L6.5028 0.0228758L6.4748 0L5.08014 1.42974L5.10254 1.45261L0 6.66258L1.40026 8.0866L5.51142 3.88889L5.51142 21H7.48858L7.48858 3.88889L11.5997 8.0866L13 6.66258Z"/>
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0">
+                                                <rect width="13" height="21" fill="white"/>
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
                                 </div>
-                                <div class="estate-details__contact--item">
-                                    <label for="input-adress" class="estate-details__contact--label">Adresse</label>
-                                    <input type="text" id="input-adress" class="estate-details__contact--input" pattern="[A-z]">
+                                <div class="result_estates__list--entrytop visibility-desktop">
+                                    <p class="result_estates__list--title bold">Fläche</p>
+                                    <svg class="result_estates__list--svg" width="13" height="21" viewBox="0 0 13 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0)">
+                                            <path d="M13 6.66258L7.89746 1.45261L7.91986 1.42974L6.5252 0L6.5028 0.0228758L6.4748 0L5.08014 1.42974L5.10254 1.45261L0 6.66258L1.40026 8.0866L5.51142 3.88889L5.51142 21H7.48858L7.48858 3.88889L11.5997 8.0866L13 6.66258Z"/>
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0">
+                                                <rect width="13" height="21" fill="white"/>
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
                                 </div>
-                                <div class="estate-details__contact--item">
-                                    <label for="input-plz" class="estate-details__contact--label">PLZ</label>
-                                    <label for="input-location" class="estate-details__contact--label">Ort</label>
-                                    <input type="number" id="input-plz" class="estate-details__contact--input" pattern="[0-9]">
-                                    <input type="text" id="input-location" class="estate-details__contact--input" pattern="[A-z]">
-                                </div>
-                                <div class="estate-details__contact--item">
-                                    <label for="input-email" class="estate-details__contact--label">E-Mail</label>
-                                    <input type="email" id="input-email" class="estate-details__contact--input" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
-                                </div>
-                                <div class="estate-details__contact--item">
-                                    <label for="input-phone" class="estate-details__contact--label">Telefonnummer</label>
-                                    <input type="number" id="input-phone" class="estate-details__contact--input" pattern="[0-9]">
-                                </div>
-                                <div class="estate-details__contact--item">
-                                    <label for="input-message" class="estate-details__contact--label">Ihre Nachricht</label>
-                                    <textarea id="input-message" class="estate-details__contact--textfield"></textarea>
-                                </div>
-                                    <div class="estate-details__contact--item">
-                                        <div class="estate-details__contact--confirm">  
-                                            <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M21 1L11 10.5L21 20" stroke="black" stroke-width="2"/>
-                                                <path d="M1 20L11 10.5L0.999999 1" stroke="black" stroke-width="2"/>
-                                            </svg>
-                                        </div>
-                                        <p class="estate-details__contact--text bold">Information</p>
-                                    </div>
-                                    <div class="estate-details__contact--item">
-                                        <div class="estate-details__contact--confirm">  
-                                            <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M21 1L11 10.5L21 20" stroke="black" stroke-width="2"/>
-                                                <path d="M1 20L11 10.5L0.999999 1" stroke="black" stroke-width="2"/>
-                                            </svg>
-                                        </div>
-                                        <p class="estate-details__contact--text bold">Besichtigung</p>
-                                    </div>
-                                <button class="estate-details__contact--btn visibility-tablet">Senden</button>
-                            </form>
-                            <button class="estate-details__contact--btn visibility-mobile">Senden</button>
-                        </div>
-                        <div class="estate-details__nav">
-                            <svg class="estate-details__nav--svg" width="13" height="21" viewBox="0 0 13 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 1L2 10.5L12 20" stroke-width="2"/>
-                            </svg>
-                            <p class="estate-details__nav--text bold">zurück zur Übersicht</p>
-                        </div>
-                        <div class="estate-details__heading">
-                            <h2 class="estate-details__heading--text regular">Zu verkaufen</h2>
-                            <h2 class="estate-details__heading--text bold">Bijou am See</h2>
-                        </div>
-                        <div class="estate-details__slider">
-                            <div class="estate-details__slider--left"></div>
-                            <svg class="estate-details__slider--svg width="11" height="22" viewBox="0 0 11 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 1.45264L2 11.0804L10 20.7082" stroke-width="2"/>
-                            </svg>  
-                            <div class="estate-details__slider--right"></div>
-                            <svg class="estate-details__slider--svg width="11" height="21" viewBox="0 0 11 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M1 20.1431L9 10.5582L0.999999 0.973422" stroke-width="2"/>
-                            </svg>
-                            <div class="estate-details__slider--container">
-                                <img class="estate-details__slider--picture" src="./images/JPG/photo-1464146072230-91cabc968266.jpg">  
-                            </div>
-                        </div>
-                        <div class="estate-details__images">
-                            <img class="estate-details__images--image" src="./images/JPG/photo-1472228283686-42356d789f66.jpg">  
-                            <img class="estate-details__images--image" src="./images/JPG/photo-1491955478222-69ae25414368.jpg">  
-                            <img class="estate-details__images--image" src="./images/JPG/photo-1551133990-60f24c1e4158.jpg">
-                        </div>
-                        <div class="estate-details__list">
-                            <ul class="estate-details__description">
-                                <li>
-                                    <h3 class="estate-details__description--title bold">Verfügbarkeit</h3>
-                                    <p class="estate-details__description--text regular">Ab sofort</p>
-                                </li>
-                                <li>
-                                    <h3 class="estate-details__description--title bold">Location</h3>
-                                    <p class="estate-details__description--text regular">6210 Sursee, Luzern</p>
-                                </li>
-                                <li>
-                                    <h3 class="estate-details__description--title bold">Preis</h3>
-                                    <p class="estate-details__description--text regular">CHF 2'800'000</p>
-                                </li>
-                                <li>
-                                    <h3 class="estate-details__description--title bold">Nutzfläche</h3>
-                                    <p class="estate-details__description--text regular">Fläche 300m<sup>2</sup></p>
-                                </li>
-                                <li>
-                                    <h3 class="estate-details__description--title bold">Beschreibung</h3>
-                                    <p class="estate-details__description--text regular">An mystischer Lage in der Nähe des berühmten Sursee-Waldes verkaufen wir das vollständig renovierten Gebäude. Das Haus bietet mit den 13 attraktiven Räumen einem grosszügigen Umschwung am See eine nicht alltägliche und einzigartige Atmosphäre.</p>
-                                </li>
-                            </ul>
-                            <ul class="estate-details__description-tablet">
-                                <li>
-                                    <h3 class="estate-details__description--title bold">Beschreibung</h3>
-                                    <p class="estate-details__description--text regular">An mystischer Lage in der Nähe des berühmten Sursee-Waldes verkaufen wir das vollständig renovierten Gebäude. Das Haus bietet mit den 13 attraktiven Räumen einem grosszügigen Umschwung am See eine nicht alltägliche und einzigartige Atmosphäre.</p>
-                                </li>
-                                <li>
-                                    <h3 class="estate-details__description--title bold">Haben wir Ihr Interesse geweckt?</h3>
-                                    <button class="estate-details__description--btn bold">Jetzt Anfragen!</button>
-                                </li>
-                            </ul>
-                        </div>
-                        <iframe class="estate-details__map src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d413231.85554306855!2d81.01485601864078!3d30.988821750136058!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39a590ca18ebfb6b%3A0xdece226ef2f187fa!2sKailash!5e0!3m2!1sde!2sch!4v1633623679273!5m2!1sde!2sch" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe> 
-                        <h3 class="estate-details__title bold">Haben wir<br>Ihr Interesse geweckt?</h3>
-                        <button class="estate-details__btn bold">Jetzt Anfragen!</button>
-                    </section>
-
-                    <section class="actuals">
-                        <h2 class="actuals__heading bold">Aktuelleste Objekte</h2>    
-                        <ul class="actuals__list">
-                            <li class="actuals__list--item">
-                                <img class="actuals__list--picture" src="./images/JPG/photo-1464146072230-91cabc968266.jpg">
-                                <div class="actuals__description">
-                                    <p class="actuals__description--text regular">Zu verkaufen ab 01.01.2022</p>
-                                    <p class="actuals__description--text regular">6210 Sursee, Luzern</p>
-                                    <h3 class="actuals__description--title bold">Bijou am See</h3>
-                                    <p class="actuals__description--text regular">Fläche 300m<sup>2</sup>, Preis: CHF 2'800'000</p>
+                                <div class="result_estates__list--entrytop">
+                                    <p class="result_estates__list--title bold">Preis/Miete</p>
+                                    <svg class="result_estates__list--svg" width="13" height="21" viewBox="0 0 13 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0)">
+                                            <path d="M13 6.66258L7.89746 1.45261L7.91986 1.42974L6.5252 0L6.5028 0.0228758L6.4748 0L5.08014 1.42974L5.10254 1.45261L0 6.66258L1.40026 8.0866L5.51142 3.88889L5.51142 21H7.48858L7.48858 3.88889L11.5997 8.0866L13 6.66258Z"/>
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0">
+                                                <rect width="13" height="21" fill="white"/>
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
                                 </div>
                             </li>
-                            <li class="actuals__list--item">
-                                <img class="actuals__list--picture" src="./images/JPG/photo-1448630360428-65456885c650.jpg">
-                                <div class="actuals__description">
-                                    <p class="actuals__description--text regular">Zu vermieten ab 01.01.2022</p>
-                                    <p class="actuals__description--text regular">9000 St.Gallen, Schweiz</p>
-                                    <h3 class="actuals__description--title bold">3.5-Zimmer Wohnung</h3>
-                                    <p class="actuals__description--text regular">Fläche 120<sup>2</sup>, Preis: CHF 2'200</p>
+                            <li class="result_estates__list--entry">
+                                <a href="#"><p class="result_estates__list--title bold">Bijou am See</p></a>
+                                <p class="result_estates__list--text regular visibility-tablet">6210 Sursee, Schweiz</p>
+                                <p class="result_estates__list--text regular visibility-desktop">300 m<sup>2</sup></p>
+                                <p class="result_estates__list--text regular">CHF 2'800'000</p>
+                            </li>
+                            <li class="result_estates__list--entry">
+                                <a href="#"><p class="result_estates__list--title bold">3.5-Zimmer Woh...</p></a>
+                                <p class="result_estates__list--text regular visibility-tablet">9000 St.Gallen, Schweiz</p>
+                                <p class="result_estates__list--text regular visibility-desktop">120 m<sup>2</sup></p>
+                                <p class="result_estates__list--text regular">CHF 2'200</p>
+                            </li>
+                            <li class="result_estates__list--entry">
+                                <a href="#"><p class="result_estates__list--title bold">6-Zimmer Villa</p></a>
+                                <p class="result_estates__list--text regular visibility-tablet">6900 Lugano, Schweiz</p>
+                                <p class="result_estates__list--text regular visibility-desktop">280 m<sup>2</sup></p>
+                                <p class="result_estates__list--text regular">CHF 3'200</p>
+                            </li>
+                            <li class="result_estates__list--entry">
+                                <a href="#"><p class="result_estates__list--title bold">4.5-Zimmer Woh...</p></a>
+                                <p class="result_estates__list--text regular visibility-tablet">9000 St.Gallen, Schweiz</p>
+                                <p class="result_estates__list--text regular visibility-desktop">150 m<sup>2</sup></p>
+                                <p class="result_estates__list--text regular">CHF 2'800</p>
+                            </li>
+                            <li class="result_estates__list--entry">
+                                <a href="#"><p class="result_estates__list--title bold">3-Zimmer Ferie...</p></a>
+                                <p class="result_estates__list--text regular visibility-tablet">7077 Lenzerheide, Schweiz</p>
+                                <p class="result_estates__list--text regular visibility-desktop">200 m<sup>2</sup></p>
+                                <p class="result_estates__list--text regular">CHF 3'000</p>
+                            </li>
+                            <li class="result_estates__list--entry">
+                                <a href="#"><p class="result_estates__list--title bold">5.5-Zimmer Woh...</p></a>
+                                <p class="result_estates__list--text regular visibility-tablet">9000 St.Gallen, Schweiz</p>
+                                <p class="result_estates__list--text regular visibility-desktop">200 m<sup>2</sup></p>
+                                <p class="result_estates__list--text regular">CHF 3'150</p>
+                            </li>
+                            <li class="result_estates__list--entry">
+                                <a href="#"><p class="result_estates__list--title bold">5.5-Zimmer Woh...</p></a>
+                                <p class="result_estates__list--text regular visibility-tablet">9000 St.Gallen, Schweiz</p>
+                                <p class="result_estates__list--text regular visibility-desktop">200 m<sup>2</sup></p>
+                                <p class="result_estates__list--text regular">CHF 3'150</p>
+                            </li>
+                            <li class="result_estates__list--entry">
+                                <a href="#"><p class="result_estates__list--title bold">2.5-Zimmer Wohnung</p></a>
+                                <p class="result_estates__list--text regular visibility-tablet">9472 Grabs, Schweiz</p>
+                                <p class="result_estates__list--text regular visibility-desktop">85 m<sup>2</sup></p>
+                                <p class="result_estates__list--text regular">CHF 1'100</p>
+                            </li>
+                            <li class="result_estates__list--entry">
+                                <a href="#"><p class="result_estates__list--title bold">6-Zimmer Haus</p></a>
+                                <p class="result_estates__list--text regular visibility-tablet">7000 Chur, Schweiz</p>
+                                <p class="result_estates__list--text regular visibility-desktop">100 m<sup>2</sup></p>
+                                <p class="result_estates__list--text regular">CHF 3'000</p>
+                            </li>
+                            <li class="result_estates__list--entry">
+                                <a href="#"><p class="result_estates__list--title bold">4.5-Zimmer Wohnung</p></a>
+                                <p class="result_estates__list--text regular visibility-tablet">9000 St.Gallen, Schweiz</p>
+                                <p class="result_estates__list--text regular visibility-desktop">300 m<sup>2</sup></p>
+                                <p class="result_estates__list--text regular">CHF 4'180</p>
+                            </li>
+                            <li class="result_estates__list--entry">
+                                <a href="#"><p class="result_estates__list--title bold">5.5-Zimmer Wo...</p></a>
+                                <p class="result_estates__list--text regular visibility-tablet">6900 Lugano, Schweiz</p>
+                                <p class="result_estates__list--text regular visibility-desktop">160 m<sup>2</sup></p>
+                                <p class="result_estates__list--text regular">CHF 3'150</p>
+                            </li>
+                        </ul>   
+                    </div>    
+                    <div class="result_estates__item-b">
+                        <ul class="result_estates__table">
+                            <li class="result_estates__item">
+                                <img class="result_estates__item--picture" src="./Images/JPG/photo-1464146072230-91cabc968266.jpg">
+                                <div class="result_estates__description">
+                                    <p class="result_estates__description--text regular">Zu verkaufen ab 01.01.2022</p>
+                                    <p class="result_estates__description--text regular">6210 Sursee, Luzern</p>
+                                    <h3 class="result_estates__description--title bold">Bijou am See</h3>
+                                    <p class="result_estates__description--text regular">Fläche 300m, Preis: CHF 2'800'000</p>   
                                 </div>
                             </li>
-                            <li class="actuals__list--item">
-                                <img class="actuals__list--picture" src="./images/JPG/photo-1512917774080-9991f1c4c750.jpg">
-                                <div class="actuals__description">
-                                    <p class="actuals__description--text regular">Zu vermieten ab sofort</p>
-                                    <p class="actuals__description--text regular">6900 Lugano, Schweiz</p>
-                                    <h3 class="actuals__description--title bold">6-Zimmer Villa</h3>
-                                    <p class="actuals__description--text regular">Fläche 280<sup>2</sup>, Preis: CHF 3'200</p>
+                            <li class="result_estates__item">
+                                <img class="result_estates__item--picture" src="./Images/JPG/photo-1512917774080-9991f1c4c750.jpg">
+                                <div class="result_estates__description">
+                                    <p class="result_estates__description--text regular">Zu verkaufen ab 01.01.2022</p>
+                                    <p class="result_estates__description--text regular">6210 Sursee, Luzern</p>
+                                    <h3 class="result_estates__description--title bold">Bijou am See</h3>
+                                    <p class="result_estates__description--text regular">Fläche 300m, Preis: CHF 2'800'000</p>     
+                                </div>
+                            </li>
+                            <li class="result_estates__item">
+                                <img class="result_estates__item--picture" src="./Images/JPG/photo-1495433324511-bf8e92934d90.jpg">
+                                <div class="result_estates__description">
+                                    <p class="result_estates__description--text regular">Zu verkaufen ab 01.01.2022</p>
+                                    <p class="result_estates__description--text regular">6210 Sursee, Luzern</p>
+                                    <h3 class="result_estates__description--title bold">Bijou am See</h3>
+                                    <p class="result_estates__description--text regular">Fläche 300m, Preis: CHF 2'800'000</p>
+                                </div>
+                            </li>
+                            <li class="result_estates__item visibility-tablet">
+                                <img class="result_estates__item--picture" src="./Images/JPG/photo-1494884113216-952a0c2c1a30.jpg">
+                                <div class="result_estates__description">
+                                    <p class="result_estates__description--text regular">Zu verkaufen ab 01.01.2022</p>
+                                    <p class="result_estates__description--text regular">6210 Sursee, Luzern</p>
+                                    <h3 class="result_estates__description--title bold">Bijou am See</h3>
+                                    <p class="result_estates__description--text regular">Fläche 300m, Preis: CHF 2'800'000</p>  
+                                </div>
+                            </li>
+                            <li class="result_estates__item visibility-desktop">
+                                <img class="result_estates__item--picture" src="./Images/JPG/photo-1494884113216-952a0c2c1a30.jpg">
+                                <div class="result_estates__description">
+                                    <p class="result_estates__description--text regular">Zu verkaufen ab 01.01.2022</p>
+                                    <p class="result_estates__description--text regular">6210 Sursee, Luzern</p>
+                                    <h3 class="result_estates__description--title bold">Bijou am See</h3>
+                                    <p class="result_estates__description--text regular">Fläche 300m, Preis: CHF 2'800'000</p>
+                                </div>
+                            </li>
+                            <li class="result_estates__item visibility-desktop">
+                                <img class="result_estates__item--picture" src="./Images/JPG/photo-1507089947368-19c1da9775ae.jpg">
+                                <div class="result_estates__description">
+                                    <p class="result_estates__description--text regular">Zu verkaufen ab 01.01.2022</p>
+                                    <p class="result_estates__description--text regular">6210 Sursee, Luzern</p>
+                                    <h3 class="result_estates__description--title bold">Bijou am See</h3>
+                                    <p class="result_estates__description--text regular">Fläche 300m, Preis: CHF 2'800'000</p>
                                 </div>
                             </li>
                         </ul>
-                        <div class="actuals__all">
-                            <p class="actuals__all--text bold">Alle Objekte anzeigen</p>
-                            <svg class="actuals__all--svg" width="13" height="21" viewBox="0 0 13 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M1 20L11 10.5L1 1" stroke-width="2"/>
+                        <button class="result_estates__btn visibility-mobile bold">Mehr laden</button>
+                        <div class="result_estates__next visibility-tablet">
+                            <p class="result_estates__next--text bold">Seite <span class="result_estates__next--actual">1</span> von <span class="result_estates__next--total">8</span></p>
+                            <svg class="result_estates__next--svg" width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 15L8 8L0.999999 1" stroke-width="2"/>
                             </svg>
                         </div>
-                    </section>
-                </div>
+                    </div>
+                </section> 
+            </div>
+ <!--   --> 
+            <div id="main_details">
+                <section id="estate_details">
+                    <div class="estate_details__contact">
+                        <svg class="estate_details__contact--close visibility-desktop" width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M50.9999 51L26 26L0.999974 51" stroke-width="2"/>
+                            <path d="M1.00002 1L26 26L51 1" stroke-width="2"/>
+                        </svg>
+                        <svg class="estate_details__contact--close" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path class="estate_details__close" d="M30.9999 31L15.9999 16L0.999957 31" stroke-width="2"/>
+                            <path class="estate_details__close" d="M1 1L16 16L31 1" stroke-width="2"/>
+                        </svg>
+                        <div class="estate_details__contact--heading">
+                            <p class="estate_details__contact--text regular">Interesse am Objekt</p>
+                            <p class="estate_details__contact--title bold">Bijou am See</p>
+                        </div>
+                        <form class="estate_details__contact--inputs">
+                            <div class="estate_details__contact--item">
+                                <label for="input-firstname" class="estate_details__contact--label">Vorname</label>
+                                <input type="text" id="input-firstname" class="estate_details__contact--input" pattern="[A-z]">
+                            </div>
+                            <div class="estate_details__contact--item">
+                                <label for="input-familyname" class="estate_details__contact--label">Nachname</label>
+                                <input type="text" id="input-familyname" class="estate_details__contact--input" pattern="[A-z]">
+                            </div>
+                            <div class="estate_details__contact--item">
+                                <label for="input-adress" class="estate_details__contact--label">Adresse</label>
+                                <input type="text" id="input-adress" class="estate_details__contact--input" pattern="[A-z]">
+                            </div>
+                            <div class="estate_details__contact--item">
+                                <label for="input-plz" class="estate_details__contact--label">PLZ</label>
+                                <label for="input-location" class="estate_details__contact--label">Ort</label>
+                                <input type="number" id="input-plz" class="estate_details__contact--input" pattern="[0-9]">
+                                <input type="text" id="input-location" class="estate_details__contact--input" pattern="[A-z]">
+                            </div>
+                            <div class="estate_details__contact--item">
+                                <label for="input-email" class="estate_details__contact--label">E-Mail</label>
+                                <input type="email" placeholder="Pflichtfeld" id="input-email" class="estate_details__contact--input">
+                            </div>
+                            <div class="estate_details__contact--item">
+                                <label for="input-phone" class="estate_details__contact--label">Telefonnummer</label>
+                                <input type="number" id="input-phone" class="estate_details__contact--input" pattern="[0-9]">
+                            </div>
+                            <div class="estate_details__contact--item">
+                                <label for="input-message" class="estate_details__contact--label">Ihre Nachricht</label>
+                                <textarea id="input-message" class="estate_details__contact--textfield"></textarea>
+                            </div>
+                                <div class="estate_details__contact--item">
+                                    <div class="estate_details__contact--confirm" data-set="0">  
+                                        <svg class="estate_details__contact--cross" width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path class="cross_path" d="M21 1L11 10.5L21 20" stroke="black" stroke-width="2"/>
+                                            <path class="cross_path" d="M1 20L11 10.5L0.999999 1" stroke="black" stroke-width="2"/>
+                                        </svg>
+                                    </div>
+                                    <p class="estate_details__contact--text bold">Information</p>
+                                </div>
+                                <div class="estate_details__contact--item">
+                                    <div class="estate_details__contact--confirm" data-set="0">  
+                                        <svg class="estate_details__contact--cross"width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path class="cross_path" d="M21 1L11 10.5L21 20" stroke="black" stroke-width="2"/>
+                                            <path class="cross_path" d="M1 20L11 10.5L0.999999 1" stroke="black" stroke-width="2"/>
+                                        </svg>
+                                    </div>
+                                    <p class="estate_details__contact--text bold">Besichtigung</p>
+                                </div>
+                            <button class="estate_details__contact--btn visibility-tablet"><a>Senden</a></button>
+                        </form>
+                        <button class="estate_details__contact--btn visibility-mobile">Senden</button>
+                    </div>
+                    <div class="estate_details__nav">
+                        <svg class="estate_details__nav--svg" width="13" height="21" viewBox="0 0 13 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path class="estate_details__nav--path" d="M12 1L2 10.5L12 20" stroke-width="2"/>
+                        </svg>
+                        <p class="estate_details__nav--text bold">zurück zur Übersicht</p>
+                    </div>
+                    <div class="estate_details__heading">
+                        <h2 class="estate_details__heading--text regular">Zu verkaufen</h2>
+                        <h2 class="estate_details__heading--text bold">Bijou am See</h2>
+                    </div>
+                    <div class="estate_details__slider">
+                        <div class="estate_details__slider--left"></div>
+                        <svg class="estate_details__slider--svg slider_left" width="11" height="22" viewBox="0 0 11 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path class="slider_left" d="M10 1.45264L2 11.0804L10 20.7082" stroke-width="2"/>
+                        </svg>  
+                        <div class="estate_details__slider--right"></div>
+                        <svg class="estate_details__slider--svg slider_right" width="11" height="21" viewBox="0 0 11 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path class="slider_right" d="M1 20.1431L9 10.5582L0.999999 0.973422" stroke-width="2"/>
+                        </svg>
+                        <div class="estate_details__slider--container">
+                            <img class="estate_details__slider--picture" src="./Images/JPG/photo-1464146072230-91cabc968266.jpg">  
+                        </div>
+                    </div>
+                    <div class="estate_details__images">
+                        <img class="estate_details__images--image" src="./Images/JPG/photo-1472228283686-42356d789f66.jpg">  
+                        <img class="estate_details__images--image" src="./Images/JPG/photo-1491955478222-69ae25414368.jpg">  
+                        <img class="estate_details__images--image" src="./Images/JPG/photo-1551133990-60f24c1e4158.jpg">
+                    </div>
+                    <div class="estate_details__list">
+                        <ul class="estate_details__description">
+                            <li>
+                                <h3 class="estate_details__description--title bold">Verfügbarkeit</h3>
+                                <p class="estate_details__description--text regular">Ab sofort</p>
+                            </li>
+                            <li>
+                                <h3 class="estate_details__description--title bold">Location</h3>
+                                <p class="estate_details__description--text regular">6210 Sursee, Luzern</p>
+                            </li>
+                            <li>
+                                <h3 class="estate_details__description--title bold">Preis</h3>
+                                <p class="estate_details__description--text regular">CHF 2'800'000</p>
+                            </li>
+                            <li>
+                                <h3 class="estate_details__description--title bold">Nutzfläche</h3>
+                                <p class="estate_details__description--text regular">Fläche 300m<sup>2</sup></p>
+                            </li>
+                            <li>
+                                <h3 class="estate_details__description--title bold">Beschreibung</h3>
+                                <p class="estate_details__description--text regular">An mystischer Lage in der Nähe des berühmten Sursee-Waldes verkaufen wir das vollständig renovierten Gebäude. Das Haus bietet mit den 13 attraktiven Räumen einem grosszügigen Umschwung am See eine nicht alltägliche und einzigartige Atmosphäre.</p>
+                            </li>
+                        </ul>
+                        <ul class="estate_details__description-tablet">
+                            <li>
+                                <h3 class="estate_details__description--title bold">Beschreibung</h3>
+                                <p class="estate_details__description--text regular">An mystischer Lage in der Nähe des berühmten Sursee-Waldes verkaufen wir das vollständig renovierten Gebäude. Das Haus bietet mit den 13 attraktiven Räumen einem grosszügigen Umschwung am See eine nicht alltägliche und einzigartige Atmosphäre.</p>
+                            </li>
+                            <li>
+                                <h3 class="estate_details__description--title bold">Haben wir Ihr Interesse geweckt?</h3>
+                                <button class="estate_details__description--btn bold">Jetzt Anfragen!</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="estate_details__map"></div>
+                    <h3 class="estate_details__title bold">Haben wir<br>Ihr Interesse geweckt?</h3>
+                    <button class="estate_details__btn bold">Jetzt Anfragen!</button>
+                </section>
 
-            </main>
+                <section id="estates_actuals">
+                    <h2 class="estates_actuals__heading bold">Aktuelleste Objekte</h2>    
+                    <ul class="estates_actuals__list">
+                        <li class="estates_actuals__list--item">
+                            <img class="estates_actuals__list--picture" src="./Images/JPG/photo-1464146072230-91cabc968266.jpg">
+                            <div class="estates_actuals__description">
+                                <p class="estates_actuals__description--text regular">Zu verkaufen ab 01.01.2022</p>
+                                <p class="estates_actuals__description--text regular">6210 Sursee, Luzern</p>
+                                <h3 class="estates_actuals__description--title bold">Bijou am See</h3>
+                                <p class="estates_actuals__description--text regular">Fläche 300m<sup>2</sup>, Preis: CHF 2'800'000</p>
+                            </div>
+                        </li>
+                        <li class="actuals__list--item">
+                            <img class="estates_actuals__list--picture" src="./Images/JPG/photo-1448630360428-65456885c650.jpg">
+                            <div class="estates_actuals__description">
+                                <p class="estates_actuals__description--text regular">Zu vermieten ab 01.01.2022</p>
+                                <p class="estates_actuals__description--text regular">9000 St.Gallen, Schweiz</p>
+                                <h3 class="estates_actuals__description--title bold">3.5-Zimmer Wohnung</h3>
+                                <p class="estates_actuals__description--text regular">Fläche 120<sup>2</sup>, Preis: CHF 2'200</p>
+                            </div>
+                        </li>
+                        <li class="estates_actuals__list--item">
+                            <img class="estates_actuals__list--picture" src="./Images/JPG/photo-1512917774080-9991f1c4c750.jpg">
+                            <div class="estates_actuals__description">
+                                <p class="estates_actuals__description--text regular">Zu vermieten ab sofort</p>
+                                <p class="estates_actuals__description--text regular">6900 Lugano, Schweiz</p>
+                                <h3 class="estates_actuals__description--title bold">6-Zimmer Villa</h3>
+                                <p class="estates_actuals__description--text regular">Fläche 280<sup>2</sup>, Preis: CHF 3'200</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="estates_actuals__all">
+                        <p class="estates_actuals__all--text bold">Alle Objekte anzeigen</p>
+                        <svg class="estates_actuals__all--svg" width="13" height="21" viewBox="0 0 13 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 20L11 10.5L1 1" stroke-width="2"/>
+                        </svg>
+                    </div>
+                </section>
+            </div>
 
-            <include src="./html/footer.html"></include> 
-            
-        </div>  
-        
+        </main>       
+   
+        <include src="./Html/Footer.html"></include> 
+                  
     </body>
-
-<!-- <script language="javascript" type="module" src="../js/JS_todo.js"></script>  -->
 
 </html>
 
