@@ -17,7 +17,7 @@ styles/*.map
 ###############################################
 ## Dependecy Managment / Task Runner  ##
 ###############################################
-dist/*
+
 *.config
 *.json
 node_modules/*
