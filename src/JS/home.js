@@ -20,8 +20,12 @@ await Tools.load_api();
 Tools.load_estates();
 Tools.ruler_state();
 Tools.navigation();
-Tools.pageresize(); // noch testen
 
+window.addEventListener("resize", ()=>{
+    console.log("resize done");
+    Tools.load_estates();
+});
+window.addEventListener("click", Tools.delegation_estatesmain);
 
 /* 
 document.addEventListener("scroll", ()=>{
@@ -31,8 +35,8 @@ document.addEventListener("scroll", ()=>{
 
 
 TODO LISTE 
-Navigation , Scrollto , IFreszie reload
-Stylesheet imports anpassen , html email pattern, estate details actuals*/
+Navigation , Scrollto , 
+ , html email pattern, estate details actuals*/
 
 
 /*  Estates Main 
@@ -47,18 +51,13 @@ var filters = [
 ]
 */
 
-var filters = {
-    select_what : "Alle Objekte",
-    select_where : "Alle Orte",
-    select_sort: "Sortierung",
-    ruler: 1 
-};
+
 
 
 // console.log(filters[0]);
 
 
-window.addEventListener("click", Tools.delegation_estatesmain);
+
 
 
 

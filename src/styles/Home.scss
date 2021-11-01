@@ -1041,14 +1041,39 @@ input[type=range]::-moz-range-thumb{
       }
     }  
     &__item-b{
+     // display: inline-block;
       padding: 0px 7.74%;
       padding-top: 34px;
       padding-bottom: 0px;
     }
+    &__tablenext{
+      position: absolute !important;
+      display: inline-flex;
+      justify-content: space-between;
+      flex-direction: row;
+      flex-wrap: wrap; 
+      width: 83.2%;
+      margin-left: 8.8%;
+      margin-right: 8%;
+     // right: 0%;
+      left: 110%;
+      transition: all 2s linear;
+    }
+    &__tablenext--tomiddle{
+      left: 0%;
+    }
     &__table{ 
+      display: inline-flex;
       flex-direction: row;
       justify-content: space-between;
       flex-wrap: wrap;
+      right: 0%;
+      // left: 0%; // 110%;
+      transition: all 2s linear;
+      // transition: left 2s linear;
+    }
+    &__table--toleft{
+      right: 110%;
     }
     &__item{
       width: 45%;

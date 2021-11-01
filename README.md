@@ -44,13 +44,13 @@ Code Eigenheiten :
 Font Spezifikationen wurden mit mixins umgesetzt - einfachste Moeglichkeit um Code zu sparen.
 Teilweise wurde deas BEM Prinzip ein bisschen umgangen z.B verwende ich teilweise ein "-", dies
 um die übersichtlichkeit und einfachheit beizubehalten. 
-Vorgabe war 2 Layouts Desktop und Mobile, ich habe mich entschieden das Spektrum von Mobile bis Desktop
+Vorgabe war 2 Layouts Desktop und Mobile, ich habe mich entschieden das Spektrum von Mobile bis Desktop / Full Responsive
 umzusetzen.
 Für die Übersichtlichkeit wurden alle Schriftgroessen und Arten ausgelagert.
 
 JavaScript :
 Eigenheiten:  
-Code ist so geschrieben, dass das Backend beliebige Aenderungen gemacht werden koennen (Umsetzung nach Schluessel ID.)
+Code ist so geschrieben, dass das Backend beliebige Aenderungen/flexibel gemacht werden koennen (Umsetzung nach Schluessel ID.) nicht konkret auf das vorgegebene backend / im sinne eines echten Kunden.
 Einige Features: "Mehr laden" ist auch Rückwärtskompatibel"
 Herausforderungen: 
 Webpack5 Configuration (Assets-Module URL via Import, mehrere Pages, CSS-URLs)
@@ -66,6 +66,9 @@ um ein Gefuehl zu bekommen fuer das Projekt. (nicht von beginn an komplexe Eleme
 
 Unterricht alles i.O. ist Theorie, was mir fehlte war eine echtes Prakis Projekt nicht zur Umsetzung sondern zum Besprechen. Vorallem fehlen in der Therorie einige Praxis-Hacks. Zum abgucken Feld abdecken
 Unterricht Theorie Objekte.
+Diplomarbeit erschien mir als sehr tolles Projekt um erste Eindrücke zu sammeln eines echten Projektes
+Einiges an Wissen gewonnen was wichtig ist z.b Config, Struktur von Anfang an Korrekt zu machen. 
+
 
 
 
@@ -89,6 +92,7 @@ npm install
 ## Webpack <a id="webpack"></a>
 
 Um an der Anwendung zu arbeiten : 
+Abhängigkeiten installieren.
 
 ```bash
 
@@ -163,14 +167,16 @@ Projektabgabe : 27.11.2021 / KW47
 Planung:
 HTML5 / CSS3: 20.09 - 10.10
 Umsetzung: 
-HTML5 / CSS3: 20.09 - 17.10
+HTML5 / CSS3: 20.09 - 17.10 // Prototype Fertig
 
 ### KW41 - KW43 Frontend Interaktion <a id="frontend Dynamisch"></a>
 
 VanillaJS
 GraphQL - API 
-
+Planung: 
 11.10 - 31.10
+Umsetzung: 
+17.10 - 01.11.21 // Prototype Fertig
 
 ### KW44 - KW47 Reserve / Extras <a id="reserve"></a>
 

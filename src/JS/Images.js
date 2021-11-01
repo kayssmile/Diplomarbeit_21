@@ -45,18 +45,4 @@ var images_estates = [
   [id6_img, id6_img1, id6_img2, id6_img3],
 ];
 
-
-/* 
-var images_estates = {
-  id1: [id1_img, id1_img1, id1_img2, id1_img3],
-  id2: [id2_img, id2_img1, id2_img2, id2_img3],
-  id3: [id3_img, id3_img1, id3_img2, id3_img3],  
-  id4: [id4_img, id4_img1, id4_img2, id4_img3],
-  id5: [id5_img, id5_img1, id5_img2, id5_img3],  
-  id6: [id6_img, id6_img1, id6_img2, id6_img3],
-};
-
-
-*/
-
 export {images_estates};
