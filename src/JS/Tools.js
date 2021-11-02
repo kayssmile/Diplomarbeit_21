@@ -8,11 +8,16 @@ import { GraphQLClient, gql } from 'graphql-request';
 const graphQLClient = new GraphQLClient('https://dev21-api.web-professionals.ch/graphql');
 var wrapper_estatesmain = document.querySelector("#main");
 var all_estates = [];
+var all_estates_origin = [];
+var counter_forward = 0;
 var filters = {
     select_what : "Alle Objekte",
     select_where : "Alle Orte",
     select_sort: "Sortierung",
-    ruler: 1 
+    ruler: "none", 
+    select_area: "none",
+    select_title:"none",
+    select_location: "none"
 };
 
 
@@ -20,8 +25,8 @@ var filters = {
 -------------------------------------------------------------- */
 
 async function load_api(){
-    const query_allentries = gql`
-    
+
+    const query_allentries = gql` 
         query{
             estates{
                 id
@@ -41,8 +46,7 @@ async function load_api(){
                 updated_at  
             }
         }
-    `;
-    
+    `; 
     var estates = await graphQLClient.request(query_allentries);
 
      /*  
@@ -86,14 +90,15 @@ async function load_api(){
         return a.id - b.id;
     });
 
+    all_estates_origin = all_estates;
     console.log(all_estates);
 }   
 
 /*  Estates Main : Functions
 -------------------------------------------------------------- */
-async function sort_estates(filters){
+function sort_estates(filters){
 
-    await load_api();
+    all_estates = all_estates_origin;
 
     if(filters.select_what != "Alle Objekte"){
         if(filters.select_what != "Haus"){ 
@@ -209,37 +214,55 @@ async function sort_estates(filters){
                 });
             }  
         }
-    }             
-    for(let i = 0; i < all_estates.length; i++){
-        all_estates[i].id = i+1;
-    }  
+    } 
 
-    load_estates();
-/*
-    
-    for (let estate of all_estates){
-        
-       //  var datum = Date.parse(estate.created_at);
-        //    console.log(datum/1000);    
-        //return datum/1000;
-        console.log(estate.updated_at);   
-        console.log(estate.created_at);
-        console.log(estate.title);
-        console.log(estate.estate_type);
-        console.log(estate.prize);
+    if(filters.select_title != "none"){ 
+
+        all_estates.sort((a, b) => {    
+            return a.title - b.title;  
+        });
+        for(let estate of all_estates){console.log(estate.title);}
+
+        if(filters.select_title == "up"){
+            all_estates.reverse();
+        }
+
     }
     
- 
-    
-    all_estates = all_estates.filter
-    var filters = {
+    if(filters.select_location != "none"){
+        
+        all_estates.sort((a, b) => {    
+            return a.zip - b.zip;  
+        }); 
+        if(filters.select_location == "up"){
+            all_estates.reverse();
+        }
+    }
+    if(filters.select_area != "none"){
+        console.log("hier noed");
+        all_estates.sort((a, b) => {    
+            return a.usable_area - b.usable_area;  
+        });
+        if(filters.select_area == "up"){
+            all_estates.reverse();
+        }
+    }
+       
+    filters = {
         select_what : "Alle Objekte",
         select_where : "Alle Orte",
         select_sort: "Sortierung",
-        ruler: 1 
-    };
-*/
+        ruler: "none", 
+        select_area: "none",
+        select_title:"none",
+        select_location: "none"
+    }; 
 
+    for(let i = 0; i < all_estates.length; i++){
+        all_estates[i].id = i+1;
+    }  
+      
+    load_estates();
 
 }
 
@@ -257,45 +280,129 @@ function items_visible(){
     }
     return table_items;
 }
+
+function load_list(){
+
+    let list = Array.from(document.querySelectorAll(".result_estates__list--entry"));
+    list.shift();
+    for(let entry of list){
+        entry.remove();
+    }
+    for(let estate of all_estates){
+        let title = estate.title;
+        if(title.length > 18){
+            title = title.substr(0,18)+"...";
+        }
+        let ort = estate.zip+" "+estate.city+", "+estate.canton;
+        if(ort.length > 24){
+            ort = ort.substr(0,24)+"...";
+        }
+        let listentry = document.createElement("li");
+        listentry.classList.add("result_estates__list--entry");
+        listentry.setAttribute("data-id", estate.id);
+        listentry.innerHTML = `
+            <p class="result_estates__list--title bold">${title}</p>
+            <p class="result_estates__list--text regular visibility-tablet">${ort}</p>
+            <p class="result_estates__list--text regular visibility-desktop">${estate.usable_area}m<sup>2</sup></p>
+            <p class="result_estates__list--text regular">CHF ${estate.prize}</p>
+        `;
+        document.querySelector(".result_estates__list").appendChild(listentry);
+    }
+
+}
     
 function load_estates(){
 
-    
-    let table_items = items_visible();
-   // console.log(table_items);
+    let items_loaded = document.querySelectorAll(".result_estates__item");
+    let tables_loaded = document.querySelectorAll(".result_estates__tablenext");
+    let container_newest = document.querySelector("#estates_actuals");
+    let newest_loaded = document.querySelector(".estates_actuals__list");
+    if(newest_loaded){
+        newest_loaded.remove();
+    }
+    for(let table_loaded of tables_loaded){
+        table_loaded.remove();
+    }
+    for(let item_loaded of items_loaded){
+        item_loaded.remove();
+    }
+    load_list();
+
+    let table_items;
+    if(screen.width < 800){table_items = 3;}
+    else if(screen.width < 1150){table_items = 4;}    
+    else{table_items = 6;}
     
     let displaypages = document.querySelector(".result_estates__next--total");
-    displaypages.innerText = Math.ceil(all_estates.length / table_items.length);
-    
-    var counter_table_items = 0;
-    for(var table_item of table_items){
-        table_item.setAttribute("data-id", all_estates[counter_table_items].id);
-        let item_img = table_item.firstElementChild;
-        item_img.setAttribute("src", all_estates[counter_table_items].img); //${pictures_estates[0]}
-        let item_by = table_item.children[1].children[0];
-        item_by.innerText = all_estates[counter_table_items].estate_type +" "+ all_estates[counter_table_items].availability;
-        let item_location = table_item.children[1].children[1];
-        if (all_estates[counter_table_items].city == all_estates[counter_table_items].canton){
-            item_location.innerText = all_estates[counter_table_items].zip +" "+ all_estates[counter_table_items].city +" Schweiz";
-        }else{
-            item_location.innerText = all_estates[counter_table_items].zip +" "+ all_estates[counter_table_items].city +" "+ all_estates[counter_table_items].canton;
-        }
-        let item_title = table_item.children[1].children[2];
-        item_title.innerText = all_estates[counter_table_items].title;
-        let item_info = table_item.children[1].children[3];
-        item_info.innerText = "Fläche "+all_estates[counter_table_items].usable_area +"m², Preis: CHF "+all_estates[counter_table_items].prize;
-        counter_table_items++;
-    }
-    console.log(table_items[1].dataset.id);
-}
+    displaypages.innerText = Math.ceil(all_estates.length / table_items);
 
+    let container_items = document.querySelector(".result_estates__table");
+    
+
+    for(let i = 0; i < table_items; i++){
+        
+        let item = document.createElement("li");
+        item.classList.add("result_estates__item");
+        if(i == 3 ){
+            item.classList.add("visibility-tablet");
+        }else if(i > 3){
+            item.classList.add("visibility-desktop");
+        }
+        item.setAttribute("data-id", i+1);
+        
+        item.innerHTML = `
+                <img class="result_estates__item--picture" src="${all_estates[i].img}">
+                <div class="result_estates__description">
+                    <p class="result_estates__description--text regular">${all_estates[i].estate_type} ${all_estates[i].availability}</p>
+                    <p class="result_estates__description--text regular">${all_estates[i].zip} ${all_estates[i].city}, ${all_estates[i].canton}</p>
+                    <h3 class="result_estates__description--title bold">${all_estates[i].title}</h3>
+                    <p class="result_estates__description--text regular">Fläche ${all_estates[i].usable_area}m², Preis: CHF ${all_estates[i].prize}</p>   
+                </div>
+        `;
+        container_items.appendChild(item);
+    }
+
+
+
+
+
+
+
+
+
+
+
+    
+    let newest_estates = document.createElement("ul");
+    newest_estates.classList.add("estates_actuals__list");
+    
+    
+    all_estates.sort((a, b) => {    
+        return a.updated_at < b.updated_at;  
+    });
+    for(let i = 0; i < 3; i++){
+        let li = document.createElement("li");
+        li.classList.add("estates_actuals__list--item");
+        li.setAttribute("data-id", all_estates[i].id);
+        li.innerHTML = `
+            <img class="estates_actuals__list--picture" src="${all_estates[i].img}">
+            <div class="estates_actuals__description">
+                <p class="estates_actuals__description--text regular">${all_estates[i].estate_type} ${all_estates[i].availability}</p>
+                <p class="estates_actuals__description--text regular">${all_estates[i].zip} ${all_estates[i].city}, ${all_estates[i].canton}</p>
+                <h3 class="estates_actuals__description--title bold">${all_estates[i].title}</h3>
+                <p class="estates_actuals__description--text regular">Fläche ${all_estates[i].usable_area}m², Preis: CHF ${all_estates[i].prize}</p>
+            </div>
+        `;
+        newest_estates.appendChild(li);
+    }
+    container_newest.insertBefore(newest_estates, document.querySelector(".estates_actuals__all"));
+}
     
 function delegation_estatesmain(event){
     console.log(event.target);
-    
+       
     var element = event.target;
-    dropdown: if(element.matches(".select__main") || element.matches(".select__main--svg") || element.matches("path")
-    || element.matches(".select__main--text")){
+    dropdown: if(element.matches(".select__main") || element.matches(".select__main--svg") || element.parentNode.classList.contains("select__main--svg") || element.matches(".select__main--text")){ 
         let dropdown = element.parentNode.lastElementChild;
         let input_icon = element.lastElementChild;
         if(element.classList.contains("select__main--text")){
@@ -353,7 +460,7 @@ function delegation_estatesmain(event){
         listortable(0, event.target);  
     }
     if(element.matches(".main_estates__options--iconlist")){
-        listortable(1, event.target);   
+        listortable(1, event.target);  
     }
     if(element.matches("rect")){
         if(element.parentNode.classList == "main_estates__options--icontable"){
@@ -361,6 +468,67 @@ function delegation_estatesmain(event){
         }else if(element.parentNode.classList == "main_estates__options--iconlist"){
             listortable(1, event.target.parentNode);
         }
+    }
+    if(element.matches(".result_estates__list--svg") || element.parentNode.parentNode.classList.contains("result_estates__list--svg")){
+        filters = { select_what : "Alle Objekte", select_where : "Alle Orte", select_sort: "Sortierung", ruler: "none", select_area: "none", select_title:"none", select_location: "none"};
+        var sort_order;
+        var item ;
+        if(element.classList == "result_estates__list--svg"){
+            sort_order = element.parentNode.firstElementChild.innerText;
+            item = element;
+        }else{ 
+            sort_order = element.parentNode.parentNode.parentNode.firstElementChild.innerText;
+            item = element.parentNode.parentNode;
+        }
+        if(sort_order == "Objekt"){
+            if(item.dataset.sort == 0){
+                item.style.transform = "rotate(180deg)";
+                item.dataset.sort = 1;
+                filters.select_title = "down";
+            }else{
+                item.style.transform = "rotate(0deg)";
+                item.dataset.sort = 0;
+                filters.select_title = "up";
+            }
+        }else if(sort_order == "Ort"){
+            if(item.dataset.sort == 0){
+                item.style.transform = "rotate(180deg)";
+                item.dataset.sort = 1;
+                filters.select_location = "up";
+            }else{
+                item.style.transform = "rotate(0deg)";
+                item.dataset.sort = 0;
+                filters.select_location = "down";
+            }
+        }else if(sort_order == "Fläche"){ 
+            if(item.dataset.sort == 0){
+                item.style.transform = "rotate(180deg)";
+                item.dataset.sort = 1;
+                filters.select_area = "up";
+            }else{
+                item.style.transform = "rotate(0deg)";
+                item.dataset.sort = 0;
+                filters.select_area = "down";
+            }
+        }else{ //Preis/Miete 
+            if(item.dataset.sort == 0){
+                item.style.transform = "rotate(180deg)";
+                item.dataset.sort = 1;
+                filters.select_sort = "Preis absteigend";
+            }else{
+                item.style.transform = "rotate(0deg)";
+                item.dataset.sort = 0;
+                filters.select_sort = "Preis aufsteigend";
+            }
+        }  
+
+       
+        filters.ruler = 0;
+        sort_estates(filters);
+        
+    }
+    if(element.matches(".result_estates__list--title")){
+        showorhide_details(0, element.parentNode.getAttribute("data-id"));
     }
     if(element.matches(".result_estates__item--picture")){
         showorhide_details(0, element.parentNode.getAttribute("data-id"));
@@ -370,7 +538,9 @@ function delegation_estatesmain(event){
     }
     if(element.matches(".result_estates__btn")){
         let table_items = Array.from(document.querySelectorAll(".result_estates__item")); 
-        table_items = table_items.slice(0, table_items.length-3);
+        
+       // table_items = table_items.slice(0, table_items.length-3);
+        
         let id = table_items.length;
         if(element.innerText == "Zurück"){
             element.innerText = "Mehr laden";
@@ -381,6 +551,7 @@ function delegation_estatesmain(event){
             table_items = document.querySelectorAll(".result_estates__item");
             id = 0;
         }
+        
         for(let i = 0; i < 3; i++){
             if(id == all_estates.length){
                 element.innerText = "Zurück";
@@ -401,54 +572,137 @@ function delegation_estatesmain(event){
             id++;
         }
     }
-    if(element.matches(".result_estates__next--svg") || element.parentNode.classList.contains("result_estates__next--svg")){ 
+    if(element.matches(".result_estates__next--forward") || element.parentNode.classList.contains("result_estates__next--forward")){ 
         
-        let table = document.querySelector(".result_estates__table");
-        let table_middle = document.querySelectorAll(".result_estates__tablenext");
-        console.log(table_middle);
-        if(table_middle.length > 0){
-            table_middle[0].classList.add("result_estates__table--toleft");
-        }
-        console.log(table);
-        table.classList.add("result_estates__table--toleft");
-        let all_items = items_visible();
-        let id = all_items[(all_items.length-1)].dataset.id;
-
-        console.log(all_items);
-        if(all_items.length == 8){
-            all_items = all_items.slice(0,3);
-            console.log(all_items.length);
-        }
-
-
-        var items_new = [];
-        for(let i = 0; i < all_items.length; i++){
-            let item = `
-                <li class="result_estates__item" data-id="${id}">
-                    <img class="result_estates__item--picture" src="${all_estates[id].img}">
+        let table_items;
+        if(screen.width < 800){table_items = 3;}
+        else if(screen.width < 1150){table_items = 4;}    
+        else{table_items = 6;}
+        let id = table_items+1;
+        for(let i = 0; i < Math.ceil(all_estates.length/table_items); i++){
+            let table_container = document.querySelector(".result_estates__item-b");
+            let table_neu = document.createElement("ul");
+            table_neu.classList.add("result_estates__tablenext");
+     
+            for(let i = 0; i < table_items; i++){
+                if(id > all_estates.length){
+                    break;
+                }
+                let item = document.createElement("li");
+                item.classList.add("result_estates__item");
+                if(i == 3){
+                    item.classList.add("visibility-tablet");
+                }else if(i > 3){
+                    item.classList.add("visibility-desktop");
+                }
+                item.setAttribute("data-id", id);
+                item.innerHTML = `
+                    <img class="result_estates__item--picture" src="${all_estates[id-1].img}">
                     <div class="result_estates__description">
-                        <p class="result_estates__description--text regular">${all_estates[id].estate_type} ${all_estates[id].availability}</p>
-                        <p class="result_estates__description--text regular">${all_estates[id].zip} ${all_estates[id].city}, ${all_estates[id].canton}</p>
-                        <h3 class="result_estates__description--title bold">${all_estates[id].title}</h3>
-                        <p class="result_estates__description--text regular">Fläche ${all_estates[id].usable_area}m², Preis: CHF ${all_estates[id].prize}</p>   
+                        <p class="result_estates__description--text regular">${all_estates[id-1].estate_type} ${all_estates[id-1].availability}</p>
+                        <p class="result_estates__description--text regular">${all_estates[id-1].zip} ${all_estates[id-1].city}, ${all_estates[id-1].canton}</p>
+                        <h3 class="result_estates__description--title bold">${all_estates[id-1].title}</h3>
+                        <p class="result_estates__description--text regular">Fläche ${all_estates[id-1].usable_area}m², Preis: CHF ${all_estates[id-1].prize}</p>   
                     </div>
-                </li>`;
-            items_new.push(item);
-            id++;
+                `;
+                table_neu.appendChild(item);
+                id++;
             }
-        items_new = items_new.join('');
-        let table_nextitems = document.createElement("ul");
-        table_nextitems.classList.add("result_estates__tablenext");
-        table_nextitems.innerHTML = items_new;
+            table_neu.style.visibility = "hidden";
+            table_container.insertBefore(table_neu, document.querySelector(".result_estates__btn"));
+        }
 
-        document.querySelector(".result_estates__item-b").insertBefore(table_nextitems, document.querySelector(".result_estates__btn"));
+        /* */
+        let table = document.querySelector(".result_estates__table");
+        let tables_new = document.querySelectorAll(".result_estates__tablenext");
+        let display_page = document.querySelector(".result_estates__next--actual");
+        let pageback = document.querySelectorAll(".result_estates__next--item"); 
 
+        function allhidden(){
+            for(let table_new of tables_new){
+            table_new.style.visibility = "hidden";
+            };
+        };
         
 
-        setTimeout (() => {
-            table_nextitems.classList.add("result_estates__tablenext--tomiddle");
-        },50);
-
+        if(counter_forward == 0){
+            table.style.visibility = "hidden";
+            setTimeout (() => { 
+                tables_new[0].style.visibility = "visible";
+            },2000);
+            counter_forward++;
+            display_page.innerText = 2;
+        }else if(counter_forward == 1){
+            tables_new[0].style.visibility = "hidden";
+            setTimeout (() => { 
+                tables_new[1].style.visibility = "visible";
+            },2000);
+            counter_forward++;
+            display_page.innerText = 3;
+        }else if(counter_forward == 2){
+            tables_new[1].style.visibility = "hidden";
+            setTimeout (() => { 
+                tables_new[2].style.visibility = "visible";
+            },2000);
+            counter_forward++;
+            display_page.innerText = 4;
+        }else if(counter_forward == 3){
+            tables_new[2].style.visibility = "hidden";
+            setTimeout (() => { 
+                tables_new[3].style.visibility = "visible";
+            },2000);
+            counter_forward++;
+            display_page.innerText = 5;
+            pageback[1].lastElementChild.style.visibility = "hidden";
+        }
+        
+        
+        setTimeout (() => { 
+            pageback[0].style.visibility = "visible";
+        },1900);
+        
+        
+    }
+    if(element.matches(".result_estates__next--back") || element.parentNode.classList.contains("result_estates__next--back")){ 
+       
+        let table = document.querySelector(".result_estates__table");
+        let tables_new = document.querySelectorAll(".result_estates__tablenext");
+        let display_page = document.querySelector(".result_estates__next--actual");
+        let pageback = document.querySelectorAll(".result_estates__next--item"); 
+        
+        
+        if(counter_forward == 1){
+            tables_new[0].style.visibility = "hidden";
+            setTimeout (() => { 
+                table.style.visibility = "visible";
+                pageback[0].style.visibility = "hidden";
+            },2000);
+            counter_forward--;
+            display_page.innerText = 1;
+        }else if(counter_forward == 2){
+            tables_new[1].style.visibility = "hidden";
+            setTimeout (() => { 
+                tables_new[0].style.visibility = "visible";
+            },2000);
+            counter_forward--;
+            display_page.innerText = 2;
+        }else if(counter_forward == 3){
+            tables_new[2].style.visibility = "hidden";
+            setTimeout (() => { 
+                tables_new[1].style.visibility = "visible";
+            },2000);
+            counter_forward--;
+            display_page.innerText = 3;
+        }else if(counter_forward == 4){
+            pageback[1].lastElementChild.style.visibility = "visible";
+            tables_new[3].style.visibility = "hidden";
+            setTimeout (() => { 
+                tables_new[2].style.visibility = "visible";
+            },2000);
+            counter_forward--;
+            display_page.innerText = 4;
+        }
+      
         
     }
     if(element.matches("path") || element.matches("rect")){ 
@@ -457,6 +711,7 @@ function delegation_estatesmain(event){
         }
     }
 }
+
 
 
 function close_dropdown(dropdown, input_icon){
@@ -501,6 +756,7 @@ function listortable(choice, icon){
         icon.style.fill = "rgba(135, 135, 135, 1)";
         icon.parentNode.children[2].style.fill = "rgba(146, 185, 175, 1)";
     }
+
 }
 
 function showorhide_details(choice, id = 0){
@@ -550,8 +806,7 @@ function showorhide_details(choice, id = 0){
         }else{
             estate_details.children[5].lastElementChild.firstElementChild.lastElementChild.innerText = item_details.description;
         }
-        window.addEventListener("resize", () => {
-            console.log("resize on");
+        window.addEventListener("resize", () =>{
             if(screen.width < 650){
                 estate_details.children[5].firstElementChild.children[4].lastElementChild.innerText = item_details.description;
             }else{
@@ -559,6 +814,8 @@ function showorhide_details(choice, id = 0){
             }
         });
         initMap({lat:parseFloat(item_details.lat.toFixed(4)), lng:parseFloat(item_details.long.toFixed(4))}, estate_details.children[6].classList);
+
+       
         wrapper_detailview.addEventListener("click", estatedetails_delegation);
     }else{
         wrapper_detailview.style.display = "none";
@@ -567,6 +824,9 @@ function showorhide_details(choice, id = 0){
         wrapper_estatesresult.style.display = "block"; 
     }
 }
+
+/*  Estates Main : Detailview
+-------------------------------------------------------------- */
 
 function estatedetails_delegation(event){
     console.log(event.target);
@@ -601,7 +861,10 @@ function estatedetails_delegation(event){
         } 
     }
     if(element.matches(".estate_details__images--image")){
-        document.querySelector(".estate_details__slider--picture").setAttribute("src", element.getAttribute("src"));
+        let img_main = document.querySelector(".estate_details__slider--picture");
+        let url_main = img_main.getAttribute("src");
+        img_main.setAttribute("src", element.getAttribute("src"));
+        element.setAttribute("src", url_main);
     }
     if(element.matches(".estate_details__btn") || element.matches(".estate_details__description--btn")){
         totop();
@@ -671,54 +934,47 @@ function estatedetails_delegation(event){
         contact.classList.remove("estate_details__contact--toright"); 
         
     }
+    if(element.matches(".estates_actuals__list--picture") || element.matches(".estates_actuals__description--title")){
+        if(element.matches(".estates_actuals__list--picture")){
+            showorhide_details(0, element.parentNode.dataset.id); 
+        }else{
+            showorhide_details(0, element.parentNode.parentNode.dataset.id); 
+        }
+    }
 }
 
-
+/* Head Heart Web <3 Consult your WebDoc about Middleware, Margin and Padding */
 /*  Functions general
 -------------------------------------------------------------- */
+function resize_page(){
+    window.addEventListener("resize", ()=>{
+        load_estates();
+        return 1;
+    });
+}
 
-
-function navigation(){
+function navigation(actual_page){
 
     var nav = document.querySelector(".nav");
-
     var ham_mobile = document.querySelector(".nav__ham");
     var close_mobile = document.querySelector(".nav__close");
     var nav_menu_mobile = document.querySelector(".nav_menu");
-     /* 
+    nav.lastElementChild.children[actual_page].firstElementChild.firstElementChild.style.color = "white";
+
     nav.addEventListener("click", (event)=>{
         let element = event.target;
-        if(element.classList = "nav__ham"){
-            element.style.display = "none";
-            element.parentNode.style.opacity = "1";
-            element.parentNode.parentNode.lastElementChild.style.display = "block";
-            element.parentNode.children[3].style.display = "inline-block";
-        }else if(element.classList = "nav__close"){
-            element.style.display = "none";
-            element.parentNode.style.opacity = "0.85";
-            element.parentNode.parentNode.lastElementChild.style.display = "none";
-            element.parentNode.children[2].style.display = "inline-block";
-
+        if(element.matches(".nav__ham") || element.parentNode.classList.contains("nav__ham")){
+            nav.style.opacity = "1";
+            ham_mobile.style.display = "none";
+            close_mobile.style.display = "inline-block";
+            nav_menu_mobile.style.display = "block";
+        }else if (element.matches(".nav__close") || element.parentNode.classList.contains("nav__close")){
+            nav.style.opacity = "0.85";
+            ham_mobile.style.display = "inline-block";
+            close_mobile.style.display = "none";
+            nav_menu_mobile.style.display = "none";
         }
     });
-}
-   */
-    
-    ham_mobile.addEventListener("click", menu_nav_open);
-    close_mobile.addEventListener("click", menu_nav_close);
-    
-    function menu_nav_open(){
-        nav.style.opacity = "1";
-        ham_mobile.style.display = "none";
-        close_mobile.style.display = "inline-block";
-        nav_menu_mobile.style.display = "block";
-    }
-    function menu_nav_close(){
-        nav.style.opacity = "0.85";
-        ham_mobile.style.display = "inline-block";
-        close_mobile.style.display = "none";
-        nav_menu_mobile.style.display = "none";
-    }
 }
 
 function totop(){
@@ -728,7 +984,7 @@ function totop(){
    // document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
 
-function initMap(coordinates, selector) {
+function initMap(coordinates, selector){
     let map;
     map = new google.maps.Map(document.querySelector(`.${selector}`), {
       center: coordinates,
@@ -736,12 +992,17 @@ function initMap(coordinates, selector) {
       mapId: "967c67b3b3520cf4",
       disableDefaultUI: true,
     });
+
     const svgMarker = {
       path: "M18 0C8.325 0 0.5 7.825 0.5 17.5C0.5 30.625 18 50 18 50C18 50 35.5 30.625 35.5 17.5C35.5 7.825 27.675 0 18 0ZM18 23.75C14.55 23.75 11.75 20.95 11.75 17.5C11.75 14.05 14.55 11.25 18 11.25C21.45 11.25 24.25 14.05 24.25 17.5C24.25 20.95 21.45 23.75 18 23.75Z",
       fillColor: "black",
       fillOpacity: 1,
       scale: 1.2,
     };
+    
+    if(screen.width < 700){svgMarker.scale = 1;}   
+    else{svgMarker.scale = 1.2;};
+    
     const marker = new google.maps.Marker({
       'position': coordinates,
       'map': map,
@@ -754,6 +1015,6 @@ function initMap(coordinates, selector) {
 
 
 
-export {load_api, load_estates, navigation, totop, initMap, delegation_estatesmain, ruler_state };
+export {load_api, load_estates, navigation, totop, initMap, delegation_estatesmain, ruler_state, resize_page};
 
 

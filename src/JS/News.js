@@ -15,7 +15,8 @@ import * as Tools from "./Tools.js";
 
 let nav_aktuelles = document.querySelector(".nav__select");
 nav_aktuelles.children[1].firstElementChild.firstElementChild.style.color = "white";
-
+Tools.navigation(1);
+Tools.resize_page();
 
 const wrapper_news = document.querySelector(".main-actual");
 const wrapper_news_article = document.querySelector(".main-actual-details");
