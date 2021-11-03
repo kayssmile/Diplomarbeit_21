@@ -16,16 +16,16 @@ Tools.navigation(0);
 Tools.resize_page();
 window.addEventListener("click", Tools.delegation_estatesmain);
 
-/* 
+/*
 document.addEventListener("scroll", ()=>{
    console.log(window.pageXOffset);
    console.log(window.pageYOffset);
 })
 
-
+ 
 TODO LISTE 
- , Scrollto , createitems -> 1funktion , mapsmarker
- , html email pattern,  sortierung A-Z , abkuerzungen fuer zu lange items;title*/ 
+  ,  , mapsmarker, haus oder Wohnung
+ , html email pattern,  sortierung A-Z ,*/ 
 
 
 /*  Estates Main 

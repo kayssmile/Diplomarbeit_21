@@ -10,6 +10,8 @@ var wrapper_estatesmain = document.querySelector("#main");
 var all_estates = [];
 var all_estates_origin = [];
 var counter_forward = 0;
+var pause = 0;
+
 var filters = {
     select_what : "Alle Objekte",
     select_where : "Alle Orte",
@@ -326,8 +328,11 @@ function load_estates(){
     for(let item_loaded of items_loaded){
         item_loaded.remove();
     }
+    let first_table = document.querySelector(".result_estates__table");
+    first_table.style.visibility = "visible";
+    document.querySelector(".result_estates__next--actual").innerText = 1;
+    document.querySelectorAll(".result_estates__next--item")[0].style.visibility = "hidden"; 
     load_list();
-
     let table_items;
     if(screen.width < 800){table_items = 3;}
     else if(screen.width < 1150){table_items = 4;}    
@@ -335,9 +340,6 @@ function load_estates(){
     
     let displaypages = document.querySelector(".result_estates__next--total");
     displaypages.innerText = Math.ceil(all_estates.length / table_items);
-
-    let container_items = document.querySelector(".result_estates__table");
-    
 
     for(let i = 0; i < table_items; i++){
         
@@ -349,34 +351,24 @@ function load_estates(){
             item.classList.add("visibility-desktop");
         }
         item.setAttribute("data-id", i+1);
+        console.log(all_estates[i].title);
+        console.log(i);
+        if(all_estates[i].title.length > 26){
+            let title_copy = all_estates[i].title;
+            all_estates[i].title = all_estates[i].title.substr(0,18)+"...";
+            item.innerHTML = create_entrys(i);
+            all_estates[i].title = title_copy;
+        }else{
+            item.innerHTML = create_entrys(i);
+        }
         
-        item.innerHTML = `
-                <img class="result_estates__item--picture" src="${all_estates[i].img}">
-                <div class="result_estates__description">
-                    <p class="result_estates__description--text regular">${all_estates[i].estate_type} ${all_estates[i].availability}</p>
-                    <p class="result_estates__description--text regular">${all_estates[i].zip} ${all_estates[i].city}, ${all_estates[i].canton}</p>
-                    <h3 class="result_estates__description--title bold">${all_estates[i].title}</h3>
-                    <p class="result_estates__description--text regular">Fläche ${all_estates[i].usable_area}m², Preis: CHF ${all_estates[i].prize}</p>   
-                </div>
-        `;
-        container_items.appendChild(item);
+        first_table.appendChild(item);
     }
 
-
-
-
-
-
-
-
-
-
-
-    
-    let newest_estates = document.createElement("ul");
+    let newest_estates = document.createElement("ul"); // Kreiert die Aktuellsten Elemente in Detail Ansicht
     newest_estates.classList.add("estates_actuals__list");
     
-    
+
     all_estates.sort((a, b) => {    
         return a.updated_at < b.updated_at;  
     });
@@ -384,15 +376,7 @@ function load_estates(){
         let li = document.createElement("li");
         li.classList.add("estates_actuals__list--item");
         li.setAttribute("data-id", all_estates[i].id);
-        li.innerHTML = `
-            <img class="estates_actuals__list--picture" src="${all_estates[i].img}">
-            <div class="estates_actuals__description">
-                <p class="estates_actuals__description--text regular">${all_estates[i].estate_type} ${all_estates[i].availability}</p>
-                <p class="estates_actuals__description--text regular">${all_estates[i].zip} ${all_estates[i].city}, ${all_estates[i].canton}</p>
-                <h3 class="estates_actuals__description--title bold">${all_estates[i].title}</h3>
-                <p class="estates_actuals__description--text regular">Fläche ${all_estates[i].usable_area}m², Preis: CHF ${all_estates[i].prize}</p>
-            </div>
-        `;
+        li.innerHTML = create_entrys(i);
         newest_estates.appendChild(li);
     }
     container_newest.insertBefore(newest_estates, document.querySelector(".estates_actuals__all"));
@@ -537,21 +521,16 @@ function delegation_estatesmain(event){
         showorhide_details(0, element.parentNode.parentNode.getAttribute("data-id"));
     }
     if(element.matches(".result_estates__btn")){
-        let table_items = Array.from(document.querySelectorAll(".result_estates__item")); 
-        
-       // table_items = table_items.slice(0, table_items.length-3);
-        
+        var table_items = Array.from(document.querySelectorAll(".result_estates__item"));  
         let id = table_items.length;
         if(element.innerText == "Zurück"){
             element.innerText = "Mehr laden";
             for(let table_item of table_items){
                 table_item.remove();
             }
-            window.scrollTo(0,4000);
-            table_items = document.querySelectorAll(".result_estates__item");
+            window.scrollTo(0, 1404);
             id = 0;
         }
-        
         for(let i = 0; i < 3; i++){
             if(id == all_estates.length){
                 element.innerText = "Zurück";
@@ -560,61 +539,66 @@ function delegation_estatesmain(event){
             let table_item = document.createElement("li");
             table_item.setAttribute("data-id", id+1);
             table_item.classList.add("result_estates__item");
-            table_item.innerHTML = 
-            `<img class="result_estates__item--picture" src="${all_estates[id].img}">
-                <div class="result_estates__description">
-                    <p class="result_estates__description--text regular">${all_estates[id].estate_type} ${all_estates[id].availability}</p>
-                    <p class="result_estates__description--text regular">${all_estates[id].zip} ${all_estates[id].city}, ${all_estates[id].canton}</p>
-                    <h3 class="result_estates__description--title bold">${all_estates[id].title}</h3>
-                    <p class="result_estates__description--text regular">Fläche ${all_estates[id].usable_area}m², Preis: CHF ${all_estates[id].prize}</p>
-            </div>`;
-            table_items[0].parentNode.insertBefore(table_item, table_items[0].parentNode.children[id]);
+            table_item.innerHTML = create_entrys(id);
+            document.querySelector(".result_estates__table").insertBefore(table_item, document.querySelector(".result_estates__table").children[id]);
             id++;
         }
     }
-    if(element.matches(".result_estates__next--forward") || element.parentNode.classList.contains("result_estates__next--forward")){ 
+    forward_items:if(element.matches(".result_estates__next--forward") || element.parentNode.classList.contains("result_estates__next--forward")){ 
         
-        let table_items;
-        if(screen.width < 800){table_items = 3;}
-        else if(screen.width < 1150){table_items = 4;}    
-        else{table_items = 6;}
-        let id = table_items+1;
-        for(let i = 0; i < Math.ceil(all_estates.length/table_items); i++){
-            let table_container = document.querySelector(".result_estates__item-b");
-            let table_neu = document.createElement("ul");
-            table_neu.classList.add("result_estates__tablenext");
-     
-            for(let i = 0; i < table_items; i++){
-                if(id > all_estates.length){
-                    break;
-                }
-                let item = document.createElement("li");
-                item.classList.add("result_estates__item");
-                if(i == 3){
-                    item.classList.add("visibility-tablet");
-                }else if(i > 3){
-                    item.classList.add("visibility-desktop");
-                }
-                item.setAttribute("data-id", id);
-                item.innerHTML = `
-                    <img class="result_estates__item--picture" src="${all_estates[id-1].img}">
-                    <div class="result_estates__description">
-                        <p class="result_estates__description--text regular">${all_estates[id-1].estate_type} ${all_estates[id-1].availability}</p>
-                        <p class="result_estates__description--text regular">${all_estates[id-1].zip} ${all_estates[id-1].city}, ${all_estates[id-1].canton}</p>
-                        <h3 class="result_estates__description--title bold">${all_estates[id-1].title}</h3>
-                        <p class="result_estates__description--text regular">Fläche ${all_estates[id-1].usable_area}m², Preis: CHF ${all_estates[id-1].prize}</p>   
-                    </div>
-                `;
-                table_neu.appendChild(item);
-                id++;
-            }
-            table_neu.style.visibility = "hidden";
-            table_container.insertBefore(table_neu, document.querySelector(".result_estates__btn"));
+        if(pause == 1){
+            break forward_items;
         }
+        pause = 1;
+        var tables_new = document.querySelectorAll(".result_estates__tablenext");
+        console.log(tables_new);
+        if(tables_new.length == 0){
+            let table_items;
+            if(screen.width < 800){table_items = 3;}
+            else if(screen.width < 1150){table_items = 4;}    
+            else{table_items = 6;}
+            let id = table_items+1;
+            for(let i = 0; i < Math.ceil(all_estates.length/table_items); i++){
+                let table_container = document.querySelector(".result_estates__item-b");
+                let table_neu = document.createElement("ul");
+                table_neu.classList.add("result_estates__tablenext");
+     
+                for(let i = 0; i < table_items; i++){
+                    if(id > all_estates.length){
+                        break;
+                    }
+                    let item = document.createElement("li");
+                    item.classList.add("result_estates__item");
+                    if(i == 3){
+                        item.classList.add("visibility-tablet");
+                    }else if(i > 3){
+                        item.classList.add("visibility-desktop");
+                    }
+                    item.setAttribute("data-id", id);
+                    if(all_estates[id-1].title.length > 26){
+                        let title_copy = all_estates[id-1].title;
+                        all_estates[id-1].title = all_estates[id-1].title.substr(0,18)+"...";
+                        item.innerHTML = create_entrys(id-1);
+                        all_estates[id-1].title = title_copy;
+                    }else{
+                        item.innerHTML = create_entrys(id-1);
+                    }
+                    table_neu.appendChild(item);
+                    id++;
+                }
+                table_neu.style.visibility = "hidden";
+                table_container.insertBefore(table_neu, document.querySelector(".result_estates__btn"));
+            }
+        }
+
+        tables_new = document.querySelectorAll(".result_estates__tablenext");
+
+
+
 
         /* */
         let table = document.querySelector(".result_estates__table");
-        let tables_new = document.querySelectorAll(".result_estates__tablenext");
+        
         let display_page = document.querySelector(".result_estates__next--actual");
         let pageback = document.querySelectorAll(".result_estates__next--item"); 
 
@@ -624,10 +608,9 @@ function delegation_estatesmain(event){
             };
         };
         
-
         if(counter_forward == 0){
             table.style.visibility = "hidden";
-            setTimeout (() => { 
+            setTimeout (() =>{ 
                 tables_new[0].style.visibility = "visible";
             },2000);
             counter_forward++;
@@ -636,6 +619,7 @@ function delegation_estatesmain(event){
             tables_new[0].style.visibility = "hidden";
             setTimeout (() => { 
                 tables_new[1].style.visibility = "visible";
+                
             },2000);
             counter_forward++;
             display_page.innerText = 3;
@@ -643,6 +627,7 @@ function delegation_estatesmain(event){
             tables_new[1].style.visibility = "hidden";
             setTimeout (() => { 
                 tables_new[2].style.visibility = "visible";
+                
             },2000);
             counter_forward++;
             display_page.innerText = 4;
@@ -650,6 +635,7 @@ function delegation_estatesmain(event){
             tables_new[2].style.visibility = "hidden";
             setTimeout (() => { 
                 tables_new[3].style.visibility = "visible";
+                
             },2000);
             counter_forward++;
             display_page.innerText = 5;
@@ -659,12 +645,17 @@ function delegation_estatesmain(event){
         
         setTimeout (() => { 
             pageback[0].style.visibility = "visible";
+            pause = 0;
         },1900);
         
         
     }
-    if(element.matches(".result_estates__next--back") || element.parentNode.classList.contains("result_estates__next--back")){ 
-       
+    back_items:if(element.matches(".result_estates__next--back") || element.parentNode.classList.contains("result_estates__next--back")){ 
+        if(pause == 1){
+            break back_items;
+        }
+        pause = 1;
+
         let table = document.querySelector(".result_estates__table");
         let tables_new = document.querySelectorAll(".result_estates__tablenext");
         let display_page = document.querySelector(".result_estates__next--actual");
@@ -676,6 +667,7 @@ function delegation_estatesmain(event){
             setTimeout (() => { 
                 table.style.visibility = "visible";
                 pageback[0].style.visibility = "hidden";
+                pause = 0;
             },2000);
             counter_forward--;
             display_page.innerText = 1;
@@ -683,6 +675,7 @@ function delegation_estatesmain(event){
             tables_new[1].style.visibility = "hidden";
             setTimeout (() => { 
                 tables_new[0].style.visibility = "visible";
+                pause = 0;
             },2000);
             counter_forward--;
             display_page.innerText = 2;
@@ -690,6 +683,7 @@ function delegation_estatesmain(event){
             tables_new[2].style.visibility = "hidden";
             setTimeout (() => { 
                 tables_new[1].style.visibility = "visible";
+                pause = 0;
             },2000);
             counter_forward--;
             display_page.innerText = 3;
@@ -698,6 +692,7 @@ function delegation_estatesmain(event){
             tables_new[3].style.visibility = "hidden";
             setTimeout (() => { 
                 tables_new[2].style.visibility = "visible";
+                pause = 0;
             },2000);
             counter_forward--;
             display_page.innerText = 4;
@@ -818,6 +813,7 @@ function showorhide_details(choice, id = 0){
        
         wrapper_detailview.addEventListener("click", estatedetails_delegation);
     }else{
+        window.scrollTo(0, 1404);
         wrapper_detailview.style.display = "none";
         heading_estatesmain.style.display = "flex";
         wrapper_estatesmain.style.display = "block";
@@ -946,6 +942,26 @@ function estatedetails_delegation(event){
 /* Head Heart Web <3 Consult your WebDoc about Middleware, Margin and Padding */
 /*  Functions general
 -------------------------------------------------------------- */
+
+function create_entrys(selektor){
+
+    let item = `
+        <img class="result_estates__item--picture" src="${all_estates[selektor].img}">
+        <div class="result_estates__description">
+            <p class="result_estates__description--text regular">${all_estates[selektor].estate_type} ${all_estates[selektor].availability}</p>
+            <p class="result_estates__description--text regular">${all_estates[selektor].zip} ${all_estates[selektor].city}, ${all_estates[selektor].canton}</p>
+            <h3 class="result_estates__description--title bold">${all_estates[selektor].title}</h3>
+            <p class="result_estates__description--text regular">Fläche ${all_estates[selektor].usable_area}m², Preis: CHF ${all_estates[selektor].prize}</p>   
+        </div>
+    `
+    return item;
+}
+
+
+
+
+
+
 function resize_page(){
     window.addEventListener("resize", ()=>{
         load_estates();
