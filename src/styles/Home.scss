@@ -288,6 +288,7 @@ input[type=range]::-moz-range-thumb{
       flex-direction: row;
       justify-content: space-between;
       border-bottom: 2px $elem-general solid;
+     // cursor: pointer;
     }
     &--entry a{
       text-decoration: none;
@@ -706,8 +707,8 @@ input[type=range]::-moz-range-thumb{
     flex-direction: row;
     justify-content: end;
     align-items: center;
-    margin: 0px 8%;
-    margin-top: -34px;
+    margin: 0px 8.8%;
+    margin-top: -15px;//-34px;
     padding-bottom: 50px;
     &--text{
       @extend .font18;
@@ -941,6 +942,9 @@ input[type=range]::-moz-range-thumb{
         margin-bottom: 0px;
       }
     }
+    &__all{
+      margin: 0px 6.2%;
+    }
     &__description{
       &--text{
         @include font18();
@@ -1030,7 +1034,7 @@ input[type=range]::-moz-range-thumb{
       }
       &--entry > .result_estates__list--title{ 
           width: 40%;
-          cursor: pointer;     
+        //  cursor: pointer;     
       }
       &--title{
         @include font18();
@@ -1075,11 +1079,13 @@ input[type=range]::-moz-range-thumb{
       right: 110%;
     }
     &__table{ 
+      position: relative;
       display: inline-flex;
+      width: 100%;
       flex-direction: row;
       justify-content: space-between;
       flex-wrap: wrap;
-     // right: 0%;
+      right: 0%;
       // left: 0%; // 110%;
       transition: all 2s linear;
       // transition: left 2s linear;

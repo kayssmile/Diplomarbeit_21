@@ -5,12 +5,14 @@
 
 import * as images from "./Images.js";
 import { GraphQLClient, gql } from 'graphql-request';
-const graphQLClient = new GraphQLClient('https://dev21-api.web-professionals.ch/graphql');
+const graphQLClient = new GraphQLClient('https://dev21-api.web-professionals.ch/graphql'); //    // http://localhost:4000/graphql
 var wrapper_estatesmain = document.querySelector("#main");
 var all_estates = [];
+
 var all_estates_origin = [];
 var counter_forward = 0;
 var pause = 0;
+var icon_list = 0;
 
 var filters = {
     select_what : "Alle Objekte",
@@ -28,7 +30,10 @@ var filters = {
 
 async function load_api(){
 
+    all_estates = [];
+
     const query_allentries = gql` 
+
         query{
             estates{
                 id
@@ -45,13 +50,38 @@ async function load_api(){
                 long
                 usable_area
                 created_at
-                updated_at  
+                updated_at
+                ref_type_id
             }
         }
     `; 
+
     var estates = await graphQLClient.request(query_allentries);
 
+
+    /*
+    var makeServerRequest = new Promise(async(resolve, reject) => {
+
+        if (estates) {
+          resolve("We got the Data");
+        } else {
+          reject("Data not Found");
+        }
+      });
+    
+    await makeServerRequest
+    .then((resolve) => {
+        console.log(resolve);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+
+
+    console.log(makeServerRequest); 
      /*  
+
       console.log(estates.estates);
       console.log(estates.estates[0]);
       console.log(estates.estates[0].id);
@@ -75,8 +105,12 @@ async function load_api(){
 
     };
     */
-    all_estates = [];
+
+
+   
+
     let counter = 0;
+
     for(let estate of estates.estates){     // Images einbinden 
         if(counter == 6){
             counter = 0;
@@ -88,34 +122,42 @@ async function load_api(){
         all_estates.push(estate);
         counter++
     }
+
     all_estates.sort( (a, b) => {
         return a.id - b.id;
     });
 
+    
+
     all_estates_origin = all_estates;
-    console.log(all_estates);
+  //  console.log(all_estates_origin);
+    
 }   
 
 /*  Estates Main : Functions
 -------------------------------------------------------------- */
 function sort_estates(filters){
 
+    console.log(all_estates_origin);
     all_estates = all_estates_origin;
+    console.log(filters);
+    console.log(all_estates);
 
     if(filters.select_what != "Alle Objekte"){
         if(filters.select_what != "Haus"){ 
             all_estates = all_estates.filter(estate =>{
-                if(estate.obj == "Haus"){return 1;}
+                if(estate.ref_type_id == "1"){return 1;}
                 else{return 0;}    
             });
         }else{
             all_estates = all_estates.filter(estate =>{ 
-                if(estate.obj == "Wohnung"){return 1;}
+                if(estate.ref_type_id  == "0"){return 1;}
                 else{return 0;}
             });
         }
     }
-    if(filters.select_where != "Alle Orte"){
+    if(filters.select_where != "Alle Orte"){ 
+        console.log(filters.select_where);
         switch (filters.select_where){
             case "Ostschweiz":
                 all_estates = all_estates.filter(estate =>{
@@ -166,12 +208,14 @@ function sort_estates(filters){
                 });
                 break;
             case "Tessin":
+               
                 all_estates = all_estates.filter(estate =>{
                     if(estate.canton == "Tessin"){return 1;}
                     else{return 0;}    
                 });
+                
                 break;
-            case " Genferseeregion":
+            case "Genferseeregion":
                 all_estates = all_estates.filter(estate =>{
                     if(estate.canton == "Genf"){return 1;}
                     else if(estate.canton == "Waadt"){return 1;}
@@ -196,21 +240,23 @@ function sort_estates(filters){
         if(filters.select_sort == "Preis aufsteigend"){    
             all_estates.sort((a, b) => {
                 return a.prize > b.prize;
-            });     
+            });
+            icon_list = 1;
         }else if(filters.select_sort == "Preis absteigend"){
             all_estates.sort((a, b) => {
                 return a.prize < b.prize;
             });
+            icon_list = 2;
         }else{
             for(let estate of all_estates){
                 estate.updated_at = (Date.parse(estate.updated_at)/1000);
             }
-            if(filters.select_sort == "Datum aufsteigend"){
+            if(filters.select_sort == "Datum absteigend"){
                 all_estates.sort((a, b) => {  
                     return a.updated_at > b.updated_at;
                 });
             } 
-            if(filters.select_sort == "Datum absteigend"){
+            if(filters.select_sort == "Datum aufsteigend"){
                 all_estates.sort((a, b) => {    
                     return a.updated_at < b.updated_at;  
                 });
@@ -241,7 +287,7 @@ function sort_estates(filters){
         }
     }
     if(filters.select_area != "none"){
-        console.log("hier noed");
+        
         all_estates.sort((a, b) => {    
             return a.usable_area - b.usable_area;  
         });
@@ -263,11 +309,14 @@ function sort_estates(filters){
     for(let i = 0; i < all_estates.length; i++){
         all_estates[i].id = i+1;
     }  
-      
+
+    console.log("nachdem filter geladen ist");
+    console.log(all_estates);
     load_estates();
 
 }
 
+/* 
 function items_visible(){
   
     var table_items = Array.from(document.querySelectorAll(".result_estates__item"));
@@ -281,16 +330,24 @@ function items_visible(){
         }
     }
     return table_items;
-}
+} */
 
 function load_list(){
 
-    let list = Array.from(document.querySelectorAll(".result_estates__list--entry"));
-    list.shift();
-    for(let entry of list){
-        entry.remove();
+    let icon_price = document.querySelector(".icon_list"); // Hier wird das Icon auf die richtige Position gesetzt, und entsprechend der Sortierung gesetzt
+    if(icon_list == 1){
+        if(icon_price.getAttribute("data-sort") == 1){
+            icon_price.setAttribute("data-sort", 0);
+            icon_price.style.transform = "rotate(0deg)";
+        }
+    }else if(icon_list == 2){
+        if(icon_price.getAttribute("data-sort") == 0){
+            icon_price.setAttribute("data-sort", 1);
+            icon_price.style.transform = "rotate(180deg)";
+        }
     }
-    for(let estate of all_estates){
+
+    for(let estate of all_estates){ // Ab hier wird die ganze Liste mit den Immbilien Eintraegen erstellt inkl. Pruefung der maximalen Laenge
         let title = estate.title;
         if(title.length > 18){
             title = title.substr(0,18)+"...";
@@ -303,7 +360,7 @@ function load_list(){
         listentry.classList.add("result_estates__list--entry");
         listentry.setAttribute("data-id", estate.id);
         listentry.innerHTML = `
-            <p class="result_estates__list--title bold">${title}</p>
+            <p class="result_estates__list--title bold" style="cursor:pointer;">${title}</p>
             <p class="result_estates__list--text regular visibility-tablet">${ort}</p>
             <p class="result_estates__list--text regular visibility-desktop">${estate.usable_area}m<sup>2</sup></p>
             <p class="result_estates__list--text regular">CHF ${estate.prize}</p>
@@ -314,14 +371,26 @@ function load_list(){
 }
     
 function load_estates(){
+  //  console.log("loadin");
+   // console.log(all_estates);
 
-    let items_loaded = document.querySelectorAll(".result_estates__item");
+    let items_loaded = document.querySelectorAll(".result_estates__item"); // Erster Block ist ein Reset fuer alle Elemente welche Immobillien anzeigen
     let tables_loaded = document.querySelectorAll(".result_estates__tablenext");
     let container_newest = document.querySelector("#estates_actuals");
     let newest_loaded = document.querySelector(".estates_actuals__list");
+    let list = Array.from(document.querySelectorAll(".result_estates__list--entry"));
+    let btn = document.querySelector(".result_estates__btn");
+    let list_estates = document.querySelector(".result_estates__list");
+    list_estates.style.display = "block";
+    btn.style.visibility = "visible";
+    list.shift();
+    counter_forward = 0;
+    for(let entry of list){
+        entry.remove();
+    }
     if(newest_loaded){
         newest_loaded.remove();
-    }
+    } 
     for(let table_loaded of tables_loaded){
         table_loaded.remove();
     }
@@ -330,56 +399,91 @@ function load_estates(){
     }
     let first_table = document.querySelector(".result_estates__table");
     first_table.style.visibility = "visible";
+    let noresults = document.querySelectorAll(".result_estates__empty");
+    if(noresults != null){
+        noresults.forEach((noresult) =>{
+            noresult.remove();
+        })     
+    }
     document.querySelector(".result_estates__next--actual").innerText = 1;
     document.querySelectorAll(".result_estates__next--item")[0].style.visibility = "hidden"; 
-    load_list();
-    let table_items;
-    if(screen.width < 800){table_items = 3;}
-    else if(screen.width < 1150){table_items = 4;}    
-    else{table_items = 6;}
-    
     let displaypages = document.querySelector(".result_estates__next--total");
-    displaypages.innerText = Math.ceil(all_estates.length / table_items);
-
-    for(let i = 0; i < table_items; i++){
-        
-        let item = document.createElement("li");
-        item.classList.add("result_estates__item");
-        if(i == 3 ){
-            item.classList.add("visibility-tablet");
-        }else if(i > 3){
-            item.classList.add("visibility-desktop");
-        }
-        item.setAttribute("data-id", i+1);
-        console.log(all_estates[i].title);
-        console.log(i);
-        if(all_estates[i].title.length > 26){
-            let title_copy = all_estates[i].title;
-            all_estates[i].title = all_estates[i].title.substr(0,18)+"...";
-            item.innerHTML = create_entrys(i);
-            all_estates[i].title = title_copy;
-        }else{
-            item.innerHTML = create_entrys(i);
-        }
-        
+    if(all_estates == 0){    // Kreire einen Text keine Immbollien
+        let item = document.createElement("h1");
+        item.classList.add("result_estates__empty");
+        item.innerText = "Upsss..Keine Ergebnisse";
+        item.style.marginTop = "9px";
         first_table.appendChild(item);
-    }
-
-    let newest_estates = document.createElement("ul"); // Kreiert die Aktuellsten Elemente in Detail Ansicht
-    newest_estates.classList.add("estates_actuals__list");
+        let item2 = document.createElement("h1");
+        item2.classList.add("result_estates__empty");
+        item2.innerText = "Upsss..Keine Ergebnisse";
+        list_estates.style.display = "none";
+        document.querySelector(".result_estates__item-a").appendChild(item2);
+        displaypages.innerText = 1;
+        btn.style.visibility = "hidden";
+    }else{
+        load_list();    // Ab hier werden die Elemente mit Immobillien geladen, erst wird geprueft mit wieviele Immobillien angezeigt werden
+        let table_items;
+        if(screen.width < 800){table_items = 3;}
+        else if(screen.width < 1150){table_items = 4;}    
+        else{table_items = 6;}
+        
+        
+        displaypages.innerText = Math.ceil(all_estates.length / table_items);
     
+        for(let i = 0; i < table_items; i++){
+            if(all_estates.length < i+1 || all_estates.length == 0){
+                break;
+            }
+            let item = document.createElement("li");
+            item.classList.add("result_estates__item");
+            if(i == 3 ){
+                item.classList.add("visibility-tablet");
+            }else if(i > 3){
+                item.classList.add("visibility-desktop");
+            }
+            item.setAttribute("data-id", i+1);            // Hier wird nach der Groesse des Bildschirm die Titel angepasst damit eine schoene Formatierung beibehalten wird
+            
+            
+            console.log("ehmm");
 
-    all_estates.sort((a, b) => {    
-        return a.updated_at < b.updated_at;  
-    });
-    for(let i = 0; i < 3; i++){
-        let li = document.createElement("li");
-        li.classList.add("estates_actuals__list--item");
-        li.setAttribute("data-id", all_estates[i].id);
-        li.innerHTML = create_entrys(i);
-        newest_estates.appendChild(li);
+            checktitlelength(item, i);
+
+
+            console.log(item);
+        
+                
+            first_table.appendChild(item);
+                  
+        }
+
+        if(screen.width > 1150 && all_estates.length == 2){
+            let item = document.createElement("li");
+            item.classList.add("result_estates__item");
+            item.style.visibility = "hidden";
+            first_table.appendChild(item);
+
+        } 
+    
+        let newest_estates = document.createElement("ul"); // Kreiert die Aktuellsten Elemente in Detail Ansicht
+        newest_estates.classList.add("estates_actuals__list");
+        
+        all_estates.sort((a, b) => {    
+            return a.updated_at < b.updated_at;  
+        });
+        for(let i = 0; i < 3; i++){
+            let li = document.createElement("li");
+            li.classList.add("estates_actuals__list--item");
+            li.setAttribute("data-id", all_estates[i].id);
+            li.innerHTML = create_entrys(1,i);
+            newest_estates.appendChild(li);
+        }
+        container_newest.insertBefore(newest_estates, document.querySelector(".estates_actuals__all"));
+        all_estates = all_estates_origin;
+      //  console.log("nach dem item laden");
+      //  console.log(all_estates_origin);
+      //  console.log(all_estates);
     }
-    container_newest.insertBefore(newest_estates, document.querySelector(".estates_actuals__all"));
 }
     
 function delegation_estatesmain(event){
@@ -438,7 +542,7 @@ function delegation_estatesmain(event){
             filters.ruler = document.querySelectorAll(".main_estates__ruler--slider")[0].value;
         }
         sort_estates(filters);
-        console.log(filters);   
+           
     }
     if(element.matches(".main_estates__options--icontable")){
         listortable(0, event.target);  
@@ -454,10 +558,11 @@ function delegation_estatesmain(event){
         }
     }
     if(element.matches(".result_estates__list--svg") || element.parentNode.parentNode.classList.contains("result_estates__list--svg")){
+        
         filters = { select_what : "Alle Objekte", select_where : "Alle Orte", select_sort: "Sortierung", ruler: "none", select_area: "none", select_title:"none", select_location: "none"};
         var sort_order;
         var item ;
-        if(element.classList == "result_estates__list--svg"){
+        if(element.classList.contains("result_estates__list--svg")){
             sort_order = element.parentNode.firstElementChild.innerText;
             item = element;
         }else{ 
@@ -521,37 +626,43 @@ function delegation_estatesmain(event){
         showorhide_details(0, element.parentNode.parentNode.getAttribute("data-id"));
     }
     if(element.matches(".result_estates__btn")){
-        var table_items = Array.from(document.querySelectorAll(".result_estates__item"));  
+        
+        var table_items = document.querySelectorAll(".result_estates__item");  
         let id = table_items.length;
         if(element.innerText == "Zurück"){
             element.innerText = "Mehr laden";
-            for(let table_item of table_items){
+            table_items.forEach((table_item) =>{
                 table_item.remove();
-            }
+            })
             window.scrollTo(0, 1404);
             id = 0;
         }
+        
         for(let i = 0; i < 3; i++){
             if(id == all_estates.length){
                 element.innerText = "Zurück";
                 break;
             }
+            
             let table_item = document.createElement("li");
             table_item.setAttribute("data-id", id+1);
             table_item.classList.add("result_estates__item");
-            table_item.innerHTML = create_entrys(id);
+
+            checktitlelength(table_item, id);
+
+            
             document.querySelector(".result_estates__table").insertBefore(table_item, document.querySelector(".result_estates__table").children[id]);
             id++;
         }
     }
     forward_items:if(element.matches(".result_estates__next--forward") || element.parentNode.classList.contains("result_estates__next--forward")){ 
         
-        if(pause == 1){
+
+        if(pause == 1 || document.querySelector(".result_estates__next--actual").innerText == document.querySelector(".result_estates__next--total").innerText){
             break forward_items;
         }
         pause = 1;
         var tables_new = document.querySelectorAll(".result_estates__tablenext");
-        console.log(tables_new);
         if(tables_new.length == 0){
             let table_items;
             if(screen.width < 800){table_items = 3;}
@@ -567,6 +678,7 @@ function delegation_estatesmain(event){
                     if(id > all_estates.length){
                         break;
                     }
+                    
                     let item = document.createElement("li");
                     item.classList.add("result_estates__item");
                     if(i == 3){
@@ -575,17 +687,18 @@ function delegation_estatesmain(event){
                         item.classList.add("visibility-desktop");
                     }
                     item.setAttribute("data-id", id);
-                    if(all_estates[id-1].title.length > 26){
-                        let title_copy = all_estates[id-1].title;
-                        all_estates[id-1].title = all_estates[id-1].title.substr(0,18)+"...";
-                        item.innerHTML = create_entrys(id-1);
-                        all_estates[id-1].title = title_copy;
-                    }else{
-                        item.innerHTML = create_entrys(id-1);
-                    }
+                    id--;
+
+                    checktitlelength(item, id);
+
+                  
+
                     table_neu.appendChild(item);
-                    id++;
+
+
+                    id = id+2;
                 }
+
                 table_neu.style.visibility = "hidden";
                 table_container.insertBefore(table_neu, document.querySelector(".result_estates__btn"));
             }
@@ -594,27 +707,28 @@ function delegation_estatesmain(event){
         tables_new = document.querySelectorAll(".result_estates__tablenext");
 
 
-
-
-        /* */
         let table = document.querySelector(".result_estates__table");
         
         let display_page = document.querySelector(".result_estates__next--actual");
         let pageback = document.querySelectorAll(".result_estates__next--item"); 
 
-        function allhidden(){
-            for(let table_new of tables_new){
-            table_new.style.visibility = "hidden";
-            };
-        };
-        
         if(counter_forward == 0){
-            table.style.visibility = "hidden";
+
+           table.style.visibility = "hidden";
+           // table.classList.add("result_estates__lefthidden");
+    
+
             setTimeout (() =>{ 
                 tables_new[0].style.visibility = "visible";
             },2000);
+
+
+
+
             counter_forward++;
             display_page.innerText = 2;
+
+
         }else if(counter_forward == 1){
             tables_new[0].style.visibility = "hidden";
             setTimeout (() => { 
@@ -716,7 +830,8 @@ function close_dropdown(dropdown, input_icon){
         || event.target.matches(".main_estates__options")|| event.target.matches(".main_estates__ruler--slider")
         || event.target.matches(".main_estates__setting--text") || event.target.matches(".main_estates__btn")
         || event.target.matches(".result_estates__item-a") || event.target.matches(".result_estates__item-b")
-        || event.target.matches(".main_estates__btn--text")){
+        || event.target.matches(".main_estates__btn--text") || event.target.matches(".result_estates__table")
+        || event.target.matches(".result_estates__item--picture") ){
             dropdown.setAttribute("data-set", 0);
             dropdown.style.display = "none";
             input_icon.style.transform = "rotate(0deg)"; 
@@ -771,16 +886,19 @@ function showorhide_details(choice, id = 0){
             return id == all_estates.id;
         });
         item_details = item_details[0];
-        
-/* 
-        Object { id: "1", country: "Schweiz", 
-        canton: "Luzern", city: "Sursee", 
-        zip: 6214, title: "Bijou am See", 
-        description: "An mystischer Lage in der Nähe des berühmten Greenwhich Waldes verkaufen wir das vollständig renovierten Gebäude. Das Haus bietet mit den 13 attraktiven Räumen einem grosszügigen Umschwung am See eine nicht alltägliche und einzigartige Atmosphäre.",
-         availability: "ab sofort", prize: 900000, estate_type: "zu verkaufen",
-         lat: 47.1715422, long: 8.1262825, usable_area: ""
+        estate_details.setAttribute("data-id", item_details.id);
+        if((item_details.estate_type.length + item_details.title.length) > 38){
+            if(screen.width < 550 && screen.width > 450){
+                estate_details.children[2].firstElementChild.style.fontSize = "18px";
+                estate_details.children[2].lastElementChild.style.fontSize = "18px";
+            }else if(screen.width < 450 && screen.width > 395){
+                estate_details.children[2].firstElementChild.style.fontSize = "16px";
+                estate_details.children[2].lastElementChild.style.fontSize = "16px";
+            }else if(screen.width < 395){
+                estate_details.children[2].firstElementChild.style.fontSize = "15px";
+                estate_details.children[2].lastElementChild.style.fontSize = "15px";
+            }
         }
-*/      estate_details.setAttribute("data-id", item_details.id);
         estate_details.children[2].firstElementChild.innerText = item_details.estate_type;
         estate_details.children[2].lastElementChild.innerText = item_details.title;
         estate_details.children[3].lastElementChild.firstElementChild.setAttribute("src", item_details.img);
@@ -813,7 +931,7 @@ function showorhide_details(choice, id = 0){
        
         wrapper_detailview.addEventListener("click", estatedetails_delegation);
     }else{
-        window.scrollTo(0, 1404);
+        window.scrollTo(0,0);
         wrapper_detailview.style.display = "none";
         heading_estatesmain.style.display = "flex";
         wrapper_estatesmain.style.display = "block";
@@ -923,7 +1041,6 @@ function estatedetails_delegation(event){
             input.value = "";
         }
         for(let advice of advices){
-            console.log(advice);
             advice.firstElementChild.style.display = "none";
             advice.setAttribute("data-set", "0");
         }
@@ -937,15 +1054,100 @@ function estatedetails_delegation(event){
             showorhide_details(0, element.parentNode.parentNode.dataset.id); 
         }
     }
+    if(element.matches(".estates_actuals__all--svg") || element.parentNode.classList.contains("estates_actuals__all--svg")){
+        filters.select_sort = "Datum absteigend";
+        sort_estates(filters);
+        showorhide_details(1, 0); 
+    }
 }
 
-/* Head Heart Web <3 Consult your WebDoc about Middleware, Margin and Padding */
-/*  Functions general
+ 
+/*  Functions general                                                                                                                                                                           Head Heart Web <3 Consult your WebDoc about Middleware, Margin and Padding 
 -------------------------------------------------------------- */
+function checktitlelength(item, selector){ 
 
-function create_entrys(selektor){
+    if(screen.width < 420){
+        if(all_estates[selector].title.length > 22){  
+            let title_copy = all_estates[selector].title;
+            all_estates[selector].title = all_estates[selector].title.substr(0,22)+"...";
+            item.innerHTML = create_entrys(0, selector);
+            all_estates[selector].title = title_copy;
+        }else{
+            item.innerHTML = create_entrys(0, selector);
+        }
+       
+    }
+    else if(screen.width > 800 && screen.width < 850){
+        if(all_estates[selector].title.length > 17){  
+            let title_copy = all_estates[selector].title;
+            all_estates[selector].title = all_estates[selector].title.substr(0,15)+"...";
+            item.innerHTML = create_entrys(0, selector);
+            all_estates[selector].title = title_copy;
+        }else{
+            item.innerHTML = create_entrys(0, selector);
+        }
+    }
+    else if(screen.width > 850 && screen.width < 1150){
+        if(all_estates[selector].title.length > 25){    
+            let title_copy = all_estates[selector].title;
+            all_estates[selector].title = all_estates[selector].title.substr(0,19)+"...";
+            item.innerHTML = create_entrys(0, selector);
+            all_estates[selector].title = title_copy;
+        }else{
+            item.innerHTML = create_entrys(0, selector);
+        }
+    }else if(screen.width > 1150 && screen.width < 1350){
+        if(all_estates[selector].title.length > 15){
+            let title_copy = all_estates[selector].title;
+            all_estates[selector].title = all_estates[selector].title.substr(0,14)+"...";
+            item.innerHTML = create_entrys(0, selector);
+            all_estates[selector].title = title_copy;
+        }else{
 
-    let item = `
+            item.innerHTML = create_entrys(0, selector);
+        }
+    }else if(screen.width > 1350){
+        if(all_estates[selector].title.length > 20){
+            let title_copy = all_estates[selector].title;
+            all_estates[selector].title = all_estates[selector].title.substr(0,18)+"...";
+            item.innerHTML = create_entrys(0, selector);
+            all_estates[selector].title = title_copy;
+        }else{
+            item.innerHTML = create_entrys(0, selector);
+        }
+    }else{
+        item.innerHTML = create_entrys(0,selector);
+    }
+
+    
+    return item;
+
+
+}
+
+
+
+
+
+function create_entrys(choice = 0, selektor){
+
+    if(choice == 1){
+
+        let item = `
+            <img class="estates_actuals__list--picture" src="${all_estates[selektor].img}">
+            <div class="estates_actuals__description">
+                <p class="estates_actuals__description--text regular">${all_estates[selektor].estate_type} ${all_estates[selektor].availability}</p>
+                <p class="estates_actuals__description--text regular">${all_estates[selektor].zip} ${all_estates[selektor].city}, ${all_estates[selektor].canton}</p>
+                <h3 class="estates_actuals__description--title bold">${all_estates[selektor].title}</h3>
+                <p class="estates_actuals__description--text regular">Fläche ${all_estates[selektor].usable_area}m², Preis: CHF ${all_estates[selektor].prize}</p>
+            </div>
+        `;
+        
+        return item;
+
+    }else{
+        
+        let item = `
         <img class="result_estates__item--picture" src="${all_estates[selektor].img}">
         <div class="result_estates__description">
             <p class="result_estates__description--text regular">${all_estates[selektor].estate_type} ${all_estates[selektor].availability}</p>
@@ -953,8 +1155,12 @@ function create_entrys(selektor){
             <h3 class="result_estates__description--title bold">${all_estates[selektor].title}</h3>
             <p class="result_estates__description--text regular">Fläche ${all_estates[selektor].usable_area}m², Preis: CHF ${all_estates[selektor].prize}</p>   
         </div>
-    `
+    `;
+    
     return item;
+    }
+    
+    
 }
 
 
@@ -964,7 +1170,8 @@ function create_entrys(selektor){
 
 function resize_page(){
     window.addEventListener("resize", ()=>{
-        load_estates();
+        location.reload();
+      //  load_estates();
         return 1;
     });
 }
@@ -1020,9 +1227,14 @@ function initMap(coordinates, selector){
     else{svgMarker.scale = 1.2;};
     
     const marker = new google.maps.Marker({
-      'position': coordinates,
-      'map': map,
-      'icon': svgMarker,
+      position: coordinates,
+      map: map,
+      icon: svgMarker,
+    });
+
+    map.addListener('center_changed', () => {
+        console.log("hou");
+        marker.setPosition(position);
     });
 }
 

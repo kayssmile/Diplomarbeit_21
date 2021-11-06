@@ -8,8 +8,12 @@
 import CSS from "../Styles/Stylesheet.scss";
 import * as Tools from "./Tools.js";
 
+async function load_api(){
+   await Tools.load_api();
+}
 
-await Tools.load_api();
+await load_api();
+
 Tools.load_estates();
 Tools.ruler_state();
 Tools.navigation(0);
