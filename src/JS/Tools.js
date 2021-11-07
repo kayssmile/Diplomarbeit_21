@@ -138,10 +138,9 @@ async function load_api(){
 -------------------------------------------------------------- */
 function sort_estates(filters){
 
-    console.log(all_estates_origin);
+    
     all_estates = all_estates_origin;
-    console.log(filters);
-    console.log(all_estates);
+    
 
     if(filters.select_what != "Alle Objekte"){
         if(filters.select_what != "Haus"){ 
@@ -157,7 +156,7 @@ function sort_estates(filters){
         }
     }
     if(filters.select_where != "Alle Orte"){ 
-        console.log(filters.select_where);
+        
         switch (filters.select_where){
             case "Ostschweiz":
                 all_estates = all_estates.filter(estate =>{
@@ -266,10 +265,27 @@ function sort_estates(filters){
 
     if(filters.select_title != "none"){ 
 
+        // filter nach zahlen , dann nach buchstaben
+        for(let estate of all_estates){
+
+            console.log(estate.title)
+            if (estate.title.search(/^[0-9]+$/) == -1)
+            {
+                 console.log(estate.title);
+            }
+
+        ;}
+
+
+
+        
+
         all_estates.sort((a, b) => {    
             return a.title - b.title;  
         });
-        for(let estate of all_estates){console.log(estate.title);}
+
+
+       
 
         if(filters.select_title == "up"){
             all_estates.reverse();
@@ -310,27 +326,12 @@ function sort_estates(filters){
         all_estates[i].id = i+1;
     }  
 
-    console.log("nachdem filter geladen ist");
-    console.log(all_estates);
+   
     load_estates();
 
 }
 
-/* 
-function items_visible(){
-  
-    var table_items = Array.from(document.querySelectorAll(".result_estates__item"));
-    if(screen.width < 800){
-        table_items = table_items.slice(0,3);
-    }else if(screen.width < 1150){
-        if(table_items.length > 6){
-            table_items = table_items.filter(table_item => !table_item.classList.contains("visibility-desktop"))
-        }else{
-            table_items = table_items.slice(0,4);
-        }
-    }
-    return table_items;
-} */
+
 
 function load_list(){
 
@@ -371,8 +372,17 @@ function load_list(){
 }
     
 function load_estates(){
-  //  console.log("loadin");
-   // console.log(all_estates);
+
+    for(let estate of all_estates){
+
+       // console.log(estate.title)
+        if (estate.title.search(/^[0-9]+$/) == -1)
+        {
+             console.log(estate.title);
+        }
+
+    ;}
+  
 
     let items_loaded = document.querySelectorAll(".result_estates__item"); // Erster Block ist ein Reset fuer alle Elemente welche Immobillien anzeigen
     let tables_loaded = document.querySelectorAll(".result_estates__tablenext");
@@ -444,8 +454,6 @@ function load_estates(){
             }
             item.setAttribute("data-id", i+1);            // Hier wird nach der Groesse des Bildschirm die Titel angepasst damit eine schoene Formatierung beibehalten wird
             
-            
-            console.log("ehmm");
 
             checktitlelength(item, i);
 
@@ -669,7 +677,7 @@ function delegation_estatesmain(event){
             else if(screen.width < 1150){table_items = 4;}    
             else{table_items = 6;}
             let id = table_items+1;
-            for(let i = 0; i < Math.ceil(all_estates.length/table_items); i++){
+            for(let i = 1; i < Math.ceil(all_estates.length/table_items); i++){
                 let table_container = document.querySelector(".result_estates__item-b");
                 let table_neu = document.createElement("ul");
                 table_neu.classList.add("result_estates__tablenext");
@@ -712,59 +720,89 @@ function delegation_estatesmain(event){
         let display_page = document.querySelector(".result_estates__next--actual");
         let pageback = document.querySelectorAll(".result_estates__next--item"); 
 
+
         if(counter_forward == 0){
-
-           table.style.visibility = "hidden";
-           // table.classList.add("result_estates__lefthidden");
     
+           table.style.right = "110%";
+           tables_new[0].style.left = "95%";
+           setTimeout (() =>{ 
+            tables_new[0].style.left = "0%";
+            },1);
 
-            setTimeout (() =>{ 
-                tables_new[0].style.visibility = "visible";
-            },2000);
 
-
-
+           tables_new[0].style.visibility = "visible";
 
             counter_forward++;
             display_page.innerText = 2;
 
 
         }else if(counter_forward == 1){
-            tables_new[0].style.visibility = "hidden";
-            setTimeout (() => { 
-                tables_new[1].style.visibility = "visible";
-                
-            },2000);
-            counter_forward++;
-            display_page.innerText = 3;
+
+            tables_new[0].style.left = null;
+            tables_new[0].style.right = "0%";
+            
+            setTimeout (() =>{ 
+                tables_new[0].style.right = "110%";
+            },1);
+
+            tables_new[1].style.left = "95%";
+            setTimeout (() =>{ 
+                tables_new[1].style.left = "0%";
+            },1);
+           tables_new[1].style.visibility = "visible";
+            
+           counter_forward++;
+           display_page.innerText = 3;
+
+          
         }else if(counter_forward == 2){
-            tables_new[1].style.visibility = "hidden";
-            setTimeout (() => { 
-                tables_new[2].style.visibility = "visible";
-                
-            },2000);
+
+            tables_new[1].style.left = null;
+            tables_new[1].style.right = "0%";
+
+            setTimeout (() =>{ 
+                tables_new[1].style.right = "110%";
+            },1);
+
+            tables_new[2].style.left = "95%";
+            setTimeout (() =>{ 
+                tables_new[2].style.left = "0%";
+            },1);
+            tables_new[2].style.visibility = "visible";
+            
+
             counter_forward++;
             display_page.innerText = 4;
         }else if(counter_forward == 3){
-            tables_new[2].style.visibility = "hidden";
-            setTimeout (() => { 
-                tables_new[3].style.visibility = "visible";
-                
-            },2000);
+
+            tables_new[2].style.left = null;
+            tables_new[2].style.right = "0%";
+
+            setTimeout (() =>{ 
+                tables_new[2].style.right = "110%";
+            },1);
+
+            tables_new[3].style.left = "95%";
+            setTimeout (() =>{ 
+                tables_new[3].style.left = "0%";
+            },1);
+            tables_new[3].style.visibility = "visible";
             counter_forward++;
             display_page.innerText = 5;
-            pageback[1].lastElementChild.style.visibility = "hidden";
+
         }
         
         
         setTimeout (() => { 
             pageback[0].style.visibility = "visible";
+            pageback[0].style.cursor = "pointer";
             pause = 0;
-        },1900);
+        },2000);
         
         
     }
     back_items:if(element.matches(".result_estates__next--back") || element.parentNode.classList.contains("result_estates__next--back")){ 
+        
         if(pause == 1){
             break back_items;
         }
@@ -776,43 +814,52 @@ function delegation_estatesmain(event){
         let pageback = document.querySelectorAll(".result_estates__next--item"); 
         
         
-        if(counter_forward == 1){
-            tables_new[0].style.visibility = "hidden";
-            setTimeout (() => { 
-                table.style.visibility = "visible";
-                pageback[0].style.visibility = "hidden";
-                pause = 0;
-            },2000);
+        if(counter_forward == 1){ 
+            if(tables_new[0].style.right = "0%"){
+                tables_new[0].style.right = null;
+                tables_new[0].style.left = "0%";
+            }
+            setTimeout (() =>{ 
+                tables_new[0].style.left = "95%";
+            },1);
+            pageback[0].style.visibility = "hidden";
+            pageback[0].style.cursor = null;
+            table.style.right = "0%";
             counter_forward--;
             display_page.innerText = 1;
         }else if(counter_forward == 2){
-            tables_new[1].style.visibility = "hidden";
-            setTimeout (() => { 
-                tables_new[0].style.visibility = "visible";
-                pause = 0;
-            },2000);
+            if(tables_new[1].style.right = "0%"){
+                tables_new[1].style.right = null;
+                tables_new[1].style.left = "0%";
+            }
+            setTimeout (() =>{ 
+                tables_new[1].style.left = "95%";
+            },1);
+            tables_new[0].style.right = "0%";
             counter_forward--;
             display_page.innerText = 2;
         }else if(counter_forward == 3){
-            tables_new[2].style.visibility = "hidden";
-            setTimeout (() => { 
-                tables_new[1].style.visibility = "visible";
-                pause = 0;
-            },2000);
+            if(tables_new[2].style.right = "0%"){
+                tables_new[2].style.right = null;
+                tables_new[2].style.left = "0%";
+            }
+            setTimeout (() =>{ 
+                tables_new[2].style.left = "95%";
+            },1);
+            tables_new[1].style.right = "0%";
             counter_forward--;
             display_page.innerText = 3;
         }else if(counter_forward == 4){
-            pageback[1].lastElementChild.style.visibility = "visible";
-            tables_new[3].style.visibility = "hidden";
-            setTimeout (() => { 
-                tables_new[2].style.visibility = "visible";
-                pause = 0;
-            },2000);
+            tables_new[3].style.left = "95%";
+            tables_new[2].style.right = "0%";
             counter_forward--;
             display_page.innerText = 4;
         }
+
+        setTimeout (() => { 
+            pause = 0;
+        },1900);
       
-        
     }
     if(element.matches("path") || element.matches("rect")){ 
         if(element.parentNode.classList.contains("footer__totop")){
@@ -820,7 +867,6 @@ function delegation_estatesmain(event){
         }
     }
 }
-
 
 
 function close_dropdown(dropdown, input_icon){
@@ -1008,6 +1054,8 @@ function estatedetails_delegation(event){
         inputs = Array.from(inputs).slice(2, inputs.length);
         if(inputs[5].value == ""){
             window.alert("Bitte Email Adresse ausfüllen !");
+
+           
             break Absenden;
         }
         for(let input of inputs){
@@ -1202,7 +1250,7 @@ function navigation(actual_page){
 
 function totop(){
 
-    window.scrollTo({top: 0, behavior: 'smooth'});
+    window.scrollTo({top: 0 }); // behavior: 'smooth'
    // document.body.scrollTop = 0; // For Safari
    // document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }

@@ -1062,22 +1062,11 @@ input[type=range]::-moz-range-thumb{
       width: 83.2%;
       margin-left: 8.8%;
       margin-right: 8%;
-      right: 0%;
+   //   right: 0%;
     //  left: 110%;
       transition: all 2s linear;
     }
-    &__right{
-      right: 0%;
-    }
-    &__left{
-      left: 0%;
-    }
-    &__righthidden{
-      left: 110%;
-    }
-    &__lefthidden{
-      right: 110%;
-    }
+   
     &__table{ 
       position: relative;
       display: inline-flex;
@@ -1119,7 +1108,6 @@ input[type=range]::-moz-range-thumb{
       padding-bottom: 102px;
       margin-top: 2.66px;
       line-height: 30px;
-      cursor: pointer;
       &--item{ 
         position: relative;
         display: flex;
@@ -1128,6 +1116,9 @@ input[type=range]::-moz-range-thumb{
       }
       &--item:nth-child(1){
         visibility: hidden;
+      }
+      &--item:nth-child(2){
+        cursor: pointer;
       }
       &--item:nth-child(2){
         left: 0.4167%;
