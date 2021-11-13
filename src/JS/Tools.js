@@ -5,7 +5,7 @@
 
 import * as images from "./Images.js";
 import { GraphQLClient, gql } from 'graphql-request';
-const graphQLClient = new GraphQLClient('https://dev21-api.web-professionals.ch/graphql'); //    // http://localhost:4000/graphql
+
 var wrapper_estatesmain = document.querySelector("#main");
 var all_estates = [];
 
@@ -30,6 +30,9 @@ var filters = {
 
 async function load_api(){
 
+    const graphQLClient = new GraphQLClient('https://backend-appli.herokuapp.com/graphql');
+    const graphQLClient_save = new GraphQLClient('https://dev21-api.web-professionals.ch/graphql');
+    var estates = [];
     all_estates = [];
 
     const query_allentries = gql` 
@@ -56,10 +59,57 @@ async function load_api(){
         }
     `; 
 
-    var estates = await graphQLClient.request(query_allentries);
+    
+    try{
+        estates = await graphQLClient.request(query_allentries);
+    }catch (error) {
+        console.error();
+        try{
+            estates = await graphQLClient_save.request(query_allentries);
+            console.log(estates);
+        }catch(error){
+            console.error();
+          //  estates = {estates: [{ id: "1", country: "Schweiz", canton: "Luzern", availability: "ab sofort", canton: "Luzern", city: "Sursee", country: "Feuerberge", created_at: "2021-11-08 15:33:14", description: "An mystischer Lage in der Nähe des berühmten Greenwhich Waldes verkaufen wir das vollständig renovierten Gebäude. Das Haus bietet mit den 13 attraktiven Räumen einem grosszügigen Umschwung am See eine nicht alltägliche und einzigartige Atmosphäre.",
+             //           estate_type: "zu verkaufen", id: "1", lat: 47.1715422, long: 8.1262825, prize: 900000, ref_type_id: 1, title: "Bijou am See", updated_at: "2021-11-08 15:33:14", usable_area: 300, zip: 6214 }]};
+        }  
+    }
+    
+    
+ 
+
+ /*
+
+ 
+
+    async function main() {
+        const endpoint = 'https://api.graph.cool/simple/v1/cixos23120m0n0173veiiwrjr'
+      
+        const query = gql`
+          {
+            Movie(title: "Inception") {
+              releaseDate
+              actors {
+                fullname # "Cannot query field 'fullname' on type 'Actor'. Did you mean 'name'?"
+              }
+            }
+          }
+        `
+      
+        try {
+          const data = await request(endpoint, query)
+          console.log(JSON.stringify(data, undefined, 2))
+        } catch (error) {
+          console.error(JSON.stringify(error, undefined, 2))
+          process.exit(1)
+        }
+      }
+      
+      main().catch((error) => console.error(error))
 
 
-    /*
+
+
+   
     var makeServerRequest = new Promise(async(resolve, reject) => {
 
         if (estates) {
@@ -263,34 +313,43 @@ function sort_estates(filters){
         }
     } 
 
+/* Hier werden die Immobilien nach Titel Sortiert, zuerst wird gefiltert ob der Titel eine Zahl enthält.
+ Wenn die Auswahl abwärts ist : Zuerst die Immobilien mit den hoechsten Wertigkeit nach Zimmeranzahl dann die Immobilen nach Alphabetischer sortierung A-Z.
+ Wenn die Auswahl aufwärts ist : Zuerst die Immobilen nach Alphabetischer sortierung Z-A, danach die Immobilien nach Zimmeranzahl niedrigster zuerst. */
+
     if(filters.select_title != "none"){ 
 
-        // filter nach zahlen , dann nach buchstaben
-        for(let estate of all_estates){
+        var estates_numbered = [];
+        var estates_letters = [];
 
-            console.log(estate.title)
-            if (estate.title.search(/^[0-9]+$/) == -1)
-            {
-                 console.log(estate.title);
+        for(let estate of all_estates){      
+            if(/[0-9]/.test(estate.title)){
+                estates_numbered.push(estate);
+            }else{
+                estates_letters.push(estate);
             }
-
-        ;}
-
-
-
-        
-
-        all_estates.sort((a, b) => {    
-            return a.title - b.title;  
-        });
-
-
-       
-
-        if(filters.select_title == "up"){
-            all_estates.reverse();
         }
-
+        if(filters.select_title == "down"){
+            estates_numbered.sort((a, b) => {    
+                return a.title < b.title; 
+                // down hoechstes zuerst 
+            });
+            estates_letters.sort((a, b) => {    
+                return a.title > b.title;  
+                // down hoechstes zuerst B 
+            });
+            all_estates = estates_numbered.concat(estates_letters);
+        }else{
+            estates_numbered.sort((a, b) => {    
+                return a.title < b.title; 
+                // down hoechstes zuerst 
+            });
+            estates_letters.sort((a, b) => {    
+                return a.title < b.title;  
+                // down hoechstes zuerst B 
+            });
+            all_estates = estates_letters.concat(estates_numbered);   
+        }
     }
     
     if(filters.select_location != "none"){
@@ -373,17 +432,7 @@ function load_list(){
     
 function load_estates(){
 
-    for(let estate of all_estates){
-
-       // console.log(estate.title)
-        if (estate.title.search(/^[0-9]+$/) == -1)
-        {
-             console.log(estate.title);
-        }
-
-    ;}
-  
-
+   console.log(all_estates);
     let items_loaded = document.querySelectorAll(".result_estates__item"); // Erster Block ist ein Reset fuer alle Elemente welche Immobillien anzeigen
     let tables_loaded = document.querySelectorAll(".result_estates__tablenext");
     let container_newest = document.querySelector("#estates_actuals");
@@ -409,6 +458,11 @@ function load_estates(){
     }
     let first_table = document.querySelector(".result_estates__table");
     first_table.style.visibility = "visible";
+
+    if(document.querySelector(".result_estates__item-b").firstElementChild.classList.contains("result_estates__animation")){
+        document.querySelector(".result_estates__item-b").firstElementChild.remove();
+    }
+    
     let noresults = document.querySelectorAll(".result_estates__empty");
     if(noresults != null){
         noresults.forEach((noresult) =>{
@@ -438,7 +492,6 @@ function load_estates(){
         else if(screen.width < 1150){table_items = 4;}    
         else{table_items = 6;}
         
-        
         displaypages.innerText = Math.ceil(all_estates.length / table_items);
     
         for(let i = 0; i < table_items; i++){
@@ -455,17 +508,10 @@ function load_estates(){
             item.setAttribute("data-id", i+1);            // Hier wird nach der Groesse des Bildschirm die Titel angepasst damit eine schoene Formatierung beibehalten wird
             
 
-            checktitlelength(item, i);
-
-
-            console.log(item);
-        
-                
+            checktitlelength(item, i);  
             first_table.appendChild(item);
-                  
         }
-
-        if(screen.width > 1150 && all_estates.length == 2){
+        if(screen.width > 1150 && all_estates.length == 2){    // Ein Element wird geschaffen damit der Style beibehalten wird. 
             let item = document.createElement("li");
             item.classList.add("result_estates__item");
             item.style.visibility = "hidden";
@@ -476,10 +522,13 @@ function load_estates(){
         let newest_estates = document.createElement("ul"); // Kreiert die Aktuellsten Elemente in Detail Ansicht
         newest_estates.classList.add("estates_actuals__list");
         
-        all_estates.sort((a, b) => {    
+        all_estates.sort((a, b) => {                // Filter fuer die aktuellsten elemente
             return a.updated_at < b.updated_at;  
         });
         for(let i = 0; i < 3; i++){
+            if(i == all_estates.length){
+                break;
+            }
             let li = document.createElement("li");
             li.classList.add("estates_actuals__list--item");
             li.setAttribute("data-id", all_estates[i].id);
@@ -487,7 +536,8 @@ function load_estates(){
             newest_estates.appendChild(li);
         }
         container_newest.insertBefore(newest_estates, document.querySelector(".estates_actuals__all"));
-        all_estates = all_estates_origin;
+
+     //   all_estates = all_estates_origin;
       //  console.log("nach dem item laden");
       //  console.log(all_estates_origin);
       //  console.log(all_estates);
@@ -498,17 +548,17 @@ function delegation_estatesmain(event){
     console.log(event.target);
        
     var element = event.target;
-    dropdown: if(element.matches(".select__main") || element.matches(".select__main--svg") || element.parentNode.classList.contains("select__main--svg") || element.matches(".select__main--text")){ 
+    dropdown: if(element.matches(".main_estates__select--main") || element.matches(".main_estates__select--svg") || element.parentNode.classList.contains("main_estates__select--svg") || element.matches(".main_estates__select--text")){ 
         let dropdown = element.parentNode.lastElementChild;
         let input_icon = element.lastElementChild;
-        if(element.classList.contains("select__main--text")){
+        if(element.classList.contains("main_estates__select--text")){
             dropdown = element.parentNode.parentNode.lastElementChild;
             input_icon = element.parentNode.lastElementChild;
-        }else if(element.classList.contains("select__main--svg")){
+        }else if(element.classList.contains("main_estates__select--svg")){
             dropdown = element.parentNode.parentNode.lastElementChild;
             input_icon = element;
         }else if(element.nodeName == "path"){
-            if(element.parentNode.classList == "select__main--svg"){
+            if(element.parentNode.classList == "main_estates__select--svg"){
                 dropdown = element.parentNode.parentNode.parentNode.lastElementChild;
                 input_icon = element.parentNode;
             }else{
@@ -526,12 +576,12 @@ function delegation_estatesmain(event){
             input_icon.style.transform = "rotate(0deg)"; 
         } 
     }
-    if(element.matches(".select__dropdown--item")){
+    if(element.matches(".main_estates__select--item")){
         element.parentNode.parentNode.firstElementChild.firstElementChild.innerText = element.firstElementChild.innerText;
         element.parentNode.style.display = "none";
         element.parentNode.parentNode.firstElementChild.lastElementChild.style.transform = "rotate(0deg)";
     }
-    if(element.matches(".select__dropdown--text")){
+    if(element.matches(".main_estates__select--textdropdown")){
         element.parentNode.parentNode.parentNode.firstElementChild.firstElementChild.innerText = element.innerText;
         element.parentNode.parentNode.style.display = "none";
         element.parentNode.parentNode.parentNode.firstElementChild.lastElementChild.style.transform = "rotate(0deg)";
@@ -540,7 +590,7 @@ function delegation_estatesmain(event){
        ruler_state();
     }
     if(element.matches(".main_estates__btn") || element.matches(".main_estates__btn--text")){
-        let all_inputs = document.querySelectorAll(".select__main--text");
+        let all_inputs = document.querySelectorAll(".main_estates__select--main");
         filters.select_what = all_inputs[0].innerText;
         filters.select_where = all_inputs[1].innerText;
         filters.select_sort = all_inputs[2].innerText;
@@ -664,12 +714,13 @@ function delegation_estatesmain(event){
         }
     }
     forward_items:if(element.matches(".result_estates__next--forward") || element.parentNode.classList.contains("result_estates__next--forward")){ 
-        
-
+        let pageback = document.querySelectorAll(".result_estates__next--item");
         if(pause == 1 || document.querySelector(".result_estates__next--actual").innerText == document.querySelector(".result_estates__next--total").innerText){
+            
             break forward_items;
         }
         pause = 1;
+        
         var tables_new = document.querySelectorAll(".result_estates__tablenext");
         if(tables_new.length == 0){
             let table_items;
@@ -718,7 +769,7 @@ function delegation_estatesmain(event){
         let table = document.querySelector(".result_estates__table");
         
         let display_page = document.querySelector(".result_estates__next--actual");
-        let pageback = document.querySelectorAll(".result_estates__next--item"); 
+         
 
 
         if(counter_forward == 0){
@@ -799,6 +850,9 @@ function delegation_estatesmain(event){
             pause = 0;
         },2000);
         
+        if(document.querySelector(".result_estates__next--actual").innerText == document.querySelector(".result_estates__next--total").innerText){
+            pageback[1].lastElementChild.style.visibility = "hidden";
+        }
         
     }
     back_items:if(element.matches(".result_estates__next--back") || element.parentNode.classList.contains("result_estates__next--back")){ 
@@ -807,12 +861,12 @@ function delegation_estatesmain(event){
             break back_items;
         }
         pause = 1;
-
+        
         let table = document.querySelector(".result_estates__table");
         let tables_new = document.querySelectorAll(".result_estates__tablenext");
         let display_page = document.querySelector(".result_estates__next--actual");
         let pageback = document.querySelectorAll(".result_estates__next--item"); 
-        
+        pageback[1].lastElementChild.style.visibility = "visible";
         
         if(counter_forward == 1){ 
             if(tables_new[0].style.right = "0%"){
@@ -928,9 +982,11 @@ function showorhide_details(choice, id = 0){
         wrapper_estatesresult.style.display = "none";
         wrapper_detailview.style.display = "block";
         window.scrollTo(0, 0);
+        console.log(all_estates);
         var item_details = all_estates.filter(all_estates =>{
             return id == all_estates.id;
         });
+        console.log(item_details.id);
         item_details = item_details[0];
         estate_details.setAttribute("data-id", item_details.id);
         if((item_details.estate_type.length + item_details.title.length) > 38){
@@ -1074,7 +1130,7 @@ function estatedetails_delegation(event){
         }else{
             wishes.push("Kein Termin");
         }
-        let mail = `mailto:HomeHouseOffice@mail.com?subject=Neue Anfrage&body=`+
+        let mail = `mailto:HomeHouseOffice@mail.com?subject=Anfrage Immobilie: ${contact.children[2].lastElementChild.innerText}&body=`+
         `Vorname:%20${inputs[0].value}%20Nachname:%20${inputs[1].value}%0A`+
         `Adresse:%20${inputs[2].value}%20PLZ:%20${inputs[3].value}%0A`+
         `Ort:%20${inputs[4].value}%0AEmail:%20${inputs[5].value}%0A`+
@@ -1114,59 +1170,107 @@ function estatedetails_delegation(event){
 -------------------------------------------------------------- */
 function checktitlelength(item, selector){ 
 
+    var title_copy = all_estates[selector].title;
+
     if(screen.width < 420){
+        
         if(all_estates[selector].title.length > 22){  
-            let title_copy = all_estates[selector].title;
+            
             all_estates[selector].title = all_estates[selector].title.substr(0,22)+"...";
             item.innerHTML = create_entrys(0, selector);
-            all_estates[selector].title = title_copy;
+            
         }else{
             item.innerHTML = create_entrys(0, selector);
         }
        
-    }
-    else if(screen.width > 800 && screen.width < 850){
+    }else if(screen.width > 799 && screen.width < 850){
+
+        
         if(all_estates[selector].title.length > 17){  
-            let title_copy = all_estates[selector].title;
+            
             all_estates[selector].title = all_estates[selector].title.substr(0,15)+"...";
             item.innerHTML = create_entrys(0, selector);
-            all_estates[selector].title = title_copy;
+            
         }else{
             item.innerHTML = create_entrys(0, selector);
         }
-    }
-    else if(screen.width > 850 && screen.width < 1150){
-        if(all_estates[selector].title.length > 25){    
-            let title_copy = all_estates[selector].title;
-            all_estates[selector].title = all_estates[selector].title.substr(0,19)+"...";
+    }else if(screen.width > 849 && screen.width < 1001){
+        
+        if(all_estates[selector].title.length > 17){    
+           
+            all_estates[selector].title = all_estates[selector].title.substr(0,16)+"...";
             item.innerHTML = create_entrys(0, selector);
-            all_estates[selector].title = title_copy;
+            
         }else{
             item.innerHTML = create_entrys(0, selector);
         }
-    }else if(screen.width > 1150 && screen.width < 1350){
-        if(all_estates[selector].title.length > 15){
-            let title_copy = all_estates[selector].title;
-            all_estates[selector].title = all_estates[selector].title.substr(0,14)+"...";
+    }else if(screen.width > 1000 && screen.width < 1150){
+        
+        if(all_estates[selector].title.length > 20){    
+           
+            all_estates[selector].title = all_estates[selector].title.substr(0,20)+"...";
             item.innerHTML = create_entrys(0, selector);
-            all_estates[selector].title = title_copy;
+            
         }else{
+            item.innerHTML = create_entrys(0, selector);
+        }
+    }else if(screen.width > 1149 && screen.width < 1351){
+        let availability_copy = all_estates[selector].availability;
+        if(all_estates[selector].availability == "nach Vereinbarung"){
+            all_estates[selector].availability = "nach Vereinbar...";
+        }
+        if(all_estates[selector].title.length > 15){     
+            all_estates[selector].title = all_estates[selector].title.substr(0,13)+"...";
+            if(all_estates[selector].prize > 9999){
+                item.innerHTML = create_entrys(2, selector);
+            }else{
+                item.innerHTML = create_entrys(0, selector);
+            }      
+        }else{
+            if(all_estates[selector].prize > 9999){
+                item.innerHTML = create_entrys(2, selector);
+            }else{
+                item.innerHTML = create_entrys(0, selector);
+            }
+        }
+        all_estates[selector].availability = availability_copy;
+    }else if(screen.width > 1350 && screen.width < 1501){
 
-            item.innerHTML = create_entrys(0, selector);
-        }
-    }else if(screen.width > 1350){
-        if(all_estates[selector].title.length > 20){
-            let title_copy = all_estates[selector].title;
+        if(all_estates[selector].title.length > 19){
+            
             all_estates[selector].title = all_estates[selector].title.substr(0,18)+"...";
             item.innerHTML = create_entrys(0, selector);
-            all_estates[selector].title = title_copy;
+            
         }else{
             item.innerHTML = create_entrys(0, selector);
         }
+
+    }else if(screen.width > 1500 && screen.width < 1600){
+
+        if(all_estates[selector].title.length > 26){
+            
+            all_estates[selector].title = all_estates[selector].title.substr(0,19)+"...";
+            item.innerHTML = create_entrys(0, selector);
+            
+        }else{
+            item.innerHTML = create_entrys(0, selector);
+        }
+        
+    }else if(screen.width > 1600){
+        
+        if(all_estates[selector].title.length > 26){
+            
+            all_estates[selector].title = all_estates[selector].title.substr(0,22)+"...";
+            item.innerHTML = create_entrys(0, selector);
+            
+        }else{
+            item.innerHTML = create_entrys(0, selector);
+        }
+        
     }else{
         item.innerHTML = create_entrys(0,selector);
     }
-
+    all_estates[selector].title = title_copy;
     
     return item;
 
@@ -1177,9 +1281,23 @@ function checktitlelength(item, selector){
 
 
 
-function create_entrys(choice = 0, selektor){
+function create_entrys(choice, selektor){
 
-    if(choice == 1){
+    if(choice == 0){
+
+        let item = `
+            <img class="result_estates__item--picture" src="${all_estates[selektor].img}">
+            <div class="result_estates__description">
+                <p class="result_estates__description--text regular">${all_estates[selektor].estate_type} ${all_estates[selektor].availability}</p>
+                <p class="result_estates__description--text regular">${all_estates[selektor].zip} ${all_estates[selektor].city}, ${all_estates[selektor].canton}</p>
+                <h3 class="result_estates__description--title bold">${all_estates[selektor].title}</h3>
+                <p class="result_estates__description--text regular">Fläche ${all_estates[selektor].usable_area}m², Preis: CHF ${all_estates[selektor].prize}</p>   
+            </div>
+        `;
+  
+        return item;
+
+    }else if(choice == 1){
 
         let item = `
             <img class="estates_actuals__list--picture" src="${all_estates[selektor].img}">
@@ -1190,25 +1308,32 @@ function create_entrys(choice = 0, selektor){
                 <p class="estates_actuals__description--text regular">Fläche ${all_estates[selektor].usable_area}m², Preis: CHF ${all_estates[selektor].prize}</p>
             </div>
         `;
-        
+       
+    
+        return item;
+    }else{
+
+        let item = `
+            <img class="result_estates__item--picture" src="${all_estates[selektor].img}">
+            <div class="result_estates__description">
+                <p class="result_estates__description--text regular">${all_estates[selektor].estate_type} ${all_estates[selektor].availability}</p>
+                <p class="result_estates__description--text regular">${all_estates[selektor].zip} ${all_estates[selektor].city}, ${all_estates[selektor].canton}</p>
+                <h3 class="result_estates__description--title bold">${all_estates[selektor].title}</h3>
+                <p class="result_estates__description--text regular">Fläche ${all_estates[selektor].usable_area}m²</p>   
+                <p class="result_estates__description--text regular">Preis: CHF ${all_estates[selektor].prize}</p> 
+            </div>
+        `;
+  
         return item;
 
-    }else{
-        
-        let item = `
-        <img class="result_estates__item--picture" src="${all_estates[selektor].img}">
-        <div class="result_estates__description">
-            <p class="result_estates__description--text regular">${all_estates[selektor].estate_type} ${all_estates[selektor].availability}</p>
-            <p class="result_estates__description--text regular">${all_estates[selektor].zip} ${all_estates[selektor].city}, ${all_estates[selektor].canton}</p>
-            <h3 class="result_estates__description--title bold">${all_estates[selektor].title}</h3>
-            <p class="result_estates__description--text regular">Fläche ${all_estates[selektor].usable_area}m², Preis: CHF ${all_estates[selektor].prize}</p>   
-        </div>
-    `;
-    
-    return item;
+
     }
     
     
+
+
+
+
 }
 
 
@@ -1219,7 +1344,7 @@ function create_entrys(choice = 0, selektor){
 function resize_page(){
     window.addEventListener("resize", ()=>{
         location.reload();
-      //  load_estates();
+        load_estates();
         return 1;
     });
 }
@@ -1235,12 +1360,12 @@ function navigation(actual_page){
     nav.addEventListener("click", (event)=>{
         let element = event.target;
         if(element.matches(".nav__ham") || element.parentNode.classList.contains("nav__ham")){
-            nav.style.opacity = "1";
+            nav.firstElementChild.style.opacity = "1";
             ham_mobile.style.display = "none";
             close_mobile.style.display = "inline-block";
             nav_menu_mobile.style.display = "block";
         }else if (element.matches(".nav__close") || element.parentNode.classList.contains("nav__close")){
-            nav.style.opacity = "0.85";
+            nav.firstElementChild.style.opacity = "0.85";
             ham_mobile.style.display = "inline-block";
             close_mobile.style.display = "none";
             nav_menu_mobile.style.display = "none";

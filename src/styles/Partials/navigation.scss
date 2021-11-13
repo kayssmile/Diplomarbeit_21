@@ -4,24 +4,29 @@
 -------------------------------------------------------------- */
 
 .nav{
-  position: absolute;
+  position: fixed;
+  width: 100%;
+  height: 76px;
+  z-index: 11;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  height: 76px;
-  background-color: $heading-general;
-  opacity: 1;
-  z-index: 1;  
+  &__background{
+    position: fixed;
+    height: 76px;
+    width: 100%;
+    background-color: $heading-general;
+    opacity: 0.85;
+  }  
   &__logo{
-    transform: scale(0.615);
-    margin-left: 20px;    
+    transform: scale(0.615);     
   }
   &__ham{
     display: inline-block;
     margin-right: 25px;
     fill: black;
     cursor: pointer;
+    z-index: 1;
   }
   &__ham:hover{
     fill: $elem-hover;
@@ -31,6 +36,7 @@
     margin-right: 25px;
     stroke: black;
     cursor: pointer;
+    z-index: 1;
   }
   &__close:hover{
     stroke: $elem-hover;
@@ -41,41 +47,51 @@
 }
 
 .nav_menu{
-  position: absolute;
+  position: fixed;
   display: none;
   background-color: $elem-general;
   z-index: 11;
   width: 100%;
-  top: 76px;
+  height: 100vh;
+  top: 75px;
   &__select-a{
     position: relative;
     list-style-type: none;
     padding-top: 80px;
     padding-bottom: 71px;
   }
+  &__select-a > li:nth-child(2){
+    margin: 12px 0;
+  }
   &__select-b{
     position: relative;
     list-style-type: none;
-    padding-bottom: 284px;
+  }
+  &__select-b > li:nth-child(2){
+    margin-top: 5px;
   }
   &__item{
-    text-align: center;   
+    display: flex;
+    justify-content: center;
+    a{
+      cursor: default; 
+    }
     &--text{
       @extend .font35;
       @extend .regular;
-      line-height: 70px;
+      line-height: 52px;
       color: $letting-general;
+      cursor: pointer;
     }
     &--text-small{
       @extend .font16;
       @extend .regular;
-      line-height: 36px;
+      line-height: 32px;
       color: $letting-general;
+      cursor: pointer;
     }
   }
-  &__item a{
-    text-decoration: none;
-  }
+ 
 }
 
 /*  Responisve Layout 
@@ -87,8 +103,11 @@
 
   .nav{
     height: 132px; 
-    opacity: 0.85;     
+    &__background{
+      height: 132px;  
+    } 
     &__logo{
+      margin-left: 2.5%; 
       transform: scale(1);
       opacity: 1; 
     }
@@ -105,15 +124,15 @@
       justify-content: space-between;
       list-style-type: none;
       margin-right: 2.5%;
-      a{
-        text-decoration: none;
-      }
       &--text{
-        font-style: normal;              
+        @include font22();
+        font-style: normal;
+        color: $letting-general;
+        line-height: 27px;              
       }
     }
     &__item:nth-child(2){
-      margin: 0% 13px;
+      margin: 0% 30px;
     }
   }
 

@@ -20,6 +20,15 @@ Tools.navigation(0);
 Tools.resize_page();
 window.addEventListener("click", Tools.delegation_estatesmain);
 
+document.addEventListener("resize", ()=>{
+   console.log(window.screen.width);
+   console.log(screen.width);
+   console.log(document.width);
+})
+
+
+
+
 /*
 document.addEventListener("scroll", ()=>{
    console.log(window.pageXOffset);
@@ -28,8 +37,8 @@ document.addEventListener("scroll", ()=>{
 
  
 TODO LISTE 
-  ,  , mapsmarker, haus oder Wohnung
- , html email pattern,  sortierung A-Z ,*/ 
+  ,  , mapsmarker, 
+ , ,*/ 
 
 
 /*  Estates Main 

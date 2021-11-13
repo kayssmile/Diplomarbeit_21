@@ -1,41 +1,40 @@
 /*  Mobile First  
 -------------------------------------------------------------- */
 
+
+
+
+   
+    
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*  Heading 
 -------------------------------------------------------------- */
-/* 
-.hero-image{
 
-    position: relative;
-    display: inline-block;
-    background-image: url("../../images/JPG/photo-1523217582562-09d0def993a6.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover; 
-  
-  }
-  
-  .hero-text{
-  
-    position: relative;
-    background-color: white;
-    text-align: center;
-    width: 100%;
-    height: 118px;
-  
-  }
-  
-  */
 
   .heading{
-    position: relative;
     display: flex;
     flex-direction: column;
     width: 100%;
     padding-top: 76px;
     &__picture{
-      position: relative;
-     // background-image: url("../photo-1523217582562-09d0def993a6.jpg");
       width: 100%;
       height: 100%;   
     }
@@ -48,9 +47,10 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      background-color: $background-general;
-      width: 100%;
-      height: 118px;   
+     // width: 100%;
+      height: 118px;
+
+      background-color: $background-general; 
       &--title{
         @extend .font21;
         @extend .regular;
@@ -80,7 +80,7 @@
     align-items: center;
     height: 113px;
     padding-top: 40px;
-    margin-bottom: 0px;    
+      
     background-color: $main-general;
     &--title{
       @extend .font25;
@@ -90,34 +90,39 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    margin: 0% 7.73%;
+    margin-top: -5px;
+    padding-left: 8.8%;
+    padding-right: 8.54%;
   }
   &__selects{
     position: relative;
     display: flex;
     flex-direction: column;
     margin-top: -15px;
+    &--input{
+      height: 120px;
+    }
     &--label{
       @extend .font16;
       display: block;
-      margin-bottom: -30px;
+      margin-top: 3px;
+      margin-bottom: -25px;
     }
   }
-}
-
-.select{
-  display: inline-flex;
-  flex-direction: column;
-  width: 100%;
-  &__main{
-    position: relative;
+  &__select{
     display: inline-flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white;
+    flex-direction: column;
     width: 100%;
-    height: 50px;
-    cursor: pointer;
+    &--main{
+      position: relative;
+      display: inline-flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: white;
+      width: 100%;
+      height: 50px;
+      cursor: pointer;
+    }
     &--text{
       display: inline-block;
       @extend .font18;
@@ -132,29 +137,27 @@
     &--svg:hover{
       stroke: $elem-hover;
     }
-  }
-  &__dropdown{
-    position: absolute;
-    display: none;//inline-flex;
-    flex-direction: column;
-    width: 100%;
-    margin-top: 50px;
-    z-index: 1;
-    cursor: pointer;
-    overflow: hidden;
+    &--dropdown{
+      position: absolute;
+      display: none;//inline-flex;
+      flex-direction: column;
+      width: 100%;
+      margin-top: 50px;
+      z-index: 1;
+      cursor: pointer;
+      overflow: hidden;
+    }
     &--item{
-      @extend .select__main;
+      @extend .main_estates__select--main;
     }
     &--item:hover{
       background-color: $elem-hover;
     }
-    &--text{
-      @extend .select__main--text;
+    &--textdropdown{
+      @extend .main_estates__select--text;
     }
-  }
-}    
-
-.main_estates{
+    
+  }    
   &__setting{
     position: relative;
     display: inline-flex;
@@ -163,7 +166,7 @@
     align-items: center;
     width: 100%;
     height: 50px;
-    margin-top: 31px;
+    margin-top: 46px;
     &--text{
       @extend .font16;
       position: relative;
@@ -204,9 +207,10 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    width: 100%;
+    // width: 100%;
     height: 50px;
-    margin-top: 34px;  
+    margin-top: 41px;
+    margin-right: 1.86%;  
     background-color: $elem-general;
     border: none;
     cursor: pointer;
@@ -222,14 +226,14 @@
     position: relative;
     display: flex;
     justify-content: end;
-    align-items: center;
+    align-items: center;  
     margin-top: 35px;
     padding-bottom: 22px;
     border-bottom: 2px $elem-general solid;
     &--text{
       @extend .font22;
       color: $letting-selected;
-      line-height: 80px;
+      line-height: 40px;
     }
     &--iconlist{
       fill: $elem-general;
@@ -248,7 +252,16 @@
   }
 }
 
-input[type=range]::-moz-range-thumb{
+input[type=range]::-moz-range-thumb{           
+  background: $background-general;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 0px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
   background: $background-general;
   width: 22px;
   height: 22px;
@@ -268,7 +281,8 @@ input[type=range]::-moz-range-thumb{
     position: relative;
     display: none;
     width: 100%;
-    padding: 0px 7.73%;
+    padding-left: 8.8%;
+    padding-right: 8.54%;
     padding-top: 43px;
     padding-bottom: 106px;
   }
@@ -304,6 +318,7 @@ input[type=range]::-moz-range-thumb{
     &--svg{
       margin-left: 15px;
       fill: $elem-general;
+      cursor: pointer;
     }
     &--svg:hover{
       fill: $elem-hover;
@@ -313,9 +328,48 @@ input[type=range]::-moz-range-thumb{
     @extend .result_estates__item-a;
     display: block;
     padding-left: 8.8%;
-    padding-right: 8%;
+    padding-right: 8.54%;
     padding-top: 34px;
     padding-bottom: 46px;
+  }
+  &__animation{
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center; 
+    width: 100%;
+    height: 200px;
+    margin-bottom: 34px;
+    &--circle{
+      position: relative;
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      animation: rotatecircle 1.4s infinite linear;
+      background: linear-gradient(90deg, rgba(208,225,221,1) 26%, rgba(99,156,142,1) 100%);
+    }
+    &--circle:before {
+      width: 50%;
+      height: 50%;
+      background: $main-general;
+      position: absolute;
+      top: 0;
+      left: 0;
+      content: '';
+    }
+    &--circle:after {
+      background: $main-general;
+      width: 75%;
+      height: 75%;
+      border-radius: 50%;
+      content: '';
+      margin: auto;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+    } 
   }
   &__table{ 
     position: relative;
@@ -325,7 +379,7 @@ input[type=range]::-moz-range-thumb{
   &__item{
     display: flex;
     flex-direction: column;
-    margin-bottom: 45px;
+    margin-bottom: 14px;
     width: 100%;
     &--picture{
       position: relative;
@@ -336,7 +390,8 @@ input[type=range]::-moz-range-thumb{
     }
   }   
   &__description{
-    padding-top: 22px;
+    padding-top: 24px;
+    height: 172px;
     &--text{
       @extend .font16;
       line-height: 30px;
@@ -350,7 +405,9 @@ input[type=range]::-moz-range-thumb{
   } 
   &__btn{
     @extend .main_estates__btn;
-    margin-top: 5px;
+    width: 100%;
+    margin-top: -3px;
+    margin-right: 0%;
     @extend .font16;
     color: $background-general;
   }    
@@ -359,6 +416,17 @@ input[type=range]::-moz-range-thumb{
   } 
 }   
   
+@keyframes rotatecircle {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+
 /*  Main : Estate Details View
 -------------------------------------------------------------- */
 
@@ -380,7 +448,7 @@ input[type=range]::-moz-range-thumb{
     display: block;
     width: 100%;
     left: -100%;
-    top: 0%;
+    top: 76px;
     padding: 0px 6.93%;
     padding-top: 27px;
     padding-bottom: 100px;
@@ -784,7 +852,8 @@ input[type=range]::-moz-range-thumb{
       display: block;
     }
     &__section{   
-      height: 200px;              
+      height: 200px;
+      margin-bottom: 20px;               
       &--title{    
         @include font40();
         line-height: 55px;    
@@ -795,7 +864,6 @@ input[type=range]::-moz-range-thumb{
   .main_estates__heading--title{
     @include font35();
   }
-
   .result_estates__item--picture{
     height: 300px;
   }
@@ -808,6 +876,9 @@ input[type=range]::-moz-range-thumb{
     padding-bottom: 62px;
   }
   .estate_details{
+    &__contact{
+      top: 132px;
+    }
     &__nav{
       display: flex;
       flex-direction: row;
@@ -857,6 +928,7 @@ input[type=range]::-moz-range-thumb{
         display: inline-block;
         width: 115px;
         height: 70px;
+        cursor: pointer;
       }
       &--image:nth-child(2){
         margin: 0px 13px;
@@ -977,6 +1049,9 @@ input[type=range]::-moz-range-thumb{
         @include font40();
       }
     }
+    &__filter{
+      padding: 0px 7.74%;
+    }
     &__selects{
       flex-direction: row;
       justify-content: space-between;
@@ -995,6 +1070,12 @@ input[type=range]::-moz-range-thumb{
         margin-bottom: -15px;
       }
     }
+    &__select{
+      &--text{
+        @include font13();
+
+      }    
+    }    
     &__setting{
       width: 31%; 
       margin-top: 65px;
@@ -1021,6 +1102,9 @@ input[type=range]::-moz-range-thumb{
   } 
 
   .result_estates{
+    &__animation{
+      margin-top: 86px;
+    }
     &__list{
       &--entrytop:nth-child(1){
         width: 40%;
@@ -1048,7 +1132,6 @@ input[type=range]::-moz-range-thumb{
       }
     }  
     &__item-b{
-     // display: inline-block;
       padding: 0px 7.74%;
       padding-top: 34px;
       padding-bottom: 0px;
@@ -1246,7 +1329,8 @@ input[type=range]::-moz-range-thumb{
 
   .heading{      
     &__section{    
-      height: 300px;      
+      height: 300px;
+      margin-bottom: 30px;      
       &--title{   
         @include font56();
         line-height: 80px;
@@ -1263,6 +1347,11 @@ input[type=range]::-moz-range-thumb{
         @include font22();
       }
     }
+    &__select{
+      &--text{
+        @include font16();
+      }    
+    }  
     &__setting{
       &--text{
         @include font22();       
@@ -1347,6 +1436,11 @@ input[type=range]::-moz-range-thumb{
 
 
   .main_estates{
+    &__select{
+      &--text{
+        @include font18();
+      }    
+    }
     &__selects--input{
       width: 29.16%;  
     }

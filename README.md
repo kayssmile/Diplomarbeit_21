@@ -47,6 +47,7 @@ um die übersichtlichkeit und einfachheit beizubehalten.
 Vorgabe war 2 Layouts Desktop und Mobile, ich habe mich entschieden das Spektrum von Mobile bis Desktop / Full Responsive
 umzusetzen.
 Für die Übersichtlichkeit wurden alle Schriftgroessen und Arten ausgelagert.
+Code geschrieben fuer max. 30 Immobilien.
 
 JavaScript :
 Eigenheiten:  
@@ -63,6 +64,8 @@ LayoutFrontend : Teilweise Unsicherheit weil Layout verwirend eigene Umsetzung w
 entscheid war dann so dass Diplomarbeit Vorgabe Prioritet hat.
 Umsetzung Frontend aehnlich dem MobileFirst Ansatz zuerst die einfachen Elemente umsetzen
 um ein Gefuehl zu bekommen fuer das Projekt. (nicht von beginn an komplexe Elemente).
+Ein Thema war auch zusaetyliche Feautures im zusammenhang mehr Code.
+Was auch auftrat war ds thema geschwindigkeit im zusammenhang des code ablaufs z.b etwas pruefen oder immer neu schreiben. (pageback item).
 
 Unterricht alles i.O. ist Theorie, was mir fehlte war eine echtes Prakis Projekt nicht zur Umsetzung sondern zum Besprechen. Vorallem fehlen in der Therorie einige Praxis-Hacks. Zum abgucken Feld abdecken
 Unterricht Theorie Objekte.
@@ -70,7 +73,9 @@ Diplomarbeit erschien mir als sehr tolles Projekt um erste Eindrücke zu sammeln
 Einiges an Wissen gewonnen was wichtig ist z.b Config, Struktur von Anfang an Korrekt zu machen. 
 
 
-
+Kopierter Code : 
+Google Maps API - Map deklaration, Marker. Copy & Paste
+Regex gewisse Ausdruecke 
 
 
 
@@ -176,7 +181,7 @@ GraphQL - API
 Planung: 
 11.10 - 31.10
 Umsetzung: 
-17.10 - 01.11.21 // Prototype Fertig
+17.10 - 03.11.21 // Prototype/lauffähige Version Fertig
 
 ### KW44 - KW47 Reserve / Extras <a id="reserve"></a>
 
