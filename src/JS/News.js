@@ -44,6 +44,7 @@ function delegation_news(event){
     let element = event.target;
     if(element.matches(".main-actual__list--btn")){
         window.scrollTo(0,0);
+      //  document.querySelector(".nav__background").style.opacity = "1";
         let img = element.parentNode.parentNode.firstElementChild.getAttribute("src");
         let details_img = document.querySelector(".main-actual-details__picture");
         details_img.setAttribute("src", img );
@@ -59,6 +60,8 @@ function delegation_news(event){
         wrapper_news_article.style.display = "block";
     }
     if(element.matches(".main-actual-details__btn")){
+    //    document.querySelector(".nav__background").style.opacity = "0.85";
+        window.scrollTo(0,0);
         wrapper_news.style.display = "block";
         wrapper_news_article.style.display = "none";
     }

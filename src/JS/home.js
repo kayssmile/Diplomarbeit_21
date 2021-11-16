@@ -8,17 +8,18 @@
 import CSS from "../Styles/Stylesheet.scss";
 import * as Tools from "./Tools.js";
 
-async function load_api(){
+async function app(){
    await Tools.load_api();
+   Tools.load_estates();
+   Tools.ruler_state();
+   Tools.navigation(0);
+   Tools.resize_page();
+   window.addEventListener("click", Tools.delegation_estatesmain);
 }
 
-await load_api();
+app();
 
-Tools.load_estates();
-Tools.ruler_state();
-Tools.navigation(0);
-Tools.resize_page();
-window.addEventListener("click", Tools.delegation_estatesmain);
+
 
 document.addEventListener("resize", ()=>{
    console.log(window.screen.width);

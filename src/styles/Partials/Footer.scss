@@ -1,6 +1,4 @@
-/*  Mobile First 
--------------------------------------------------------------- */
-/*  Footer 
+/*   Home & House Immobilien : Footer
 -------------------------------------------------------------- */
 
 .footer{
@@ -35,8 +33,6 @@
 
 /*  Responisve Layout  
 -------------------------------------------------------------- */
-/*  Footer 
--------------------------------------------------------------- */
 
 @media (min-width: 800px){
 
@@ -49,6 +45,7 @@
         &__item{
             position: relative;
             display: inline-block;
+            width: 29.16%;
             margin-top: 16px;
             &--text{
                 @extend .font18;
@@ -56,18 +53,14 @@
             }
         }
         &__item:nth-child(1){
-            width: 29.16%;
-            margin-top: 21px;
-            
+            margin-top: 21px;   
         }
         &__item:nth-child(2){
-            width: 29.16%;
             li:nth-child(5){
             margin-top: 37.69px;
             }
         }
         &__item:nth-child(4){
-            width: 29.16%;
             li:nth-child(4){
             margin-top: 37.69px;
             }
@@ -75,11 +68,9 @@
         &__totop{
             position: relative;
             display: block;
-            left: 93.81%;
+            left: 93.15%;
             margin-top: -50px;
-            margin-bottom: 51px;
-            
-            
+            margin-bottom: 51px;     
         }
     } 
 }

@@ -1,13 +1,12 @@
-/*  Mobile First  
+/*  Home & House Immobilien : News
 -------------------------------------------------------------- */
-
-/*  Main
+/*  News: Main
 -------------------------------------------------------------- */
 
 .main-actual{
   position: relative;
   display: block;
-  padding: 0px 6.2%;
+  padding: 0px 6.4%;
   padding-top: 76px;
   background-color: $main-general;
   &__heading{
@@ -20,6 +19,7 @@
     }
   }
   &__list{
+    margin-top: -6.38px;
     &--picture{
       display: block;
       width: 100%;
@@ -58,17 +58,35 @@
       width: 119px;
       height: 45px;
       margin-top: 25px;
-      margin-bottom: 70px;
+      margin-bottom: 70.17px;
     }
     &--btn:hover{
       background-color: $elem-hover;
     }
+    &--item:nth-child(2){
+      .main-actual__list--btn{
+        margin-bottom: 86px;
+      }
+    }
+    &--item:nth-child(3){
+      .main-actual__list--btn{
+        margin-bottom: 76px;
+      }
+    }
+    &--item:nth-child(4){
+      .main-actual__list--btn{
+        margin-bottom: 59px;
+      }
+    }
   }
 }
 
+/*  News: Details 
+-------------------------------------------------------------- */
+
 .main-actual-details{
   background-color: $main-general;
-  display: none;//block;
+  display: none;
   &__picture{
     display: block;
     width: 100%;
@@ -105,20 +123,22 @@
     @extend .main-actual__list--btn;
     width: 145px;
     margin-top: 50px;
-    margin-bottom: 81px;
+    margin-bottom: 80.83px;
     }
   &__btn:hover{
     background-color: $elem-hover;
   }
 }
 
+/*  Full Responisve Design: 
+Mobile: 300px - 500px
+Tabletsmall: 500px - 800px
+Tablet: 800px - 1150px
+Desktop: 1150px - 2000px
+-------------------------------------------------------------- */
+/*  News: Main/Details - Tabletsmall
+-------------------------------------------------------------- */
 
-
-
-
-
-  /*  Responisve Design 
-  -------------------------------------------------------------- */
 @media (min-width: 500px){
 
   .main-actual{  
@@ -144,8 +164,9 @@
   }
   .main-actual-details{
     &__picture{
-      height: 501.18px;
+      height: 633.18px;// 501px;//633.18px;
       padding-top: 0px;
+      padding-top: 132px;
     }
     &__article{
       &--text{
@@ -173,10 +194,13 @@
     &__btn{
       width: 145px;
       margin-top: 50px;
-      margin-bottom: 133px;
+      margin-bottom: 135px;
       }
   }
 } 
+
+/*  News: Main/Details - Tablet
+-------------------------------------------------------------- */
 
 @media (min-width: 800px){
 
@@ -255,7 +279,7 @@
 @media (min-width: 1000px){
 
   .main-actual{
-    padding-left: 7.85%;
+    padding-left: 7.86%;
     padding-right: 8.87%;
     padding-bottom: 59px;
     &__list{
@@ -265,7 +289,7 @@
       &--item:nth-child(2){
         margin-bottom: 77px;
         .main-actual__list--description{
-          margin-right: 90px;
+          margin-right: 28px;
         }
       }
       &--item:nth-child(3){
@@ -273,7 +297,7 @@
       }
       &--item:nth-child(4){
         .main-actual__list--description{  
-          margin-right: 90px;
+          margin-right: 27px;
         }
       }
       &--description{
@@ -304,6 +328,9 @@
     }
   }
 }
+
+/*  News: Main/Details - Desktop
+-------------------------------------------------------------- */
 
 @media (min-width: 1350px){
     
@@ -350,7 +377,7 @@
   }
   .main-actual-details{
     &__article{
-      padding: 0px 23.8%;
+      padding: 0px 23.81%;
     }
   }
 }

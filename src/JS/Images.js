@@ -1,7 +1,6 @@
 /*  Alle Import Deklarationen für Bilder/images 
 -------------------------------------------------------------- */
 
-
 import id1_main from "../Images/JPG/photo-1464146072230-91cabc968266.jpg";
 
 // Bijou am See
