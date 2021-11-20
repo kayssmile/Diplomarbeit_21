@@ -250,6 +250,9 @@ Webpack 5
 
 # Technische Dokumentation <a id="tech_dokumentation"></a>
 
+Eckdaten fuers Backend : maximale Immobilien : 20stk.
+maximale Bilderanzahl: 5
+Feature: Immobilien ganze Schweiz
 Bedienung, Interaktion mit der Website. 
 Handhabung der Filter 
 Einstellungsmoeglichkeiten 

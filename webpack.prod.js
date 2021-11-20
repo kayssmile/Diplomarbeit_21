@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 
 
+
 module.exports = merge(common, {
   mode: "production",
   output: {
@@ -19,7 +20,6 @@ module.exports = merge(common, {
       filename: "[name].[contenthash].css"
     }),
   ],
-  
   module: {
     rules: [
       {

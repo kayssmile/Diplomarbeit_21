@@ -1,16 +1,18 @@
-/*  Home & House Estates : index/home
+/*  Home & House Estates : Home Application
 --------------------------------------------------------------*/
 /*  Imports
 --------------------------------------------------------------*/
 
-
-
 import CSS from "../Styles/Stylesheet.scss";
 import * as Tools from "./Tools.js";
+
+/*  App
+--------------------------------------------------------------*/
 
 async function app(){
    await Tools.load_api();
    Tools.load_estates();
+   Tools.load_estates_newest();
    Tools.ruler_state();
    Tools.navigation(0);
    Tools.resize_page();
@@ -18,38 +20,3 @@ async function app(){
 }
 
 app();
-
-
-
-document.addEventListener("resize", ()=>{
-   console.log(window.screen.width);
-   console.log(screen.width);
-   console.log(document.width);
-})
-
-
-
-
-/*
-document.addEventListener("scroll", ()=>{
-   console.log(window.pageXOffset);
-   console.log(window.pageYOffset);
-})
-
- 
-TODO LISTE 
-  ,  , mapsmarker, 
- , ,*/ 
-
-
-/*  Estates Main 
--------------------------------------------------------------- */
-
-
-
-
-
-
-
-
-
