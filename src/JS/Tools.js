@@ -296,7 +296,9 @@ function delegation_estatesmain(event){
             table_items.forEach((table_item) =>{
                 table_item.remove();
             })
-            window.scrollTo(0, 1404);
+            document.querySelector(".main_estates__options--iconlist").scrollIntoView({
+                behavior: 'smooth'
+            }); 
             id = 0;
         }
         for(let i = 0; i < 3; i++){
@@ -310,6 +312,10 @@ function delegation_estatesmain(event){
             checktitlelength(table_item, id);   
             document.querySelector(".result_estates__table").insertBefore(table_item, document.querySelector(".result_estates__table").children[id]);
             id++;
+        }
+        table_items = document.querySelectorAll(".result_estates__item"); 
+        if(table_items.length == all_estates.length){
+            element.innerText = "Zurück";
         }
     }
     forward_items:if(element.matches(".result_estates__next--forward") || element.parentNode.classList.contains("result_estates__next--forward")){ 
@@ -491,8 +497,8 @@ function load_estates(){
     first_table.style.transitionDuration = "0s";
     first_table.style.visibility = "visible";
     first_table.style.right = null;
+    btn.style.display = "flex";
     list_estates.style.display = "block";
-    btn.style.visibility = "visible";
     list.shift();
     counter_forward = 0;
     for(let entry of list){
@@ -509,7 +515,7 @@ function load_estates(){
     if(noresults != null){
         noresults.forEach((noresult) =>{
             noresult.remove();
-        })     
+        });     
     }
     document.querySelector(".result_estates__next--actual").innerText = 1;
     pages_forward[0].style.visibility = "hidden";
@@ -528,7 +534,7 @@ function load_estates(){
         list_estates.style.display = "none";
         document.querySelector(".result_estates__item-a").appendChild(item2);
         displaypages.innerText = 1;
-        btn.style.visibility = "hidden";
+        btn.style.display = "none";
         pages_forward[1].lastElementChild.style.visibility = "hidden";
     }else{
 /* Die Immobilien/Filterergebnisse werden geladen */  
@@ -553,6 +559,9 @@ function load_estates(){
             item.setAttribute("data-id", i+1);   
             checktitlelength(item, i);
             first_table.appendChild(item);
+        }
+        if(table_items == 3 && all_estates.length < 3){
+            btn.style.display = "none";
         }
         if(all_estates.length == table_items || all_estates.length < table_items){
             pages_forward[1].lastElementChild.style.visibility = "hidden";
@@ -767,39 +776,26 @@ function estatedetails_delegation(event){
         showorhide_details(1);  
     }
     if(element.matches(".estate_details__slider--left") || element.matches(".slider_left")){
-        console.log(imgs.length);
-        
-
         if(img_index == 0){
             img.setAttribute("src", imgs[imgs.length-1].getAttribute("src"));
             img.setAttribute("data-index", imgs.length);
         }
-        else{
-            console.log(img.dataset.index);
-            console.log(img.dataset.index-1);
-            var ids = img.dataset.index-1;
-            console.log(imgs[ids]);
-
-            img.setAttribute("src", imgs[img.dataset.index-1].getAttribute("src"));
-            img.setAttribute("data-index", img.dataset.index-1);
-        }
-        /* 
-        else if(img_index == imgs.length){
+        else if(img_index == 1){
+            img.setAttribute("src", img.getAttribute("data-img"));
+            img.setAttribute("data-index", 0);
+        }else{
             img.setAttribute("src", imgs[img_index-2].getAttribute("src"));
-            img.setAttribute("data-index", img_index-1);
-        }*/
-
-
-
+            img.setAttribute("data-index", parseInt(img_index)-1);
+        }
     }
     if(element.matches(".estate_details__slider--right") || element.matches(".slider_right")){
-        if(img_index == 3){
-            img.setAttribute("src", img.dataset.img);
-            img.setAttribute("data-index", "0");
+        if(img_index == imgs.length){
+            img.setAttribute("src", img.getAttribute("data-img"));
+            img.setAttribute("data-index", 0);
         }else{
             img.setAttribute("src", imgs[img_index].getAttribute("src"));
-            img.setAttribute("data-index", (parseInt(img_index)+1));
-        } 
+            img.setAttribute("data-index", parseInt(img_index)+1);
+        }
     }
     if(element.matches(".estate_details__images--image")){
         let img_main = document.querySelector(".estate_details__slider--picture");
@@ -1043,12 +1039,6 @@ function sort_estates(filters){
             });
             icon_list = 2;
         }else{
-            /* 
-            for(let estate of all_estates){
-                console.log(estate);
-                estate.updated_at = (Date.parse(estate.updated_at)/1000);
-                console.log(estate);
-            }*/
             if(filters.select_sort == "Datum absteigend"){
                 all_estates.sort((a, b) => {  
                     return a.updated_at > b.updated_at;
@@ -1166,7 +1156,6 @@ function showorhide_details(choice, id = 0){
         estate_details.children[3].lastElementChild.firstElementChild.setAttribute("src", item_details.img);
         estate_details.children[3].lastElementChild.firstElementChild.setAttribute("data-index", 0);
         estate_details.children[3].lastElementChild.firstElementChild.setAttribute("data-img", item_details.img);
-        
         estate_details.children[4].innerHTML = "";
         if(item_details.countImgs === 3){
             estate_details.children[4].innerHTML = `
@@ -1210,8 +1199,7 @@ function showorhide_details(choice, id = 0){
         });
         initMap({lat:parseFloat(item_details.lat.toFixed(4)), lng:parseFloat(item_details.long.toFixed(4))}, estate_details.children[6].classList);
         wrapper_detailview.addEventListener("click", estatedetails_delegation);
-    }else{
-        
+    }else{  
         wrapper_detailview.style.display = "none";
         heading_estatesmain.style.display = "flex";
         wrapper_estatesmain.style.display = "block";
