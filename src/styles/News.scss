@@ -1,6 +1,6 @@
-/*  Home & House Immobilien : News
+/* Home & House Immobilien : News
 -------------------------------------------------------------- */
-/*  News: Main
+/* News: Main
 -------------------------------------------------------------- */
 
 .main-actual{
@@ -81,7 +81,7 @@
   }
 }
 
-/*  News: Details 
+/* News: Details 
 -------------------------------------------------------------- */
 
 .main-actual-details{
@@ -136,7 +136,7 @@ Tabletsmall: 500px - 800px
 Tablet: 800px - 1150px
 Desktop: 1150px - 2000px
 -------------------------------------------------------------- */
-/*  News: Main/Details - Tabletsmall
+/* News: Main/Details - Tabletsmall
 -------------------------------------------------------------- */
 
 @media (min-width: 500px){
@@ -164,7 +164,7 @@ Desktop: 1150px - 2000px
   }
   .main-actual-details{
     &__picture{
-      height: 633.18px;// 501px;//633.18px;
+      height: 633.18px;
       padding-top: 0px;
       padding-top: 132px;
     }
@@ -199,7 +199,7 @@ Desktop: 1150px - 2000px
   }
 } 
 
-/*  News: Main/Details - Tablet
+/* News: Main/Details - Tablet
 -------------------------------------------------------------- */
 
 @media (min-width: 800px){
@@ -329,7 +329,7 @@ Desktop: 1150px - 2000px
   }
 }
 
-/*  News: Main/Details - Desktop
+/* News: Main/Details - Desktop
 -------------------------------------------------------------- */
 
 @media (min-width: 1350px){
@@ -381,5 +381,3 @@ Desktop: 1150px - 2000px
     }
   }
 }
-
- 

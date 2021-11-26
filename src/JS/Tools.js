@@ -1,9 +1,12 @@
-/*  Tools 
+/* Home & House Immobilien Application : Tools
 -------------------------------------------------------------- */
-/* Necessary: Imports, Declarations, Selectors
+/* Tools : Dependencies                                                                                                                                                                         Head Heart Web <3 Consult your WebDoc about Middleware, Margin and Padding 
 -------------------------------------------------------------- */
  
 import { GraphQLClient, gql } from 'graphql-request';
+
+/* Tools: Imports, Declarations, Selectors
+-------------------------------------------------------------- */
 
 var wrapper_estatesmain = document.querySelector("#main");
 var all_estates = [];
@@ -22,13 +25,12 @@ var filters = {
     select_location: "none"
 };
 
-
-/*  GRAPHQL API
+/* GRAPHQL API
 -------------------------------------------------------------- */
 
 async function load_api(){
 
-    const graphQLClient = new GraphQLClient('http://localhost:4000/graphql');   // https://backend-appli.herokuapp.com/graphql
+    const graphQLClient = new GraphQLClient('https://backend-appli.herokuapp.com/graphql');   //   'http://localhost:4000/graphql'
     const graphQLClient_save = new GraphQLClient('https://dev21-api.web-professionals.ch/graphql');
     var estates = [];  
     all_estates = [];
@@ -53,11 +55,10 @@ async function load_api(){
                 created_at
                 updated_at
                 ref_type_id
-               img
-               img1
-               img2
-               img3
-               
+                img
+                img1
+                img2
+                img3   
             }
         }
     `;
@@ -148,10 +149,11 @@ async function load_api(){
     all_estates_origin = all_estates;
 }   
 
-/*  Estates Main : Delegation
+/* Home : Main-Delegation
 -------------------------------------------------------------- */
 
 function delegation_estatesmain(event){
+    console.log(event.target);
     var pageback = document.querySelectorAll(".result_estates__next--item");   
     var element = event.target;
     dropdown: if(element.matches(".main_estates__select--main") || element.matches(".main_estates__select--svg") || element.parentNode.classList.contains("main_estates__select--svg") || element.matches(".main_estates__select--text")){ 
@@ -191,10 +193,10 @@ function delegation_estatesmain(event){
         element.parentNode.parentNode.parentNode.firstElementChild.firstElementChild.innerText = element.innerText;
         element.parentNode.parentNode.style.display = "none";
         element.parentNode.parentNode.parentNode.firstElementChild.lastElementChild.style.transform = "rotate(0deg)";
-    }
+    } 
     if(element.matches(".main_estates__ruler--slider")){
        ruler_state();
-    }
+    } 
     if(element.matches(".main_estates__btn") || element.matches(".main_estates__btn--text")){
         let all_inputs = document.querySelectorAll(".main_estates__select--main");
         filters.select_what = all_inputs[0].innerText;
@@ -206,7 +208,7 @@ function delegation_estatesmain(event){
             filters.ruler = document.querySelectorAll(".main_estates__ruler--slider")[0].value;
         }
         sort_estates(filters);
-        document.querySelector(".main_estates__options--iconlist").scrollIntoView({
+        document.querySelector(".main_estates__btn").scrollIntoView({
             behavior: 'smooth'
         });          
     }
@@ -223,13 +225,16 @@ function delegation_estatesmain(event){
             listortable(1, event.target.parentNode);
         }
     }
-    if(element.matches(".result_estates__list--svg") || element.parentNode.parentNode.classList.contains("result_estates__list--svg")){
+    if(element.matches(".result_estates__list--svg") || element.parentNode.parentNode.classList.contains("result_estates__list--svg") || element.parentNode.classList.contains("result_estates__list--entrytop")){
         filters = { select_what : "Alle Objekte", select_where : "Alle Orte", select_sort: "Sortierung", ruler: "none", select_area: "none", select_title:"none", select_location: "none"};
         var sort_order;
-        var item ;
+        var item;
         if(element.classList.contains("result_estates__list--svg")){
             sort_order = element.parentNode.firstElementChild.innerText;
             item = element;
+        }else if(element.parentNode.classList.contains("result_estates__list--entrytop")){ 
+            sort_order = element.innerText
+            item = element.parentNode.children[1];
         }else{ 
             sort_order = element.parentNode.parentNode.parentNode.firstElementChild.innerText;
             item = element.parentNode.parentNode;
@@ -279,7 +284,7 @@ function delegation_estatesmain(event){
         filters.ruler = 0;
         sort_estates(filters);
     }
-    if(element.matches(".result_estates__list--title")){
+    if(element.matches(".result_estates__list--title") && element.parentNode.classList.contains("result_estates__list--entry")){
         showorhide_details(0, element.parentNode.getAttribute("data-id"));
     }
     if(element.matches(".result_estates__item--picture")){
@@ -318,7 +323,7 @@ function delegation_estatesmain(event){
             element.innerText = "Zurück";
         }
     }
-    forward_items:if(element.matches(".result_estates__next--forward") || element.parentNode.classList.contains("result_estates__next--forward")){ 
+    forward_items:if(element.matches(".next") || element.matches(".result_estates__next--forward") || element.parentNode.classList.contains("result_estates__next--forward")){ 
         if(pause == 1 || document.querySelector(".result_estates__next--actual").innerText == document.querySelector(".result_estates__next--total").innerText){
             break forward_items;
         }
@@ -356,15 +361,14 @@ function delegation_estatesmain(event){
                 table_container.insertBefore(table_neu, document.querySelector(".result_estates__btn"));
             }
         }
-
         tables_new = document.querySelectorAll(".result_estates__tablenext");
         let table = document.querySelector(".result_estates__table");
         let display_page = document.querySelector(".result_estates__next--actual");
-/* Hier wird die Transition gestartet gemäss Zähler, Verzögerungen sind notwendig fürs Rendering */ 
+/* Hier wird die Transition gestartet gemäss Zähler, Verzögerungen sind notwendig für die Browser-Engine */ 
         if(counter_forward == 0){
            table.style.right = "110%";
            tables_new[0].style.left = "95%";
-           setTimeout (() =>{ 
+           setTimeout(() =>{ 
             tables_new[0].style.left = "0%";
             },1);
            tables_new[0].style.visibility = "visible";
@@ -373,11 +377,11 @@ function delegation_estatesmain(event){
         }else if(counter_forward == 1){
             tables_new[0].style.left = null;
             tables_new[0].style.right = "0%"; 
-            setTimeout (() =>{ 
+            setTimeout(() =>{ 
                 tables_new[0].style.right = "110%";
             },1);
             tables_new[1].style.left = "95%";
-            setTimeout (() =>{ 
+            setTimeout(() =>{ 
                 tables_new[1].style.left = "0%";
             },1);
            tables_new[1].style.visibility = "visible";    
@@ -386,11 +390,11 @@ function delegation_estatesmain(event){
         }else if(counter_forward == 2){
             tables_new[1].style.left = null;
             tables_new[1].style.right = "0%";
-            setTimeout (() =>{ 
+            setTimeout(() =>{ 
                 tables_new[1].style.right = "110%";
             },1);
             tables_new[2].style.left = "95%";
-            setTimeout (() =>{ 
+            setTimeout(() =>{ 
                 tables_new[2].style.left = "0%";
             },1);
             tables_new[2].style.visibility = "visible";
@@ -399,18 +403,18 @@ function delegation_estatesmain(event){
         }else if(counter_forward == 3){
             tables_new[2].style.left = null;
             tables_new[2].style.right = "0%";
-            setTimeout (() =>{ 
+            setTimeout(() =>{ 
                 tables_new[2].style.right = "110%";
             },1);
             tables_new[3].style.left = "95%";
-            setTimeout (() =>{ 
+            setTimeout(() =>{ 
                 tables_new[3].style.left = "0%";
             },1);
             tables_new[3].style.visibility = "visible";
             counter_forward++;
             display_page.innerText = 5;
         }  
-        setTimeout (() => { 
+        setTimeout(() => { 
             pageback[0].style.visibility = "visible";
             pageback[0].style.cursor = "pointer";
             pause = 0;
@@ -419,8 +423,8 @@ function delegation_estatesmain(event){
             pageback[1].lastElementChild.style.visibility = "hidden";
         }    
     }
-    back_items:if(element.matches(".result_estates__next--back") || element.parentNode.classList.contains("result_estates__next--back")){ 
- /* Auswahl zurück : es wird die Transition gemäss Zähler gestartet, Verzögerungen notwendig fürs rendering */       
+    back_items:if(element.matches(".back") || element.matches(".result_estates__next--back") || element.parentNode.classList.contains("result_estates__next--back")){ 
+/* Auswahl zurück : es wird die Transition gemäss Zähler(counter_forward) gestartet, Verzögerungen notwendig für die Browser-Engine */       
         if(pause == 1){
             break back_items;
         }
@@ -434,7 +438,7 @@ function delegation_estatesmain(event){
                 tables_new[0].style.right = null;
                 tables_new[0].style.left = "0%";
             }
-            setTimeout (() =>{ 
+            setTimeout(() =>{ 
                 tables_new[0].style.left = "95%";
             },1);
             pageback[0].style.visibility = "hidden";
@@ -447,7 +451,7 @@ function delegation_estatesmain(event){
                 tables_new[1].style.right = null;
                 tables_new[1].style.left = "0%";
             }
-            setTimeout (() =>{ 
+            setTimeout(() =>{ 
                 tables_new[1].style.left = "95%";
             },1);
             tables_new[0].style.right = "0%";
@@ -458,7 +462,7 @@ function delegation_estatesmain(event){
                 tables_new[2].style.right = null;
                 tables_new[2].style.left = "0%";
             }
-            setTimeout (() =>{ 
+            setTimeout(() =>{ 
                 tables_new[2].style.left = "95%";
             },1);
             tables_new[1].style.right = "0%";
@@ -470,7 +474,7 @@ function delegation_estatesmain(event){
             counter_forward--;
             display_page.innerText = 4;
         }
-        setTimeout (() => { 
+        setTimeout(() => { 
             pause = 0;
         },2000);
     }
@@ -481,19 +485,20 @@ function delegation_estatesmain(event){
     }
 }
 
-/*  Estates Main : Functions
+/*  Home : Functions
 -------------------------------------------------------------- */
 
 function load_estates(){
-    
-/* Am Anfang werden alle bereits geladenen Elemente/Immobilien gelöscht und ein Reset der Transition wird gemacht */   
-/* let table_loaded bedeutet ein Behälter für Immobilien */ 
+/* Am Anfang werden alle bereits geladenen Elemente/Immobilien gelöscht und ein Reset der Transition wird gemacht,
+   dann werden alle Elemente geladen.   
+/* Variablen table_loaded und first_table sind die "Container" für Immobilien */ 
     let tables_loaded = document.querySelectorAll(".result_estates__tablenext");
+    let first_table = document.querySelector(".result_estates__table");
     let list = Array.from(document.querySelectorAll(".result_estates__list--entry"));
     let btn = document.querySelector(".result_estates__btn");
     let list_estates = document.querySelector(".result_estates__list");
-    let first_table = document.querySelector(".result_estates__table");
     let pages_forward = document.querySelectorAll(".result_estates__next--item");
+    let noresults = document.querySelectorAll(".result_estates__empty");
     first_table.style.transitionDuration = "0s";
     first_table.style.visibility = "visible";
     first_table.style.right = null;
@@ -511,7 +516,6 @@ function load_estates(){
     if(document.querySelector(".result_estates__item-b").firstElementChild.classList.contains("result_estates__animation")){
         document.querySelector(".result_estates__item-b").firstElementChild.remove();
     }
-    let noresults = document.querySelectorAll(".result_estates__empty");
     if(noresults != null){
         noresults.forEach((noresult) =>{
             noresult.remove();
@@ -525,19 +529,19 @@ function load_estates(){
     if(all_estates == 0){  
         let item = document.createElement("h1");
         item.classList.add("result_estates__empty");
-        item.innerText = "Upsss..Keine Ergebnisse";
+        item.innerText = "Ihre Suche liefert keine Ergebnisse";
         item.style.marginTop = "9px";
         first_table.appendChild(item);
         let item2 = document.createElement("h1");
         item2.classList.add("result_estates__empty");
-        item2.innerText = "Upsss..Keine Ergebnisse";
+        item2.innerText = "Ihre Suche liefert keine Ergebnisse";
         list_estates.style.display = "none";
         document.querySelector(".result_estates__item-a").appendChild(item2);
         displaypages.innerText = 1;
         btn.style.display = "none";
         pages_forward[1].lastElementChild.style.visibility = "hidden";
     }else{
-/* Die Immobilien/Filterergebnisse werden geladen */  
+/* Die neuen Immobilien/Filterergebnisse werden geladen, entsprechend der Bildschirmauflösung */  
         load_list();   
         let table_items;
         if(screen.width < 800){table_items = 3;}
@@ -763,7 +767,7 @@ function checktitlelength(item, selector){
     return item;
 }
 
-/* Home : Estate Detail View Home&House 
+/* Home : Estate Detail View 
 -------------------------------------------------------------- */
 
 function estatedetails_delegation(event){
@@ -772,8 +776,11 @@ function estatedetails_delegation(event){
     let img = document.querySelector(".estate_details__slider--picture");
     let img_index = img.dataset.index; 
     let element = event.target;
-    if(element.matches(".estate_details__nav--svg") || element.matches(".estate_details__nav--path")){
-        showorhide_details(1);  
+    if(element.matches(".estate_details__nav--svg") || element.matches(".estate_details__nav--path") || element.matches(".estate_details__nav--text")){
+        showorhide_details(1);
+        document.querySelector(".main_estates__ruler").scrollIntoView({
+            behavior: 'smooth'
+        });
     }
     if(element.matches(".estate_details__slider--left") || element.matches(".slider_left")){
         if(img_index == 0){
@@ -878,14 +885,14 @@ function estatedetails_delegation(event){
             showorhide_details(0, element.parentNode.parentNode.dataset.id); 
         }
     }
-    if(element.matches(".estates_actuals__all--svg") || element.parentNode.classList.contains("estates_actuals__all--svg")){
+    if(element.matches(".estates_actuals__all--text") ||element.matches(".estates_actuals__all--svg") || element.parentNode.classList.contains("estates_actuals__all--svg")){
         filters.select_sort = "Datum absteigend";
         sort_estates(filters);
         showorhide_details(1, 0); 
     }
 }
 
-/* News Delegation                                                                                                                                                                          Head Heart Web <3 Consult your WebDoc about Middleware, Margin and Padding 
+/* News: Delegation                                                                                                                                                                          Head Heart Web <3 Consult your WebDoc about Middleware, Margin and Padding 
 -------------------------------------------------------------- */
 
 function delegation_news(event){
@@ -930,7 +937,6 @@ function delegation_news(event){
 -------------------------------------------------------------- */
 
 function sort_estates(filters){
-    console.log(all_estates);
     all_estates = all_estates_origin;
     if(filters.select_what != "Alle Objekte"){
         if(filters.select_what != "Haus"){ 
@@ -1209,7 +1215,6 @@ function showorhide_details(choice, id = 0){
 }
 
 function create_entrys(choice, selektor){
-    /* In dieser Funktion werden die Elemente pro Immobilie kreiert */ 
     if(choice == 0){
         let item = `
             <img class="result_estates__item--picture" src="${all_estates[selektor].img}">
@@ -1250,8 +1255,8 @@ function create_entrys(choice, selektor){
 function resize_page(){
     window.addEventListener("resize", ()=>{
         location.reload();
-        console.log("done");
         load_estates();
+        console.log("done");
         return 1;
     });
 }

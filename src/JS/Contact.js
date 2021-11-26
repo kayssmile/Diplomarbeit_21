@@ -9,7 +9,6 @@ import * as Tools from "./Tools.js";
 /*  App
 -------------------------------------------------------------- */
 
-
 function app(){
     Tools.navigation(2);
     Tools.resize_page();
@@ -17,9 +16,3 @@ function app(){
  }
  
  app();
-
-
-
-
-
-

@@ -1,4 +1,4 @@
-/*  Die Body Masse für eine klare Richtlinie innerhalb aller Browser Versionen CSS RESET!
+/*  CSS - Reset
 -------------------------------------------------------------- */
 
 * {
@@ -14,15 +14,14 @@ html, body{
   font-family: 'Montserrat', Arial, sans-serif;
   line-height: 80px;
   font-size: 16px;
-  letter-spacing: -1.5%;
 }
   
 body{   
   background-color: $background-general;
   background-repeat: no-repeat;
-  min-height: 100vh;
   padding: 0px;
   margin: 0px;
+  cursor: default;
 }
 
 /*  Projektspezifische Richtlinien

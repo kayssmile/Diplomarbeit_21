@@ -3,35 +3,33 @@
 /*  Heading 
 -------------------------------------------------------------- */
 
-  .heading{
-    display: flex;
-    flex-direction: column;
+.heading{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-top: 76px;
+  &__picture{
     width: 100%;
-    padding-top: 76px;
-    &__picture{
-      width: 100%;
-      height: 100%;   
-    }
-    &__picture:nth-child(2){
-      display: none;
-    }
-    &__section{
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-     // width: 100%;
-      height: 118px;
-
-      background-color: $background-general; 
-      &--title{
-        @extend .font21;
-        @extend .regular;
-        line-height: 33px;
-      } 
-    }  
+    height: 100%;   
   }
+  &__picture:nth-child(2){
+    display: none;
+  }
+  &__section{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 118px;
+    background-color: $background-general; 
+    &--title{
+      @extend .font21;
+      @extend .regular;
+      line-height: 33px;
+    } 
+  }  
+}
   
 /*  Main : Searchmodulation (Selects,Filter)
 -------------------------------------------------------------- */
@@ -137,7 +135,7 @@
       position: relative;
       display: inline-block;
       width: 30%;
-      text-align: start;  
+      text-align: start;
     }
     &--text:nth-child(3){
       color: $letting-selected;
@@ -172,7 +170,6 @@
     text-align: center;
     height: 50px;
     margin-top: 41px;
-    margin-right: 1.86%;  
     background-color: $elem-general;
     border: none;
     cursor: pointer;
@@ -221,7 +218,7 @@ input[type=range]::-moz-range-thumb{
   border: 0px;
 }
 
-input[type=range]::-webkit-slider-thumb {
+input[type=range]::-webkit-slider-thumb{
   -webkit-appearance: none;
   background: $background-general;
   width: 22px;
@@ -241,8 +238,7 @@ input[type=range]::-webkit-slider-thumb {
   &__item-a{
     display: none;
     width: 100%;
-    padding-left: 8.8%;
-    padding-right: 8.54%;
+    padding: 0px 7.74%;
     padding-top: 43px;
     padding-bottom: 106px;
   }
@@ -251,6 +247,38 @@ input[type=range]::-webkit-slider-thumb {
       display: flex;
       flex-direction: row;
       align-items: center;
+    }
+    &--entrytop:nth-child(1):hover{
+      .result_estates__list--title{
+        color: $elem-hover;
+      }
+      .result_estates__list--svg{
+        fill: $elem-hover;
+      }
+    }
+    &--entrytop:nth-child(2):hover{
+      .result_estates__list--title{
+        color: $elem-hover;
+      }
+      .result_estates__list--svg{
+        fill: $elem-hover;
+      }
+    }
+    &--entrytop:nth-child(3):hover{
+      .result_estates__list--title{
+        color: $elem-hover;
+      }
+      .result_estates__list--svg{
+        fill: $elem-hover;
+      }
+    }
+    &--entrytop:nth-child(4):hover{
+      .result_estates__list--title{
+        color: $elem-hover;
+      }
+      .result_estates__list--svg{
+        fill: $elem-hover;
+      }
     }
     &--entrytop .result_estates__list--title{
       color: $letting-selected;
@@ -263,19 +291,19 @@ input[type=range]::-webkit-slider-thumb {
     }
     &--title{
       @extend .font16;
+      padding-right: 15px;
       line-height: 55px;
       color: $black;
+      cursor: pointer;
     }
     &--text{
       @extend .result_estates__list--title;
+      padding-right: 0px;
+      cursor: default;
     }
     &--svg{
-      margin-left: 15px;
       fill: $elem-general;
       cursor: pointer;
-    }
-    &--svg:hover{
-      fill: $elem-hover;
     }
   }
   &__item-b{
@@ -347,7 +375,7 @@ input[type=range]::-webkit-slider-thumb {
     &--text{
       @extend .font16;
       line-height: 30px;
-      letter-spacing: -1.5%;
+      cursor: default;
     }
     &--title{
       @extend .font20;
@@ -551,12 +579,19 @@ input[type=range]::-webkit-slider-thumb {
       margin-top: 27px;
       line-height: 0px;
       stroke: $black;
-    }
-    &--svg:hover{
-      stroke: $elem-hover;
+      cursor: pointer;
     }
     &--text{
       display: none;
+      cursor: pointer;
+    }
+  }
+  &__nav:hover{
+    .estate_details__nav--svg{
+      stroke: $elem-hover;
+    }
+    .estate_details__nav--text{
+      color: $elem-hover;
     }
   }
   &__goback:hover{
@@ -648,6 +683,7 @@ input[type=range]::-webkit-slider-thumb {
     background-color:black;
     margin-left: 5.867%;
     margin-right: 6.934%;
+    border: 1px $heading-general solid;
   }
   &__title{
     @extend .font16;
@@ -674,11 +710,12 @@ input[type=range]::-webkit-slider-thumb {
   }
 }
 
-/*  Main : Estate Details: Actual Estates
+/* Main : Estate Details: Actual Estates
 -------------------------------------------------------------- */
 
 #estates_actuals{
   background-color: $heading-general;
+  padding-bottom: 50px;
 }
 .estates_actuals{
   &__heading{
@@ -723,17 +760,23 @@ input[type=range]::-webkit-slider-thumb {
     justify-content: end;
     align-items: center;
     margin: 0px 8.8%;
-    margin-top: -15px;//-34px;
-    padding-bottom: 50px;
+    margin-top: -15px;
     &--text{
       @extend .font18;
       line-height: 30px;
+      padding-right: 15px;
+      cursor: pointer;
     }
     &--svg{
       stroke: $black;
-      margin-left: 15px;
+      cursor: pointer;
     }
-    &--svg:hover{
+  }
+  &__all:hover{
+    .estates_actuals__all--text{
+      color: $elem-hover;
+    }
+    .estates_actuals__all--svg{
       stroke: $elem-hover;
     }
   }
@@ -757,7 +800,7 @@ Tabletsmall: 500px - 800px
 Tablet: 800px - 1150px
 Desktop: 1150px - 2000px
 -------------------------------------------------------------- */
-/*  Estates Main  - Tabletsmall
+/* Estates Main  - Tabletsmall
 -------------------------------------------------------------- */
 @media (min-width: 500px){
 
@@ -819,7 +862,7 @@ Desktop: 1150px - 2000px
     height: 300px;
   }
 
-  /* Estate Details View  - Tabletsmall
+/* Estate Details View  - Tabletsmall
 -------------------------------------------------------------- */
 
   #estate_details{
@@ -842,7 +885,7 @@ Desktop: 1150px - 2000px
         display: inline-block;
         line-height: 30px;
         @include font18();
-        margin-left: 23px;
+        padding-left: 23px;
       }
     }
     &__heading{
@@ -914,6 +957,7 @@ Desktop: 1150px - 2000px
         background-color: $elem-general;
         color: $background-general;
         border: none;
+        cursor: pointer;
       }
       &--btn:hover{
         background-color: $elem-hover;
@@ -984,7 +1028,7 @@ Desktop: 1150px - 2000px
      
 }
 
- /* Estates Main - Tablet
+/* Estates Main - Tablet
 -------------------------------------------------------------- */
 
 @media (min-width: 800px){
@@ -1066,8 +1110,7 @@ Desktop: 1150px - 2000px
         justify-content: flex-end;
       }
       &--entry > .result_estates__list--title{ 
-          width: 40%;
-        //  cursor: pointer;     
+          width: 40%;    
       }
       &--title{
         @include font18();
@@ -1141,6 +1184,22 @@ Desktop: 1150px - 2000px
         flex-direction: row;
         align-items: center;
       }
+      &--item:nth-child(2):hover{
+        .result_estates__next--text{
+          color: $elem-hover;
+        }
+        .result_estates__next--forward{
+          stroke:  $elem-hover;
+        }
+      }
+      &--item:nth-child(1):hover{
+        .result_estates__next--text{
+          color: $elem-hover;
+        }
+        .result_estates__next--back{
+          stroke:  $elem-hover;
+        }
+      }
       &--item:nth-child(1){
         visibility: hidden;
       }
@@ -1164,9 +1223,6 @@ Desktop: 1150px - 2000px
       &--forward{
         margin-left: 18px;
         stroke: $elem-general;
-      }
-      &--forward:hover{
-        stroke:  $elem-hover;
       }
     }
   } 
@@ -1224,7 +1280,6 @@ Desktop: 1150px - 2000px
         p{
           @include font18();
           margin-left: 19px;
-          
         }
       }
       &--item:nth-child(9){
@@ -1282,7 +1337,7 @@ Desktop: 1150px - 2000px
     }      
   } 
 
- /* Estates Main - Tablet
+/* Estates Main - Tablet
 -------------------------------------------------------------- */
 
   .main_estates{
@@ -1316,8 +1371,12 @@ Desktop: 1150px - 2000px
     }
   }
 
- /* Estate Detail View - Tablet
+/* Estate Detail View - Tablet
 -------------------------------------------------------------- */
+
+  #estates_actuals{
+    padding-bottom: 97px;
+  }
 
   .estate_details{
     &__nav{
@@ -1366,14 +1425,11 @@ Desktop: 1150px - 2000px
         height: 240px;
       }
     }
-    &__all{
-      padding-bottom: 97px;
-    } 
   }
 
 } 
 
- /* Estates Main - Desktop
+/* Estates Main - Desktop
 -------------------------------------------------------------- */
 
 @media (min-width: 1150px){
@@ -1396,6 +1452,9 @@ Desktop: 1150px - 2000px
   }
 
   .result_estates{
+    &__item-a{
+      padding-bottom: 138px;
+    }
     &__list{
       &--entrytop:nth-child(1){
         width: 30%;
@@ -1436,7 +1495,7 @@ Desktop: 1150px - 2000px
     }
   } 
 
-  /* Estate Detail View - Desktop
+/* Estate Detail View - Desktop
 -------------------------------------------------------------- */ 
 
   .estate_details{
@@ -1543,7 +1602,7 @@ Desktop: 1150px - 2000px
 
 }
 
-  /* Estates Main - Desktop
+/* Estates Main - Desktop
 -------------------------------------------------------------- */ 
 
 @media (min-width: 1300px){
@@ -1556,7 +1615,7 @@ Desktop: 1150px - 2000px
     }
   } 
 
- /* Estate Detail View - Desktop
+/* Estate Detail View - Desktop
 -------------------------------------------------------------- */ 
 
   .estate_details{
@@ -1572,7 +1631,7 @@ Desktop: 1150px - 2000px
 
 } 
 
-  /* Estates Main - Desktop
+/* Estates Main - Desktop
 -------------------------------------------------------------- */ 
 
 @media (min-width: 1450px){
@@ -1585,7 +1644,7 @@ Desktop: 1150px - 2000px
     }
   } 
 
- /* Estate Detail View - Desktop
+/* Estate Detail View - Desktop
 -------------------------------------------------------------- */ 
 
   .estate_details{
