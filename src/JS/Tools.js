@@ -153,7 +153,6 @@ async function load_api(){
 -------------------------------------------------------------- */
 
 function delegation_estatesmain(event){
-    console.log(event.target);
     var pageback = document.querySelectorAll(".result_estates__next--item");   
     var element = event.target;
     dropdown: if(element.matches(".main_estates__select--main") || element.matches(".main_estates__select--svg") || element.parentNode.classList.contains("main_estates__select--svg") || element.matches(".main_estates__select--text")){ 
@@ -282,16 +281,21 @@ function delegation_estatesmain(event){
             }
         }         
         filters.ruler = 0;
+        console.log(filters);
         sort_estates(filters);
     }
     if(element.matches(".result_estates__list--title") && element.parentNode.classList.contains("result_estates__list--entry")){
         showorhide_details(0, element.parentNode.getAttribute("data-id"));
+        slider_visuals();
+        
     }
     if(element.matches(".result_estates__item--picture")){
         showorhide_details(0, element.parentNode.getAttribute("data-id"));
+        slider_visuals();
     }
     if(element.matches(".result_estates__description--title")){
         showorhide_details(0, element.parentNode.parentNode.getAttribute("data-id"));
+        slider_visuals();
     }
     if(element.matches(".result_estates__btn")){  
         var table_items = document.querySelectorAll(".result_estates__item");  
@@ -586,9 +590,9 @@ function load_estates_newest(){
     let container_newest = document.querySelector("#estates_actuals");
     let newest_estates = document.createElement("ul"); 
     newest_estates.classList.add("estates_actuals__list");   
-/* Die Immobilien(all_estates) werden sortiert nach neuste zuerst und geladen (In Section Detailansicht) */   
+/* Die Immobilien(all_estates) werden sortiert nach neuste zuerst und geladen (In Section Detailansicht) */
     all_estates.sort((a, b) => {                
-        return a.updated_at > b.updated_at;  
+        return a.updated_at - b.updated_at;  
     });
     for(let i = 0; i < 3; i++){
         if(i == all_estates.length){
@@ -778,9 +782,6 @@ function estatedetails_delegation(event){
     let element = event.target;
     if(element.matches(".estate_details__nav--svg") || element.matches(".estate_details__nav--path") || element.matches(".estate_details__nav--text")){
         showorhide_details(1);
-        document.querySelector(".main_estates__ruler").scrollIntoView({
-            behavior: 'smooth'
-        });
     }
     if(element.matches(".estate_details__slider--left") || element.matches(".slider_left")){
         if(img_index == 0){
@@ -892,6 +893,41 @@ function estatedetails_delegation(event){
     }
 }
 
+/*  Home : Estate Detail View Functions
+-------------------------------------------------------------- */
+
+function slider_visuals(){
+
+    let slider = document.querySelector(".estate_details__slider");
+    var slider_svg = document.querySelectorAll(".estate_details__slider--svg");
+    var element_left = document.querySelector(".estate_details__slider--left");
+    var element_right = document.querySelector(".estate_details__slider--right");
+
+    slider.addEventListener("mouseover", (event) => { 
+        if(event.target == element_left || event.target.classList.contains("slider_left") ){
+            slider_svg[0].style.stroke = "black";
+            element_left.style.backgroundColor = "rgba(146, 185, 175, 1)";
+            element_left.style.opacity = "0.8";
+        }
+        if(event.target == element_right || event.target.classList.contains("slider_right") ){
+            slider_svg[1].style.stroke = "black";
+            element_right.style.backgroundColor = "rgba(146, 185, 175, 1)";
+            element_right.style.opacity = "0.8";
+        }  
+    })
+    slider.addEventListener("mouseout", (event) => {
+        if(event.target == element_left){
+            slider_svg[0].style.stroke = "white";
+            element_left.style.backgroundColor = "white";
+            element_left.style.opacity = "0.5";
+        }else{
+            slider_svg[1].style.stroke = "white";
+            element_right.style.backgroundColor = "white";
+            element_right.style.opacity = "0.5";
+        }
+    })
+}
+
 /* News: Delegation                                                                                                                                                                          Head Heart Web <3 Consult your WebDoc about Middleware, Margin and Padding 
 -------------------------------------------------------------- */
 
@@ -938,6 +974,7 @@ function delegation_news(event){
 
 function sort_estates(filters){
     all_estates = all_estates_origin;
+    console.log(all_estates);
     if(filters.select_what != "Alle Objekte"){
         if(filters.select_what != "Haus"){ 
             all_estates = all_estates.filter(estate =>{
@@ -1034,15 +1071,18 @@ function sort_estates(filters){
         });
     }
     if(filters.select_sort != "Auswählen"){
+        
         if(filters.select_sort == "Preis aufsteigend"){    
             all_estates.sort((a, b) => {
-                return a.prize > b.prize;
+                return a.prize - b.prize;
             });
             icon_list = 1;
+            console.log(all_estates);
         }else if(filters.select_sort == "Preis absteigend"){
             all_estates.sort((a, b) => {
-                return a.prize < b.prize;
+                return a.prize - b.prize;
             });
+            all_estates.reverse();
             icon_list = 2;
         }else{
             if(filters.select_sort == "Datum absteigend"){
@@ -1120,6 +1160,7 @@ function sort_estates(filters){
     for(let i = 0; i < all_estates.length; i++){
         all_estates[i].id = i+1;
     }
+    console.log(all_estates);
     load_estates();
 }
 
@@ -1129,7 +1170,6 @@ function showorhide_details(choice, id = 0){
     let wrapper_estatesresult = document.querySelector("#result_estates");
     var wrapper_detailview = document.querySelector("#main_details");
     var estate_details = document.querySelector("#estate_details");
-    console.log(all_estates);
     if(choice == 0){
 /* Detail Ansicht wird geladen */  
         heading_estatesmain.style.display = "none";
@@ -1140,7 +1180,6 @@ function showorhide_details(choice, id = 0){
         var item_details = all_estates.filter(all_estates =>{
             return id == all_estates.id;
         });
-        console.log(item_details);
         item_details = item_details[0];
         estate_details.setAttribute("data-id", item_details.id);
 /* Titellänge wird geprüft und gegebenenfalls angepasst */  
@@ -1161,30 +1200,31 @@ function showorhide_details(choice, id = 0){
         estate_details.children[2].lastElementChild.innerText = item_details.title;
         estate_details.children[3].lastElementChild.firstElementChild.setAttribute("src", item_details.img);
         estate_details.children[3].lastElementChild.firstElementChild.setAttribute("data-index", 0);
+        estate_details.children[3].lastElementChild.firstElementChild.setAttribute("alt", 'estate_img_'+item_details.title);
         estate_details.children[3].lastElementChild.firstElementChild.setAttribute("data-img", item_details.img);
         estate_details.children[4].innerHTML = "";
         if(item_details.countImgs === 3){
             estate_details.children[4].innerHTML = `
-                    <img class="estate_details__images--image" src=${item_details.img1} data-index= 1> 
-                    <img class="estate_details__images--image" src=${item_details.img2} data-index= 2>  
+                    <img class="estate_details__images--image" src=${item_details.img1} data-index="1" alt="estate_img_1"> 
+                    <img class="estate_details__images--image" src=${item_details.img2} data-index= "2" alt="estate_img_2">  
                 `
         }else if(item_details.countImgs === 4){
             estate_details.children[4].innerHTML = `
-                    <img class="estate_details__images--image" src=${item_details.img1} data-index= 1>
-                    <img class="estate_details__images--image" src=${item_details.img2} data-index= 2>
-                    <img class="estate_details__images--image" src=${item_details.img3} data-index= 3>  
+                    <img class="estate_details__images--image" src=${item_details.img1} data-index= "1" alt="estate_img_1" >
+                    <img class="estate_details__images--image" src=${item_details.img2} data-index= "2" alt="estate_img_2">
+                    <img class="estate_details__images--image" src=${item_details.img3} data-index= "3" alt="estate_img_3">  
                 `
         }
         else if(item_details.countImgs === 5){
             estate_details.children[4].innerHTML = `
-                    <img class="estate_details__images--image" src=${item_details.img1} data-index= 1>
-                    <img class="estate_details__images--image" src=${item_details.img2} data-index= 2>
-                    <img class="estate_details__images--image" src=${item_details.img3} data-index= 3>
-                    <img class="estate_details__images--image" src=${item_details.img4} data-index= 4>  
+                    <img class="estate_details__images--image" src=${item_details.img1} data-index= "1" alt="estate_img_1">
+                    <img class="estate_details__images--image" src=${item_details.img2} data-index= "2" alt="estate_img_2">
+                    <img class="estate_details__images--image" src=${item_details.img3} data-index= "3" alt="estate_img_3">
+                    <img class="estate_details__images--image" src=${item_details.img4} data-index= "4" alt="estate_img_4">  
                 `
         }else{
             estate_details.children[4].innerHTML = `
-                    <img class="estate_details__images--image" src=${item_details.img1} data-index= 1> 
+                    <img class="estate_details__images--image" src=${item_details.img1} data-index= "1" alt="estate_img_1"> 
                 `
         }
         estate_details.children[5].firstElementChild.firstElementChild.lastElementChild.innerText = item_details.availability;
@@ -1203,21 +1243,25 @@ function showorhide_details(choice, id = 0){
                 estate_details.children[5].lastElementChild.firstElementChild.lastElementChild.innerText = item_details.description;
             }
         });
-        initMap({lat:parseFloat(item_details.lat.toFixed(4)), lng:parseFloat(item_details.long.toFixed(4))}, estate_details.children[6].classList);
+        initMap({lat:parseFloat(item_details.lat.toFixed(4)), lng:parseFloat(item_details.long.toFixed(4))}, estate_details.children[6].classList, item_details);
         wrapper_detailview.addEventListener("click", estatedetails_delegation);
     }else{  
         wrapper_detailview.style.display = "none";
         heading_estatesmain.style.display = "flex";
         wrapper_estatesmain.style.display = "block";
-        wrapper_estatesresult.style.display = "block"; 
-        document.querySelector(".main_estates__options--iconlist").scrollIntoView();
+        wrapper_estatesresult.style.display = "block";
+        if(screen.width < 650){
+            document.querySelector(".main_estates__options").scrollIntoView();
+        }else{
+            document.querySelector(".main_estates__btn").scrollIntoView();
+        } 
     }
 }
 
 function create_entrys(choice, selektor){
     if(choice == 0){
         let item = `
-            <img class="result_estates__item--picture" src="${all_estates[selektor].img}">
+            <img class="result_estates__item--picture" src="${all_estates[selektor].img}" alt="${all_estates[selektor].title}_img_main">
             <div class="result_estates__description">
                 <p class="result_estates__description--text regular">${all_estates[selektor].estate_type} ${all_estates[selektor].availability}</p>
                 <p class="result_estates__description--text regular">${all_estates[selektor].zip} ${all_estates[selektor].city}, ${all_estates[selektor].canton}</p>
@@ -1228,7 +1272,7 @@ function create_entrys(choice, selektor){
         return item;
     }else if(choice == 1){
         let item = `
-            <img class="estates_actuals__list--picture" src="${all_estates[selektor].img}">
+            <img class="estates_actuals__list--picture" src="${all_estates[selektor].img}" alt="${all_estates[selektor].title}_img_main">
             <div class="estates_actuals__description">
                 <p class="estates_actuals__description--text regular">${all_estates[selektor].estate_type} ${all_estates[selektor].availability}</p>
                 <p class="estates_actuals__description--text regular">${all_estates[selektor].zip} ${all_estates[selektor].city}, ${all_estates[selektor].canton}</p>
@@ -1239,7 +1283,7 @@ function create_entrys(choice, selektor){
         return item;
     }else{
         let item = `
-            <img class="result_estates__item--picture" src="${all_estates[selektor].img}">
+            <img class="result_estates__item--picture" src="${all_estates[selektor].img}" alt="${all_estates[selektor].title}_img_main">
             <div class="result_estates__description">
                 <p class="result_estates__description--text regular">${all_estates[selektor].estate_type} ${all_estates[selektor].availability}</p>
                 <p class="result_estates__description--text regular">${all_estates[selektor].zip} ${all_estates[selektor].city}, ${all_estates[selektor].canton}</p>
@@ -1256,7 +1300,6 @@ function resize_page(){
     window.addEventListener("resize", ()=>{
         location.reload();
         load_estates();
-        console.log("done");
         return 1;
     });
 }
@@ -1289,64 +1332,42 @@ function totop(){
     });
 }
 
-function initMap(coordinates, selector){
+function initMap(coordinates, selector, estate){
     let map;
     map = new google.maps.Map(document.querySelector(`.${selector}`), {
-      center: coordinates,
-      zoom: 17,
-      mapId: "967c67b3b3520cf4",
-      disableDefaultUI: true,
+        center: coordinates,
+        zoom: 17,
+        mapId: "967c67b3b3520cf4",
+        disableDefaultUI: true,
+        gestureHandling: "none",
+        zoomControl: false,
     });
     const svgMarker = {
-      path: "M18 0C8.325 0 0.5 7.825 0.5 17.5C0.5 30.625 18 50 18 50C18 50 35.5 30.625 35.5 17.5C35.5 7.825 27.675 0 18 0ZM18 23.75C14.55 23.75 11.75 20.95 11.75 17.5C11.75 14.05 14.55 11.25 18 11.25C21.45 11.25 24.25 14.05 24.25 17.5C24.25 20.95 21.45 23.75 18 23.75Z",
-      fillColor: "black",
-      fillOpacity: 1,
-      scale: 1.2,
-      anchor: new google.maps.Point(0, 38),
+        path: "M18 0C8.325 0 0.5 7.825 0.5 17.5C0.5 30.625 18 50 18 50C18 50 35.5 30.625 35.5 17.5C35.5 7.825 27.675 0 18 0ZM18 23.75C14.55 23.75 11.75 20.95 11.75 17.5C11.75 14.05 14.55 11.25 18 11.25C21.45 11.25 24.25 14.05 24.25 17.5C24.25 20.95 21.45 23.75 18 23.75Z",
+        fillColor: "black",
+        fillOpacity: 1,
+        scale: 1.2,
+        anchor: new google.maps.Point(0, 38),
     }; 
+    const marker = new google.maps.Marker({
+        position: coordinates,
+        map: map,
+        icon: svgMarker,
+    });
 
     if(screen.width < 700){svgMarker.scale = 1;}   
     else{svgMarker.scale = 1.2;};
-    
-    const marker = new google.maps.Marker({
-      position: coordinates,
-      map: map,
-      icon: svgMarker,
+
+    var infowindow = new google.maps.InfoWindow({
+        content: estate.zip+" "+estate.city
     });
 
-   
-
-    google.maps.event.addListener(map, 'zoom_changed', function() {
-        console.log("ledss gou");
-
-        var zoom = map.getZoom();
-
-
-        /*
-        var pixelSizeAtZoom0 = 8; //the size of the icon at zoom level 0
-        var maxPixelSize = 350; //restricts the maximum size of the icon, otherwise the browser will choke at higher zoom levels trying to scale an image to millions of pixels
-    
-       
-        var relativePixelSize = Math.round(pixelSizeAtZoom0*Math.pow(2,zoom)); // use 2 to the power of current zoom to calculate relative pixel size.  Base of exponent is 2 because relative size should double every time you zoom in
-    
-        if(relativePixelSize > maxPixelSize) //restrict the maximum size of the icon
-            relativePixelSize = maxPixelSize;
-    
-        //change the size of the icon
-        marker.setIcon(
-            new google.maps.MarkerImage(
-                marker.getIcon().url, //marker's same icon graphic
-                null,//size
-                null,//origin
-                null, //anchor
-                new google.maps.Size(relativePixelSize, relativePixelSize) //changes the scale
-            )
-        ); 
-         */       
+    google.maps.event.addListener(marker, 'click', function() {
+        infowindow.open(map,marker);
     });
 
 }
 
-export {load_api, load_estates, load_estates_newest, ruler_state, navigation, resize_page, delegation_estatesmain, delegation_news, totop, initMap};
+export {load_api, load_estates, load_estates_newest, navigation, resize_page, ruler_state, delegation_estatesmain, delegation_news, totop, initMap};
 
 

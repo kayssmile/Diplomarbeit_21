@@ -171,12 +171,8 @@
     height: 50px;
     margin-top: 41px;
     background-color: $elem-general;
-    border: none;
-    cursor: pointer;
-    &--text{
-      @extend .font16;
-      color: $background-general;
-    }    
+    @extend .font16;
+    color: $background-general;    
   }
   &__btn:hover{
     background-color: $elem-hover;
@@ -562,7 +558,6 @@ input[type=range]::-webkit-slider-thumb{
       height: 51px;
       margin-top: 37px;
       @extend .bold;
-      border: none;
       color: $white;
       background-color: $black;
     }
@@ -621,9 +616,10 @@ input[type=range]::-webkit-slider-thumb{
       justify-content: center;
       align-items: center;
       background-color: $background-general;
-      opacity: 0.4;
+      opacity: 0.5;
       height: 100%;
       width: 28px;
+      cursor: pointer;
     }
     &--right{
       @extend .estate_details__slider--left;
@@ -633,9 +629,7 @@ input[type=range]::-webkit-slider-thumb{
       position: absolute;
       stroke: $background-general;
       top: calc(50% - 11px);  
-    }
-    &--svg:hover{
-      stroke: $black;
+      cursor: pointer;
     }
     &--svg:nth-child(2){
       left: 8.5px;
@@ -709,6 +703,7 @@ input[type=range]::-webkit-slider-thumb{
     background-color: $elem-hover;
   }
 }
+
 
 /* Main : Estate Details: Actual Estates
 -------------------------------------------------------------- */
@@ -1078,11 +1073,8 @@ Desktop: 1150px - 2000px
     }
     &__btn{
       width: 31%;     
-      margin-top: 86px;    
-      &--text{
-        @include font18();
-        color: $background-general;
-      }    
+      margin-top: 86px;
+      @include font18();      
     }
     &__options{
       margin-top: 136px;
@@ -1356,10 +1348,8 @@ Desktop: 1150px - 2000px
         @include font22();       
       }
     }
-    &__btn{   
-      &--text{
-        @include font22();
-      }    
+    &__btn{
+      @include font22();      
     }
   }
 
@@ -1375,7 +1365,7 @@ Desktop: 1150px - 2000px
 -------------------------------------------------------------- */
 
   #estates_actuals{
-    padding-bottom: 97px;
+    padding-bottom: 106px;
   }
 
   .estate_details{
@@ -1591,7 +1581,7 @@ Desktop: 1150px - 2000px
     }
     &__all{
       margin: 0% 7.381%;
-      padding-bottom: 106px;
+      padding-bottom: 0px;
       margin-top: 29px;
     }
   }

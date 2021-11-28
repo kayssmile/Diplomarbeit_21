@@ -15,7 +15,7 @@ async function app(){
    Tools.load_estates_newest();
    Tools.ruler_state();
    Tools.navigation(0);
-   Tools.resize_page();
+   Tools.resize_page(); 
    window.addEventListener("click", Tools.delegation_estatesmain);
 }
 
