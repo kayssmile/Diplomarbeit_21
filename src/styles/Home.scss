@@ -309,6 +309,7 @@ input[type=range]::-webkit-slider-thumb{
     padding-right: 8.54%;
     padding-top: 34px;
     padding-bottom: 46px;
+    overflow: hidden;
   }
   &__animation{
     position: relative;
@@ -808,7 +809,6 @@ Desktop: 1150px - 2000px
       } 
     }
   }
-
   .main_estates__heading--title{
     @include font30();
   }
@@ -1130,6 +1130,7 @@ Desktop: 1150px - 2000px
       margin-left: 8.8%;
       margin-right: 8%;
       transition: all 2s linear;
+      overflow: hidden;
     }
     &__table{ 
       position: relative;
@@ -1140,6 +1141,7 @@ Desktop: 1150px - 2000px
       flex-wrap: wrap;
       right: 0%;
       transition: all 2s linear;
+      overflow: hidden;
     }
     &__item{
       width: 45%;
@@ -1443,7 +1445,7 @@ Desktop: 1150px - 2000px
 
   .result_estates{
     &__item-a{
-      padding-bottom: 138px;
+      padding-bottom: 0px;
     }
     &__list{
       &--entrytop:nth-child(1){

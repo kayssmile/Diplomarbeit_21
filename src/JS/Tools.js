@@ -89,11 +89,13 @@ async function load_api(){
 `;
     try{
         estates = await graphQLClient.request(query_allentries);
+        
     }catch (error) {
         console.error();
         try{
             estates = await graphQLClient_save.request(save_query_allentries);
             save_api = 1;
+            console.log(estates);
         }catch(error){
             console.error();
             save_api = 0;
@@ -286,8 +288,7 @@ function delegation_estatesmain(event){
     }
     if(element.matches(".result_estates__list--title") && element.parentNode.classList.contains("result_estates__list--entry")){
         showorhide_details(0, element.parentNode.getAttribute("data-id"));
-        slider_visuals();
-        
+        slider_visuals();     
     }
     if(element.matches(".result_estates__item--picture")){
         showorhide_details(0, element.parentNode.getAttribute("data-id"));
@@ -344,6 +345,7 @@ function delegation_estatesmain(event){
                 let table_container = document.querySelector(".result_estates__item-b");
                 let table_neu = document.createElement("ul");
                 table_neu.classList.add("result_estates__tablenext");
+                table_neu.style.display = "none";
                 for(let i = 0; i < table_items; i++){
                     if(id > all_estates.length){
                         break;
@@ -364,18 +366,27 @@ function delegation_estatesmain(event){
                 table_neu.style.visibility = "hidden";
                 table_container.insertBefore(table_neu, document.querySelector(".result_estates__btn"));
             }
+            tables_new = document.querySelectorAll(".result_estates__tablenext");
+            if(tables_new[tables_new.length-1].childElementCount == 2 ||tables_new[tables_new.length-1].childElementCount == 5){
+                let item = document.createElement("li");
+                item.classList.add("result_estates__item");
+                item.style.visibility = "hidden";
+                tables_new[tables_new.length-1].appendChild(item);
+            }
         }
         tables_new = document.querySelectorAll(".result_estates__tablenext");
         let table = document.querySelector(".result_estates__table");
         let display_page = document.querySelector(".result_estates__next--actual");
 /* Hier wird die Transition gestartet gemäss Zähler, Verzögerungen sind notwendig für die Browser-Engine */ 
+        document.body.classList.add("stop-scrolling");
         if(counter_forward == 0){
            table.style.right = "110%";
            tables_new[0].style.left = "95%";
            setTimeout(() =>{ 
             tables_new[0].style.left = "0%";
             },1);
-           tables_new[0].style.visibility = "visible";
+            tables_new[0].style.visibility = "visible";
+            tables_new[0].style.display = "inline-flex";
             counter_forward++;
             display_page.innerText = 2;
         }else if(counter_forward == 1){
@@ -388,7 +399,8 @@ function delegation_estatesmain(event){
             setTimeout(() =>{ 
                 tables_new[1].style.left = "0%";
             },1);
-           tables_new[1].style.visibility = "visible";    
+           tables_new[1].style.visibility = "visible"; 
+           tables_new[1].style.display = "inline-flex";   
            counter_forward++;
            display_page.innerText = 3;     
         }else if(counter_forward == 2){
@@ -402,6 +414,7 @@ function delegation_estatesmain(event){
                 tables_new[2].style.left = "0%";
             },1);
             tables_new[2].style.visibility = "visible";
+            tables_new[2].style.display = "inline-flex";
             counter_forward++;
             display_page.innerText = 4;
         }else if(counter_forward == 3){
@@ -415,6 +428,7 @@ function delegation_estatesmain(event){
                 tables_new[3].style.left = "0%";
             },1);
             tables_new[3].style.visibility = "visible";
+            tables_new[3].style.display = "inline-flex";
             counter_forward++;
             display_page.innerText = 5;
         }  
@@ -422,6 +436,8 @@ function delegation_estatesmain(event){
             pageback[0].style.visibility = "visible";
             pageback[0].style.cursor = "pointer";
             pause = 0;
+            document.body.classList.remove("stop-scrolling");
+           // document.querySelector("body").style.overflow = "auto";
         },2000);
         if(document.querySelector(".result_estates__next--actual").innerText == document.querySelector(".result_estates__next--total").innerText){
             pageback[1].lastElementChild.style.visibility = "hidden";
@@ -437,6 +453,7 @@ function delegation_estatesmain(event){
         let tables_new = document.querySelectorAll(".result_estates__tablenext");
         let display_page = document.querySelector(".result_estates__next--actual");
         pageback[1].lastElementChild.style.visibility = "visible";
+        document.body.classList.add("stop-scrolling");
         if(counter_forward == 1){ 
             if(tables_new[0].style.right = "0%"){
                 tables_new[0].style.right = null;
@@ -445,11 +462,17 @@ function delegation_estatesmain(event){
             setTimeout(() =>{ 
                 tables_new[0].style.left = "95%";
             },1);
+            setTimeout(() =>{ 
+                tables_new[0].style.display = "none";
+            },2000);
             pageback[0].style.visibility = "hidden";
             pageback[0].style.cursor = null;
             table.style.right = "0%";
             counter_forward--;
             display_page.innerText = 1;
+            setTimeout(() =>{ 
+                tables_new[0].style.display = "none";
+            },2000);
         }else if(counter_forward == 2){
             if(tables_new[1].style.right = "0%"){
                 tables_new[1].style.right = null;
@@ -458,6 +481,9 @@ function delegation_estatesmain(event){
             setTimeout(() =>{ 
                 tables_new[1].style.left = "95%";
             },1);
+            setTimeout(() =>{ 
+                tables_new[1].style.display = "none";
+            },2000);
             tables_new[0].style.right = "0%";
             counter_forward--;
             display_page.innerText = 2;
@@ -469,6 +495,9 @@ function delegation_estatesmain(event){
             setTimeout(() =>{ 
                 tables_new[2].style.left = "95%";
             },1);
+            setTimeout(() =>{ 
+                tables_new[2].style.display = "none";
+            },2000);
             tables_new[1].style.right = "0%";
             counter_forward--;
             display_page.innerText = 3;
@@ -480,6 +509,7 @@ function delegation_estatesmain(event){
         }
         setTimeout(() => { 
             pause = 0;
+            document.body.classList.remove("stop-scrolling");
         },2000);
     }
     if(element.matches("path") || element.matches("rect")){ 
@@ -558,7 +588,7 @@ function load_estates(){
             }
             let item = document.createElement("li");
             item.classList.add("result_estates__item");
-            if(i == 3 ){
+            if(i == 3){
                 item.classList.add("visibility-tablet");
             }
             if(i > 3){
@@ -574,12 +604,18 @@ function load_estates(){
         if(all_estates.length == table_items || all_estates.length < table_items){
             pages_forward[1].lastElementChild.style.visibility = "hidden";
         }   
-        if(screen.width > 1150 && all_estates.length == 2){    
+        if(screen.width > 1149 && all_estates.length == 2){   
             let item = document.createElement("li");
             item.classList.add("result_estates__item");
             item.style.visibility = "hidden";
             first_table.appendChild(item);
-        } 
+        }
+        if(screen.width > 1149 && all_estates.length == 5){       
+            let item = document.createElement("li");
+            item.classList.add("result_estates__item");
+            item.style.visibility = "hidden";
+            first_table.appendChild(item);
+        }  
         setTimeout (() =>{ 
             first_table.style.transitionDuration = "2s";
         },20);
@@ -974,13 +1010,13 @@ function delegation_news(event){
 
 function sort_estates(filters){
     all_estates = all_estates_origin;
-    console.log(all_estates);
     if(filters.select_what != "Alle Objekte"){
         if(filters.select_what != "Haus"){ 
             all_estates = all_estates.filter(estate =>{
                 if(estate.ref_type_id == "1"){return 1;}
                 else{return 0;}    
             });
+            console.log(all_estates);
         }else{
             all_estates = all_estates.filter(estate =>{ 
                 if(estate.ref_type_id  == "0"){return 1;}
